@@ -12,3 +12,9 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Meat {
+  id       Int     @id @default(autoincrement())
+  type     String
+  price    Float
+}
