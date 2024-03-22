@@ -25,6 +25,7 @@ const Register = ({register}) => {
     }
   }
 
+  console.log({firstName});
 
   return(
     <>
@@ -64,6 +65,8 @@ const Register = ({register}) => {
 
     </form>
     </>
+
+    
 
   );
 };
