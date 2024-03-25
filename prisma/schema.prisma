@@ -14,14 +14,13 @@ datasource db {
 }
 
 model Meat {
-  id          Int       @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
-  description String?
-  zipcode     ZipCode[]
+  description String
 }
 
-model ZipCode {
-  id    Int    @id @default(autoincrement())
-  code  String @unique
-  meats Meat[]
+model Butcher {
+  id      Int    @id @default(autoincrement())
+  name    String
+  zipcode String
 }
