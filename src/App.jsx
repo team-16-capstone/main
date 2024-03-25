@@ -1,3 +1,4 @@
+
 import './App.css'
 import Login from './components/Login'
 import Register from './components/Register';
@@ -6,9 +7,10 @@ import { useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import {Routes, Route} from 'react-router-dom';
 
-function App() {
 
+function App() {
   const [auth, setAuth] = useState([]);
+
 
   const devUser = {
     id: "7",
@@ -24,7 +26,11 @@ function App() {
     } 
     else {
       console.log('clear user account');
+
     }
+    // client.Meat.findMany().then((response) =>
+    //   console.log("this is the response", response)
+    // );
   }, [auth]);
 
   useEffect(() => {
@@ -32,20 +38,22 @@ function App() {
       const response = await fetch('https://pocketbutcher.com/api/users/me', {
         headers: {
           Authorization: `Bearer ${token}`
+
         }
-      });
+      );
       const json = await response.json();
-      if(response.ok){
+      if (response.ok) {
         setAuth(json);
       }
     };
-    const token = window.localStorage.getItem('token');
-    if(token){
+    const token = window.localStorage.getItem("token");
+    if (token) {
       attemptLoginWithToken();
     } else {
 
     }
   }, []);
+
   
   const login = async(credentials)=> {
     let response = await fetch('https://pocketbutcher.com/api/users/login', {
@@ -73,8 +81,9 @@ function App() {
     }
     else {
      console.log(json);
+
     }
-   };
+  };
 
    const register = async(credentials)=> {
     let response = await fetch('https://pocketbutcher.com/api/users/register', {
@@ -104,10 +113,13 @@ function App() {
    };
 
 
+
   return (
     <>
       <div>
+
         <h1>Pocket Butcher!</h1>
+
       </div>
       <nav>
           {
@@ -149,7 +161,7 @@ function App() {
           )
         }
     </>
-  )
+  );
 }
 
-export default App
+export default App;
