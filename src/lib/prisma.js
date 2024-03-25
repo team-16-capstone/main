@@ -1,11 +1,17 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = global;
+// const client = new PrismaClient();
 
-const prisma = globalForPrisma.prisma || new PrismaClient();
+// client.Meat.findMany().then((response) =>
+//   console.log("this is the response", response)
+// );
 
-require("dotenv").config();
+// const globalForPrisma = global;
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+// const prisma = globalForPrisma.prisma || new PrismaClient();
 
-export default prisma;
+// // require("dotenv").config();
+
+// if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+// export default client;
