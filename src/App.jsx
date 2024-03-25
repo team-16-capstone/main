@@ -93,13 +93,30 @@ function App() {
   return (
     <>
       <div>
-        <h1>Welcome to Pocket Butcher!</h1>
+        <h1>Pocket Butcher!</h1>
       </div>
-      <div>
-        <Login login= { login }/>
-        <br/>
-        <Register register = { register }/>
-      </div>
+      <nav>
+          {
+            auth.id ? (
+              <Link to='/account'>MY ACCOUNT</Link>
+            ) : (null)
+          }
+        </nav>
+
+        <div>
+          Welcome! { auth.email }
+        </div>
+        {
+          auth.id ? (
+            <button onClick={ logout }>LOGOUT</button>
+          ) : 
+          (
+            <>
+            <Login login= { login }/>
+            <Register register = { register }/>
+            </>
+          )
+        }
     </>
   )
 }
