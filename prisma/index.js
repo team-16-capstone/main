@@ -1,10 +1,18 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import express from "express";
+import meatRouter from "./meatRouter.js";
+
 const prisma = new PrismaClient();
+const app = express();
+
+app.use(express.json());
+app.use("/meats", meatRouter);
 
 const main = async () => {
   try {
     //Meat Products
     const meatsData = [
+
       { name: 'Ribeye steak', description: 'Richly marbled and flavorful' },
       { name: 'Filet mignon', description: 'Tender and buttery.' },
       { name: 'New York strip steak', description: 'Well-marbled and juicy.' },
@@ -27,12 +35,15 @@ const main = async () => {
         name: 'Ground beef',
         description: 'Versatile minced beef for various dishes.',
       },
+
     ];
 
     const newMeats = await prisma.meat.createMany({
       data: meatsData,
     });
 
+
+     
     console.log('All meats created successfully:', newMeats);
 
     console.log('All meats created successfully');
@@ -117,6 +128,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10002',
         phonenumber: '+12125632555',
+
       },
     ];
 
@@ -124,12 +136,16 @@ const main = async () => {
       data: butchersData,
     });
 
+
     console.log('All butchers created successfully:', newButchers);
+
   } catch (error) {
-    console.error('error:', error);
+    console.error("error:", error);
   } finally {
     await prisma.$disconnect();
   }
 };
 
 main();
+
+app.listen(3001, () => console.log("this is working"));

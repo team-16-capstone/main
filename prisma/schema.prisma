@@ -28,3 +28,4 @@ model Butcher {
   zipcode     String
   phonenumber String
 }
+
