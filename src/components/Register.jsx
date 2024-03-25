@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = ({register}) => {
   const[firstName, setFirstName] = useState("");
@@ -9,6 +9,10 @@ const Register = ({register}) => {
   const[password, setPassword] = useState("");
   const[error, setError] = useState("");
 
+
+
+  const navigate = useNavigate();
+  
   const submit = async(event) => {
     event.preventDefault();
 
@@ -23,8 +27,8 @@ const Register = ({register}) => {
     catch(error) {
       setError(error.message);
     }
-  }
 
+  }
 
   return(
     <>
@@ -60,10 +64,12 @@ const Register = ({register}) => {
       onChange={ event => setPassword(event.target.value )}
       />
 
-      <button>REGISTER</button>
+      <button onClick={() => navigate("/account")}>REGISTER</button>
 
     </form>
     </>
+
+    
 
   );
 };
