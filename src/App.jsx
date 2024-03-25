@@ -40,7 +40,7 @@ function App() {
           Authorization: `Bearer ${token}`
 
         }
-      );
+    });
       const json = await response.json();
       if (response.ok) {
         setAuth(json);
