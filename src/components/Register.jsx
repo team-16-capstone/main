@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = ({register}) => {
   const[firstName, setFirstName] = useState("");
@@ -23,9 +23,9 @@ const Register = ({register}) => {
     catch(error) {
       setError(error.message);
     }
-  }
 
-  console.log({firstName});
+    const navigate = useNavigate();
+  }
 
   return(
     <>
@@ -61,7 +61,7 @@ const Register = ({register}) => {
       onChange={ event => setPassword(event.target.value )}
       />
 
-      <button>REGISTER</button>
+      <button onClick={() => navigate("/account")}>REGISTER</button>
 
     </form>
     </>

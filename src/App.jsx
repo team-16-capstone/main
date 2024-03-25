@@ -8,18 +8,18 @@ function App() {
   const [auth, setAuth] = useState([]);
 
   useEffect(()=> {
-    console.log(auth);
+    // console.log(auth);
     if(auth.id){
-      console.log('load the reservations');
+      console.log('load user account');
     } 
     else {
-      console.log('clear the reservations');
+      console.log('clear user account');
     }
   }, [auth]);
 
   useEffect(() => {
     const attemptLoginWithToken = async()=> {
-      const response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me', {
+      const response = await fetch('https://pocketbutcher.com/api/users/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -36,7 +36,7 @@ function App() {
   }, []);
   
   const login = async(credentials)=> {
-    let response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login', {
+    let response = await fetch('https://pocketbutcher.com/api/users/login', {
      method: 'POST',
      body: JSON.stringify(credentials),
      headers: {
@@ -47,7 +47,7 @@ function App() {
     if(response.ok){
      const token = json.token;
      window.localStorage.setItem('token', token);
-     response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me', {
+     response = await fetch('https://pocketbutcher.com/api/users/me', {
        headers: {
          Authorization: `Bearer ${token}`
        }
@@ -63,7 +63,7 @@ function App() {
    };
 
    const register = async(credentials)=> {
-    let response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register', {
+    let response = await fetch('https://pocketbutcher.com/api/users/register', {
      method: 'POST',
      body: JSON.stringify(credentials),
      headers: {
@@ -74,7 +74,7 @@ function App() {
     if(response.ok){
      const token = json.token;
      window.localStorage.setItem('token', token);
-     response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me', {
+     response = await fetch('https://pocketbutcher.com/api/users/me', {
        headers: {
          Authorization: `Bearer ${token}`
        }
@@ -88,7 +88,7 @@ function App() {
      console.log(json);
     }
    };
- 
+
 
   return (
     <>
