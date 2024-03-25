@@ -1,11 +1,21 @@
 import './App.css'
 import Login from './components/Login'
 import Register from './components/Register';
+import Account from './components/Account';
 import { useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
 
   const [auth, setAuth] = useState([]);
+
+  const devUser = {
+    id: "7",
+    token: "10489571n45gjqckjnv",
+    email: "devuser@email.com"
+    
+  }
 
   useEffect(()=> {
     // console.log(auth);
@@ -32,6 +42,8 @@ function App() {
     const token = window.localStorage.getItem('token');
     if(token){
       attemptLoginWithToken();
+    } else {
+
     }
   }, []);
   
@@ -55,6 +67,8 @@ function App() {
      json = await response.json();
      if(response.ok){
        setAuth(json);
+     } else {
+      setAuth(devUser);
      }
     }
     else {
@@ -101,19 +115,36 @@ function App() {
               <Link to='/account'>MY ACCOUNT</Link>
             ) : (null)
           }
-        </nav>
-
-        <div>
+          <div>
           Welcome! { auth.email }
-        </div>
+          </div>
+      </nav>
+
+        
         {
           auth.id ? (
             <button onClick={ logout }>LOGOUT</button>
           ) : 
           (
             <>
-            <Login login= { login }/>
-            <Register register = { register }/>
+            
+
+            <Routes>
+              <Route
+                path='/' element= {<Login login ={ login }/>} >
+              </Route>
+              <Route
+                path='/register' element= {<Register register ={ register }/>} >
+              </Route>
+              <Route
+                path='/account' element= {<Account/>} >
+              </Route>
+            </Routes>
+            
+            <Link to='/register'>New Here? Register</Link>
+            <br/>
+            <Link to='/'>Already a Member? Login</Link>
+
             </>
           )
         }

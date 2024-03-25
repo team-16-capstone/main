@@ -5,6 +5,8 @@ const Login = ({ login })=> {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+  
   const submit = async(ev)=> {
     ev.preventDefault();
     const credentials = {
@@ -13,7 +15,6 @@ const Login = ({ login })=> {
     };
     await login(credentials);
 
-    const navigate = useNavigate();
   }
 
   return (

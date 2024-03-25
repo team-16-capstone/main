@@ -9,6 +9,10 @@ const Register = ({register}) => {
   const[password, setPassword] = useState("");
   const[error, setError] = useState("");
 
+
+
+  const navigate = useNavigate();
+  
   const submit = async(event) => {
     event.preventDefault();
 
@@ -24,7 +28,6 @@ const Register = ({register}) => {
       setError(error.message);
     }
 
-    const navigate = useNavigate();
   }
 
   return(
