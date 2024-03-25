@@ -20,7 +20,11 @@ model Meat {
 }
 
 model Butcher {
-  id      Int    @id @default(autoincrement())
-  name    String
-  zipcode String
+  id          Int    @id @default(autoincrement())
+  name        String
+  street      String
+  city        String
+  state       String
+  zipcode     String
+  phonenumber String
 }
