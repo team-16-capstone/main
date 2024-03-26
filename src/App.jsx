@@ -6,6 +6,11 @@ import Account from './components/Account';
 import { useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import {Routes, Route} from 'react-router-dom';
+import MeatYourMatch from './components/MeatYourMatch';
+import NewExperience from './components/NewExperience';
+import Butchers from './components/Butchers';
+import Community from './components/Community';
+
 
 
 function App() {
@@ -40,7 +45,7 @@ function App() {
           Authorization: `Bearer ${token}`
 
         }
-      );
+    });
       const json = await response.json();
       if (response.ok) {
         setAuth(json);
@@ -118,10 +123,10 @@ function App() {
     <>
       <div>
 
-        <h1>Pocket Butcher!</h1>
+        <h1 id="logo">Pocket Butcher</h1>
 
       </div>
-      <nav>
+      {/* <nav>
           {
             auth.id ? (
               <Link to='/account'>MY ACCOUNT</Link>
@@ -130,7 +135,7 @@ function App() {
           <div>
           Welcome! { auth.email }
           </div>
-      </nav>
+      </nav> */}
 
         
         {
@@ -151,12 +156,19 @@ function App() {
               <Route
                 path='/account' element= {<Account/>} >
               </Route>
+              <Route
+                path='/meat-your-match' element= {<MeatYourMatch/>} >
+              </Route>
+              <Route
+                path='/new-experience' element= {<NewExperience/>} >
+              </Route>
+              <Route
+                path='/butchers' element= {<Butchers/>} >
+              </Route>
+              <Route
+                path='/community' element= {<Community/>} >
+              </Route>
             </Routes>
-            
-            <Link to='/register'>New Here? Register</Link>
-            <br/>
-            <Link to='/'>Already a Member? Login</Link>
-
             </>
           )
         }
