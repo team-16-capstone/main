@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const butchersRouter = express.Router();
 
-butchersRouter.get("/", async (req, res) => {
+butchersRouter.get("/butchers", async (req, res) => {
   const butchers = await prisma.butcher.findMany();
   res.send(butchers);
 });

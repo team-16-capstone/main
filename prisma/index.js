@@ -1,61 +1,61 @@
-import { PrismaClient } from '@prisma/client';
-import express from 'express';
-import meatRouter from './meatRouter.js';
-import butchersRouter from './butchersRouter.js';
-import userRouter from './userRouter.js';
+import { PrismaClient } from "@prisma/client";
+import express from "express";
+import meatsRouter from "./meatRouter.js";
+import butchersRouter from "./butchersRouter.js";
+import userRouter from "./userRouter.js";
 
 const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
-app.use('/meats', meatRouter);
-app.use('/butchers', butchersRouter);
-app.use('/users', userRouter);
+app.use("/api", meatsRouter);
+app.use("/api", butchersRouter);
+app.use("/api", userRouter);
 
 const main = async () => {
   try {
     //Manually created users
     const userData = [
-      { name: 'julie', email: 'julie@team16.com', password: 'password123' },
+      { name: "julie", email: "julie@team16.com", password: "password123" },
       {
-        name: 'juan pablo',
-        email: 'juanpablo@team16.com',
-        password: 'password1234',
+        name: "juan pablo",
+        email: "juanpablo@team16.com",
+        password: "password1234",
       },
       {
-        name: 'vanessa',
-        email: 'vanessa@team16.com',
-        password: 'password1235',
+        name: "vanessa",
+        email: "vanessa@team16.com",
+        password: "password1235",
       },
     ];
     const newUsers = await prisma.user.createMany({
       data: userData,
     });
-    console.log('All users created successfully:', newUsers);
+    console.log("All users created successfully:", newUsers);
 
     //Meat Products manual
     const meatsData = [
-      { name: 'Ribeye steak', description: 'Richly marbled and flavorful' },
-      { name: 'Filet mignon', description: 'Tender and buttery.' },
-      { name: 'New York strip steak', description: 'Well-marbled and juicy.' },
-      { name: 'Lamb chops', description: 'Tender with a distinct flavor.' },
+      { name: "Ribeye steak", description: "Richly marbled and flavorful" },
+      { name: "Filet mignon", description: "Tender and buttery." },
+      { name: "New York strip steak", description: "Well-marbled and juicy." },
+      { name: "Lamb chops", description: "Tender with a distinct flavor." },
       {
-        name: 'Pork loin chops',
-        description: 'Tender and flavorful pork cuts.',
+        name: "Pork loin chops",
+        description: "Tender and flavorful pork cuts.",
       },
       {
-        name: 'Beef brisket',
-        description: 'Flavorful and ideal for slow cooking.',
+        name: "Beef brisket",
+        description: "Flavorful and ideal for slow cooking.",
       },
-      { name: 'Pork shoulder', description: 'Versatile and flavorful cut.' },
+      { name: "Pork shoulder", description: "Versatile and flavorful cut." },
       {
-        name: 'Flank steak',
-        description: 'Lean and flavorful, perfect for grilling.',
+        name: "Flank steak",
+        description: "Lean and flavorful, perfect for grilling.",
       },
-      { name: 'Chicken breasts', description: 'Lean and versatile.' },
+      { name: "Chicken breasts", description: "Lean and versatile." },
       {
-        name: 'Ground beef',
-        description: 'Versatile minced beef for various dishes.',
+        name: "Ground beef",
+        description: "Versatile minced beef for various dishes.",
       },
     ];
 
@@ -63,98 +63,98 @@ const main = async () => {
       data: meatsData,
     });
 
-    console.log('All meats created successfully:', newMeats);
+    console.log("All meats created successfully:", newMeats);
 
     // Butcher Location manual
     const butchersData = [
       {
-        name: 'Esposito Meat Market',
-        street: '500 9th Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10018',
-        phonenumber: '+12122793298',
+        name: "Esposito Meat Market",
+        street: "500 9th Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10018",
+        phonenumber: "+12122793298",
       },
       {
-        name: 'Big Apple Meat Market',
-        street: '577 9th Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10036',
-        phonenumber: '+12125632555',
+        name: "Big Apple Meat Market",
+        street: "577 9th Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10036",
+        phonenumber: "+12125632555",
       },
       {
-        name: 'Piccinini Bros',
-        street: '633 9th Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10036',
-        phonenumber: '+12122468277',
+        name: "Piccinini Bros",
+        street: "633 9th Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10036",
+        phonenumber: "+12122468277",
       },
       {
-        name: 'Dickson Farmstand Meats',
-        street: '75 9th Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10010',
-        phonenumber: '+12122422630',
+        name: "Dickson Farmstand Meats",
+        street: "75 9th Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10010",
+        phonenumber: "+12122422630",
       },
       {
-        name: 'Sonny 10th Ave Meat Market',
-        street: '758 10th Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10019',
-        phonenumber: '+12127572276',
+        name: "Sonny 10th Ave Meat Market",
+        street: "758 10th Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10019",
+        phonenumber: "+12127572276",
       },
       {
-        name: 'Ceriello Fine Foods',
-        street: '89 E 42nd St',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10017',
-        phonenumber: '+12129724266',
+        name: "Ceriello Fine Foods",
+        street: "89 E 42nd St",
+        city: "New York",
+        state: "NY",
+        zipcode: "10017",
+        phonenumber: "+12129724266",
       },
       {
-        name: 'L. Simchick, & Co.',
-        street: '988 1st Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10022',
-        phonenumber: '+12128882299',
+        name: "L. Simchick, & Co.",
+        street: "988 1st Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10022",
+        phonenumber: "+12128882299",
       },
       {
-        name: 'East Village Meat Market',
-        street: '139 2nd Ave',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10003',
-        phonenumber: '+12122285590',
+        name: "East Village Meat Market",
+        street: "139 2nd Ave",
+        city: "New York",
+        state: "NY",
+        zipcode: "10003",
+        phonenumber: "+12122285590",
       },
       {
-        name: 'Pino Prime Meat Market',
-        street: '149 Sullivan St',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10012',
-        phonenumber: '+12124758134',
+        name: "Pino Prime Meat Market",
+        street: "149 Sullivan St",
+        city: "New York",
+        state: "NY",
+        zipcode: "10012",
+        phonenumber: "+12124758134",
       },
       {
-        name: 'Luis Meat Market',
-        street: '88 Essex St',
-        city: 'New York',
-        state: 'NY',
-        zipcode: '10002',
-        phonenumber: '+12125632555',
+        name: "Luis Meat Market",
+        street: "88 Essex St",
+        city: "New York",
+        state: "NY",
+        zipcode: "10002",
+        phonenumber: "+12125632555",
       },
     ];
 
     const newButchers = await prisma.butcher.createMany({
       data: butchersData,
     });
-    console.log('All butchers created successfully:', newButchers);
+    console.log("All butchers created successfully:", newButchers);
   } catch (error) {
-    console.error('error:', error);
+    console.error("error:", error);
   } finally {
     await prisma.$disconnect();
   }
@@ -162,4 +162,4 @@ const main = async () => {
 
 main();
 
-app.listen(3001, () => console.log('this is working'));
+app.listen(3001, () => console.log("this is working"));
