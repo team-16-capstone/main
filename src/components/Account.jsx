@@ -13,16 +13,19 @@ const Account = ({ auth })=> {
     </div>
     <br/>
     <div id="account-body">
-    <div>
+    <div className="account-cards">
       MY EXPERIENCES
+      <br/>
       <button>Browse All</button>
     </div>
-    <div>
+    <div className="account-cards">
       MEET YOUR MATCH
+      <br/>
       <button onClick={() => navigate('/meat-your-match')}>Search</button>
     </div>
-    <div>
+    <div className="account-cards">
       CREATE EXPERIENCE
+      <br/>
       <button onClick={() => navigate('/new-experience')}>New</button>
     </div>
     </div>
