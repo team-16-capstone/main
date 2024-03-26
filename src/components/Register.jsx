@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const Register = ({register}) => {
   const[firstName, setFirstName] = useState("");
@@ -64,12 +65,12 @@ const Register = ({register}) => {
       onChange={ event => setPassword(event.target.value )}
       />
 
-      <button onClick={() => navigate("/account")}>REGISTER</button>
+      {/* <button onClick={() => (submit)}>REGISTER</button> */}
+      <button onClick={() => navigate('/account')}>REGISTER</button>
 
     </form>
+    <Link to='/'>Already a Member? Login</Link>
     </>
-
-    
 
   );
 };
