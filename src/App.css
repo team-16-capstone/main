@@ -21,11 +21,13 @@ h3 {
 }
 
 button {
+  color: white;
+  background-color: rgb(167, 49, 49);
   margin: 10px;
 }
 
 button:hover {
-  color:rgb(167, 49, 49);
+  color:rgb(0, 0, 0);
 }
 
 .nav-bar {
