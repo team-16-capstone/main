@@ -1,11 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
 import bcrypt from "bcrypt";
+import morgan from "morgan";
 
 const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
+app.use(morgan("dev"));
 
 //get all users
 app.get("/api/users", async (req, res, next) => {
@@ -110,10 +112,11 @@ app.get("/api/butchers/:id", async (req, res, next) => {
 //create a user
 app.post("/api/users", async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, name } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
       data: {
+        name,
         email,
         password: hashedPassword,
       },
@@ -286,4 +289,18 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
   }
 });
 
-app.listen(3001, () => console.log("this is working"));
+const port = 3001;
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}.`);
+  console.log("Curl commands to test application");
+  console.log(
+    `curl -X POST localhost:${port}/api/meats -d '{ "name": "NewMeat", "description": "NewYummy"}' -H "Content-Type:application/json"`
+  );
+  console.log(
+    `curl -X PATCH localhost:${port}/api/meats/:id -d '{ "name": "NewerMeat", "description": "NewerYummy"}' -H "Content-Type:application/json"`
+  );
+  console.log(
+    `curl -X DELETE localhost:${port}/api/meats/:id -H "Content-Type:application/json"`
+  );
+});
