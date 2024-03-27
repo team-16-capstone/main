@@ -117,7 +117,10 @@ function App() {
     }
    };
 
-
+//   const logout = ()=> {
+//     window.localStorage.removeItem('token');
+//     setAuth({});
+//   };
 
   return (
     <>
