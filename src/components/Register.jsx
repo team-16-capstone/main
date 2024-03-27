@@ -68,9 +68,9 @@ const Register = ({register}) => {
       <br/>
       {/* <button onClick={() => (submit)}>REGISTER</button> */}
       <button onClick={() => navigate('/account')}>REGISTER</button>
-
+    <br/>
     </form>
-    <Link to='/'>Already a Member? Login</Link>
+    <Link className="link" to='/'>Already a Member? Login</Link>
     </div>
     </>
 

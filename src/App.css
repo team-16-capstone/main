@@ -10,17 +10,111 @@ body {
   background-size: 110%;
 }
 
-#login-container {
-  background-color: rgba(255, 255, 255, 0.85);
-  text-align: center;
+h2 {
+  font-size: 40px;
+  color: black;
+  margin: 0px;
+}
+
+h3 {
+  color: black;
+}
+
+button {
   margin: 10px;
-  padding: 30px 10px 30px 10px;
+}
+
+button:hover {
+  color:rgb(167, 49, 49);
+}
+
+.nav-bar {
+  color:rgb(167, 49, 49);
+}
+
+.link {
+  color: rgb(167, 49, 49);
+}
+
+.link:hover {
+  color: black;
+}
+
+#login-container {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#register-container {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#nav-container {
+  background-color: rgba(228, 228, 228, 0.85);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 8px;
+
+}
+
+#account-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#account-card {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#match-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#butcher-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#community-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
   border-radius: 8px;
 }
 
 #logo {
   text-align: center;
-  color: white;
+  font-size: 100px;
+  padding: 0px;
+  margin: 5px;
+  border-radius: 8px;
+  color: rgb(167, 49, 49);
 }
 
 #root {
@@ -35,12 +129,6 @@ body {
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 .card {

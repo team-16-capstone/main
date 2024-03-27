@@ -38,8 +38,7 @@ const Login = ({ login })=> {
       {/* <button onClick={() => (submit)}>LOGIN</button> */}
       <button onClick={() => navigate('/account')}>LOGIN</button>
     </form>
-    <br/>
-    <Link to='/register'>Become a Member</Link>
+    <Link className="link" to='/register'>Become a Member</Link>
     </div>
     </>
   );
