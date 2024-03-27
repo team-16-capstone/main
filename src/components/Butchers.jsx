@@ -6,10 +6,10 @@ const Butchers = ({ auth })=> {
   return (
     <>
     <NavBar/>
+    <div id="butcher-body">
     <h2>
       BUTCHERS
     </h2>
-    <div id="butcher-body">
       <h3>
       BUTCHER PROFILE
       </h3>

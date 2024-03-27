@@ -92,6 +92,14 @@ button:hover {
   border-radius: 8px;
 }
 
+#new-exp-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
 #butcher-body {
   background-color: rgba(228, 228, 228, 0.85);
   text-align: center;
@@ -115,6 +123,7 @@ button:hover {
   margin: 5px;
   border-radius: 8px;
   color: rgb(167, 49, 49);
+  text-shadow: 0 0 3px #ffffff;
 }
 
 #root {

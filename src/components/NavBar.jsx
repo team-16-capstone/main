@@ -7,6 +7,7 @@ function NavBar() {
        <Link className="link" to="/account">MY ACCOUNT</Link>
        <Link className="link" to="/butchers">BUTCHERS</Link>
        <Link className="link" to="/community">COMMUNITY</Link>
+       <Link className="link" to="/">LOGOUT</Link>
       </div>
     </>
   )
