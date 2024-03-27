@@ -8,10 +8,10 @@ const Account = ({ auth })=> {
   return (
     <>
     <NavBar/>
+    <div id="account-body">
     <h2>
       MY ACCOUNT
     </h2>
-    <div id="account-body">
     <h3 className="account-cards">
       MY EXPERIENCES
       <br/>

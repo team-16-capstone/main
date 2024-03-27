@@ -11,49 +11,41 @@ const NewExperience = () => {
 
   const navigate = useNavigate();
   
-  // const submit = async(event) => {
-  //   event.preventDefault();
-
-  //   const credentials = {
-  //     email, password 
-  //   };
-
-  //   try {
-  //     await register(credentials);
-  //     // Navigate('/account');
-  //   }
-  //   catch(error) {
-  //     setError(error.message);
-  //   }
-
-  // }
+  //this is not done and needs work!
+  const submit = async(event) => {
+    event.preventDefault();
+    await createPlayer({butcherName, meatName, comment});
+    refetch();
+  }
 
   return(
     <>
     <NavBar/>
+    <div id="new-exp-body">
+    <h2>CREATE EXPERIENCE</h2>  
     <form onSubmit={ submit }>
     <input
       placeholder='Butcher'
       value={ butcherName }
       onChange={ event => setButcherName(event.target.value )}
       />
-
+      <br/>
       <input
       placeholder='Meat Cut'
       value={ meatName }
       onChange={ event => setMeatName(event.target.value )}
       />
-
+      <br/>
       <input
       placeholder='Experience'
       value={ comment }
       onChange={ event => setComment(event.target.value )}
       />
-
+      <br/>
       {/* <button onClick={() => (submit)}>REGISTER</button> */}
       <button onClick={() => navigate('/account')}>CREATE</button>
-
     </form>
+    </div>
     </>
   );
 };
