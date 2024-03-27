@@ -289,6 +289,29 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
   }
 });
 
+// authenticate user name and password
+const authenticate = async ({ name, password }) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      name: name,
+    },
+  });
+
+  if (!user) {
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+
+  const valid = await bcrypt.compare(password, user.password);
+  if (!valid) {
+    const error = Error("not authorized");
+    error.status = 401;
+    throw error;
+  }
+  return { token: user.id };
+};
+
 const port = 3001;
 
 app.listen(port, () => {
