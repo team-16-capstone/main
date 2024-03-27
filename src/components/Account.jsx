@@ -8,23 +8,25 @@ const Account = ({ auth })=> {
   return (
     <>
     <NavBar/>
-    <div>
+    <h2>
       MY ACCOUNT
-    </div>
-    <br/>
+    </h2>
     <div id="account-body">
-    <div>
+    <h3 className="account-cards">
       MY EXPERIENCES
+      <br/>
       <button>Browse All</button>
-    </div>
-    <div>
+    </h3>
+    <h3 className="account-cards">
       MEET YOUR MATCH
+      <br/>
       <button onClick={() => navigate('/meat-your-match')}>Search</button>
-    </div>
-    <div>
+    </h3>
+    <h3 className="account-cards">
       CREATE EXPERIENCE
+      <br/>
       <button onClick={() => navigate('/new-experience')}>New</button>
-    </div>
+    </h3>
     </div>
     </>
   );

@@ -20,22 +20,26 @@ const Login = ({ login })=> {
 
   return (
     <>
+    <div id="login-container">
     <form onSubmit={ submit }>
       <input
         placeholder='email'
         value={ email }
         onChange={ ev => setEmail(ev.target.value )}
       />
+      <br/>
       <input
         placeholder='password'
         value={ password }
         type="password"
         onChange={ ev => setPassword(ev.target.value )}
       />
+      <br/>
       {/* <button onClick={() => (submit)}>LOGIN</button> */}
       <button onClick={() => navigate('/account')}>LOGIN</button>
     </form>
-    <Link to='/register'>Become a Member</Link>
+    <Link className="link" to='/register'>Become a Member</Link>
+    </div>
     </>
   );
 };

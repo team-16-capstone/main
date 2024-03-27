@@ -4,9 +4,9 @@ function NavBar() {
   return (
     <>
       <div id="nav-container">
-       <Link to="/account">MY ACCOUNT</Link>
-       <Link to="/butchers">BUTCHERS</Link>
-       <Link to="/community">COMMUNITY</Link>
+       <Link className="link" to="/account">MY ACCOUNT</Link>
+       <Link className="link" to="/butchers">BUTCHERS</Link>
+       <Link className="link" to="/community">COMMUNITY</Link>
       </div>
     </>
   )

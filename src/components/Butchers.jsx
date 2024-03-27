@@ -6,12 +6,13 @@ const Butchers = ({ auth })=> {
   return (
     <>
     <NavBar/>
-    <div>
+    <h2>
       BUTCHERS
-    </div>
-    <br/>
-    <div>
+    </h2>
+    <div id="butcher-body">
+      <h3>
       BUTCHER PROFILE
+      </h3>
     </div>
     </>
   );
