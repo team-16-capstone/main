@@ -2,9 +2,19 @@ import { PrismaClient } from "@prisma/client";
 import express from "express";
 import bcrypt from "bcrypt";
 import morgan from "morgan";
+import jwt from "jsonwebtoken";
+import process from "process";
+import module from "module";
 
 const prisma = new PrismaClient();
 const app = express();
+
+const defaultJWT = "shhh";
+const JWT = process.env.JWT || defaultJWT;
+
+if (JWT === defaultJWT) {
+  console.log("IF THIS IS DEPLOYED SET process.env.JWT");
+}
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -289,6 +299,20 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
   }
 });
 
+// find user by token
+const findUserByToken = async (token, next) => {
+  let id;
+  try {
+    const payload = await jwt.verify(token, JWT);
+    id = payload.id;
+    console.log(payload);
+  } catch (error) {
+    next(error);
+  }
+
+  // INCOMPLETE HERE
+};
+
 // authenticate user name and password
 const authenticate = async ({ name, password }) => {
   const user = await prisma.user.findUnique({
@@ -309,10 +333,12 @@ const authenticate = async ({ name, password }) => {
     error.status = 401;
     throw error;
   }
-  return { token: user.id };
+  const token = jwt.sign({ id: user.id }, JWT);
+  console.log("Token is:", token);
+  return { token: token };
 };
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
@@ -327,3 +353,7 @@ app.listen(port, () => {
     `curl -X DELETE localhost:${port}/api/meats/:id -H "Content-Type:application/json"`
   );
 });
+
+module.exports = {
+  authenticate,
+};
