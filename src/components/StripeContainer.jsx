@@ -4,13 +4,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import PaymentForm from './PaymentForm';
 
 const PUBLIC_KEY =
-  'pk_live_51Oz1Wh2Lvww0F3rvis7wIVTCdrpM8cwz7tqzHUgUrwOmx0fD8yKqDyC8WkpwCPwTV8tuQvCl9Lu7M1s3ER4ST5Zh00IgeRiM2v';
+  'pk_test_51Oz1Wh2Lvww0F3rvnvxUrJjPIcZ6BTiPjKgYXgnAxGrc0flSQcmfRj5BG7Zxrf7Jh5XmmRN6XOyzGmOruNyejjBR00ujdRh8DT';
 
-const stripTestPromise = loadStripe(PUBLIC_KEY);
+const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 export default function StripeContainer() {
   return (
-    <Elements strip={stripTestPromise}>
+    <Elements stripe={stripeTestPromise}>
       <PaymentForm />
     </Elements>
   );
