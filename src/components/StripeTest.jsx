@@ -7,7 +7,8 @@ export default function StripeTest() {
 
     return (
         <div className="checkout">
-            <h1>Membership</h1>
+            <h2>Membership</h2>
+            <br/>
             {showItem ? <StripeContainer /> : <> <h3>$10</h3> <img src={membercard} alt="member card" />
                 <button onClick={() => setShowItem(true)}>Purchase Membership</button></>}
         </div>
