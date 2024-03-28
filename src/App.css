@@ -4,7 +4,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url(https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=1024x1024&w=is&k=20&c=Em6A3W0ZVl--yb-xaqjVY05IeKH8XqF9VyAISnJ1I0g=);
+  /* background-image: url(https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=1024x1024&w=is&k=20&c=Em6A3W0ZVl--yb-xaqjVY05IeKH8XqF9VyAISnJ1I0g=); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 110%;
