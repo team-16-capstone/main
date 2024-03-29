@@ -10,12 +10,12 @@ import cors from "cors";
 const prisma = new PrismaClient();
 const app = express();
 
-const defaultJWT = "shhh";
-const JWT = process.env.JWT || defaultJWT;
+// const defaultJWT = "shhh";
+// const JWT = process.env.JWT || defaultJWT;
 
-if (JWT === defaultJWT) {
-  console.log("IF THIS IS DEPLOYED SET process.env.JWT");
-}
+// if (JWT === defaultJWT) {
+//   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
+// }
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
@@ -327,11 +327,11 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
 //   // INCOMPLETE HERE
 // };
 
-// authenticate user name and password
-const authenticate = async ({ name, password }) => {
+// authenticate user email and password
+const authenticate = async ({ email, password }) => {
   const user = await prisma.user.findUnique({
     where: {
-      name: name,
+      email: email,
     },
   });
 
@@ -351,6 +351,18 @@ const authenticate = async ({ name, password }) => {
   console.log("Token is:", token);
   return { token: token };
 };
+
+// login
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const { token } = await authenticate({ email, password });
+    res.json({ token });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
+  }
+});
 
 const port = 3001;
 

@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -48,7 +48,6 @@ button:focus-visible {
 }
 
 @media (prefers-color-scheme: light) {
-
   button {
     background-color: rgb(167, 49, 49);
   }
