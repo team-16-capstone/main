@@ -5,6 +5,7 @@ import morgan from "morgan";
 import jwt from "jsonwebtoken";
 import process from "process";
 import module from "module";
+import cors from "cors";
 
 const prisma = new PrismaClient();
 const app = express();
@@ -20,6 +21,7 @@ const secretKey = process.env.JWT_SECRET_KEY;
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 //get all users
 app.get("/api/users", async (req, res, next) => {
@@ -345,7 +347,7 @@ const authenticate = async ({ name, password }) => {
     error.status = 401;
     throw error;
   }
-  const token = jwt.sign({ id: user.id }, JWT);
+  const token = jwt.sign({ id: user.id }, secretKey);
   console.log("Token is:", token);
   return { token: token };
 };
