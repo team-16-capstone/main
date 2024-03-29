@@ -1,3 +1,4 @@
+
 import { PrismaClient } from '@prisma/client';
 import express from 'express';
 import bcrypt from 'bcrypt';
@@ -12,20 +13,24 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import Stripe from 'stripe';
 
+
 const prisma = new PrismaClient();
 const app = express();
 
-const defaultJWT = 'shhh';
-const JWT = process.env.JWT || defaultJWT;
 
-if (JWT === defaultJWT) {
-  console.log('IF THIS IS DEPLOYED SET process.env.JWT');
-}
+// const defaultJWT = "shhh";
+// const JWT = process.env.JWT || defaultJWT;
+
+// if (JWT === defaultJWT) {
+//   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
+// }
+
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
 app.use(express.json());
 app.use(morgan('dev'));
+
 
 //////stripe related//////
 dotenv.config();
@@ -374,11 +379,11 @@ app.delete('/api/butchers/:id', async (req, res, next) => {
 //   // INCOMPLETE HERE
 // };
 
-// authenticate user name and password
-const authenticate = async ({ name, password }) => {
+// authenticate user email and password
+const authenticate = async ({ email, password }) => {
   const user = await prisma.user.findUnique({
     where: {
-      name: name,
+      email: email,
     },
   });
 
@@ -394,10 +399,23 @@ const authenticate = async ({ name, password }) => {
     error.status = 401;
     throw error;
   }
-  const token = jwt.sign({ id: user.id }, JWT);
-  console.log('Token is:', token);
+
+  const token = jwt.sign({ id: user.id }, secretKey);
+  console.log("Token is:", token);
   return { token: token };
 };
+
+// login
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const { token } = await authenticate({ email, password });
+    res.json({ token });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
+  }
+});
 
 const port = 3001;
 
