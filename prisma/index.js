@@ -16,6 +16,8 @@ if (JWT === defaultJWT) {
   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
 }
 
+const secretKey = process.env.JWT_SECRET_KEY;
+
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -122,7 +124,8 @@ app.get("/api/butchers/:id", async (req, res, next) => {
 //create a user
 app.post("/api/users", async (req, res, next) => {
   try {
-    const { email, password, name } = req.body;
+    console.log("Hello from try.");
+    const { name, password, email } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
       data: {
@@ -131,7 +134,9 @@ app.post("/api/users", async (req, res, next) => {
         password: hashedPassword,
       },
     });
-    res.status(201).json(newUser);
+    const token = jwt.sign({ userId: newUser.id }, secretKey);
+
+    res.status(201).json({ newUser: newUser, token: token });
   } catch (error) {
     next(error);
   }
@@ -300,18 +305,25 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
 });
 
 // find user by token
-const findUserByToken = async (token, next) => {
-  let id;
-  try {
-    const payload = await jwt.verify(token, JWT);
-    id = payload.id;
-    console.log(payload);
-  } catch (error) {
-    next(error);
-  }
+// const findUserByToken = async (token, next) => {
+//   let id;
+//   try {
+//     const payload = await jwt.verify(token, JWT);
+//     id = payload.id;
+//     console.log(payload);
+//   } catch (error) {
+//     next(error);
+//   }
+//   const user = await prisma.user.findUnique({
+//     where: {
+//       id: id,
+//     },
+//   });
 
-  // INCOMPLETE HERE
-};
+//   const response = await prisma.query(user.id, [id]);
+
+//   // INCOMPLETE HERE
+// };
 
 // authenticate user name and password
 const authenticate = async ({ name, password }) => {
@@ -338,7 +350,7 @@ const authenticate = async ({ name, password }) => {
   return { token: token };
 };
 
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
