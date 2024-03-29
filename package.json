@@ -9,7 +9,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start:dev": "nodemon prisma/index",
-    "seed": "node prisma/seed"
+    "seed": "node prisma/seed",
+    "generate:secretkey": "node generateSecretKey.js"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
@@ -21,6 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
     "react": "^18.2.0",
