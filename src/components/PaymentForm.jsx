@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from 'axios';
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
@@ -37,11 +36,16 @@ export default function PaymentForm() {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post('https://localhost:3001/payment', {
-          amount: 1000,
-          id,
+
+        const response = await fetch('http://localhost:3001/api/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ amount: 1000, id }),
         });
-        if (response.data.success) {
+        const responseData = await response.json();
+        if (responseData.success) {
           console.log('successful payment');
           setSuccess(true);
         }
@@ -62,7 +66,7 @@ export default function PaymentForm() {
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <br/>
+          <br />
           <button>Pay</button>
         </form>
       ) : (
