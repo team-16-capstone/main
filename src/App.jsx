@@ -52,7 +52,7 @@ function App() {
   }, []);
 
   const login = async (credentials) => {
-    let response = await fetch("https://pocketbutcher.com/api/users/login", {
+    let response = await fetch("http://localhost:3001/api/login", {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -63,7 +63,7 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem("token", token);
-      response = await fetch("https://pocketbutcher.com/api/users/me", {
+      response = await fetch("http://localhost:3001/api/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

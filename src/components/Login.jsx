@@ -34,8 +34,8 @@ const Login = ({ login }) => {
             onChange={(ev) => setPassword(ev.target.value)}
           />
           <br />
-          {/* <button onClick={() => submit}>LOGIN</button> */}
-          <button onClick={() => navigate("/account")}>LOGIN</button>
+          <button onClick={() => submit}>LOGIN</button>
+          {/* <button onClick={() => navigate("/account")}>LOGIN</button> */}
         </form>
         <Link className="link" to="/register">
           Become a Member
