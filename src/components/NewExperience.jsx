@@ -1,18 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
 function NewExperience() {
+  const [butcherOptions, setButcherOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [meats, setMeats] = useState([]);
   const [review, setReview] = useState('');
   const navigate = useNavigate();
 
-  const handleButcherChange = (event) => {
+  useEffect(() => {
+    fetchButchers();
+  }, []);
+
+  const fetchButchers = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/butchers');
+      if (response.ok) {
+        const data = await response.json();
+        setButcherOptions(data);
+      } else {
+        console.error('Failed to fetch butchers:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching butchers:', error);
+    }
+  };
+
+
+  const handleButcher = (event) => {
     setButcher(event.target.value);
   };
 
-  const handleMeatChange = (event) => {
+  const handleMeat = (event) => {
     const { value, checked } = event.target;
     if (checked) {
       setMeats([...meats, value]);
@@ -21,7 +41,7 @@ function NewExperience() {
     }
   };
 
-  const handleReviewChange = (event) => {
+  const handleReview = (event) => {
     setReview(event.target.value);
   };
 
@@ -54,34 +74,43 @@ function NewExperience() {
     }
   };
 
+  const handleEnterButton = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit(event);
+    }
+  };
+
   return (
     <>
       <NavBar />
       <div id="new-exp-body">
         <h2>CREATE EXPERIENCE</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
             Butcher:
-            <select value={butcher} onChange={handleButcherChange}>
-              <option value="butcher1">B1</option>
-              <option value="butcher2">B2</option>
-              <option value="butcher3">B3</option>
+            <select value={butcher} onChange={handleButcher}>
+              <option value="">***Select Butchers***</option>
+              {butcherOptions.map((option, index) => (
+                <option key={index} value={option.id}>{option.name}</option>
+              ))}
             </select>
           </label>
           <br />
           <label>
             Meats:
-            <input type="checkbox" value="beef" onChange={handleMeatChange} /> Beef
-            <input type="checkbox" value="chicken" onChange={handleMeatChange} /> Chicken
-            <input type="checkbox" value="pork" onChange={handleMeatChange} /> Pork
+            <input type="checkbox" value="beef" onChange={handleMeat} /> Beef
+            <input type="checkbox" value="chicken" onChange={handleMeat} /> Chicken
+            <input type="checkbox" value="pork" onChange={handleMeat} /> Pork
           </label>
           <br />
           <label>
             Review:
-            <textarea value={review} onChange={handleReviewChange} />
+            <textarea value={review} onChange={handleReview} />
           </label>
           <br />
           <button type="submit">Submit</button>
+
         </form>
       </div>
     </>
