@@ -35,3 +35,11 @@ model User {
   email    String @unique
   password String
 }
+
+model Experience {
+  id        Int      @id @default(autoincrement())
+  butcher   String
+  meats     String[]
+  review    String
+  createdAt DateTime @default(now())
+}
