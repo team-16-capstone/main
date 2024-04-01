@@ -1,3 +1,4 @@
+
 import { PrismaClient } from '@prisma/client';
 import express from 'express';
 import bcrypt from 'bcrypt';
@@ -11,6 +12,7 @@ import stripePackage from 'stripe';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import Stripe from 'stripe';
+
 
 const prisma = new PrismaClient();
 const app = express();
@@ -28,6 +30,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 app.use(express.json());
 app.use(morgan('dev'));
 
+
 //////stripe related//////
 dotenv.config();
 const stripe = stripePackage(process.env.STRIPE_SECRET_TEST);
@@ -38,33 +41,33 @@ app.use(cors());
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send("Something broke!");
 });
 
 ////////////STRIPE CODE///////////////
-app.post('/api/payment', async (req, res) => {
+app.post("/api/payment", async (req, res) => {
   let { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
       amount,
-      currency: 'USD',
-      description: 'Pocket Butcher',
+      currency: "USD",
+      description: "Pocket Butcher",
       payment_method: id,
       confirm: true,
       automatic_payment_methods: {
         enabled: true,
-        allow_redirects: 'never',
+        allow_redirects: "never",
       },
     });
-    console.log('Payment', payment);
+    console.log("Payment", payment);
     res.json({
-      message: 'Payment successful',
+      message: "Payment successful",
       success: true,
     });
   } catch (error) {
-    console.error('Error', error);
+    console.error("Error", error);
     res.status(500).json({
-      message: 'Payment failed',
+      message: "Payment failed",
       success: false,
     });
   }
@@ -72,12 +75,12 @@ app.post('/api/payment', async (req, res) => {
 
 ////////////PRISMA CODE///////////////
 //get all users
-app.get('/api/users', async (req, res, next) => {
+app.get("/api/users", async (req, res, next) => {
   try {
     const users = await prisma.user.findMany();
 
     if (!users) {
-      return res.status(404).send('Users not found.');
+      return res.status(404).send("Users not found.");
     }
     return res.send(users);
   } catch (error) {
@@ -86,11 +89,11 @@ app.get('/api/users', async (req, res, next) => {
 });
 
 //get all meats
-app.get('/api/meats', async (req, res, next) => {
+app.get("/api/meats", async (req, res, next) => {
   try {
     const meats = await prisma.meat.findMany();
     if (!meats) {
-      return res.status(404).send('Meats not found.');
+      return res.status(404).send("Meats not found.");
     }
     return res.send(meats);
   } catch (error) {
@@ -99,11 +102,11 @@ app.get('/api/meats', async (req, res, next) => {
 });
 
 // get all butchers/vendors
-app.get('/api/butchers', async (req, res, next) => {
+app.get("/api/butchers", async (req, res, next) => {
   try {
     const butchers = await prisma.butcher.findMany();
     if (!butchers) {
-      return res.status(404).send('Butchers not found.');
+      return res.status(404).send("Butchers not found.");
     }
     return res.send(butchers);
   } catch (error) {
@@ -112,7 +115,7 @@ app.get('/api/butchers', async (req, res, next) => {
 });
 
 //get a specific/unique user by id
-app.get('/api/users/:id', async (req, res, next) => {
+app.get("/api/users/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -123,7 +126,7 @@ app.get('/api/users/:id', async (req, res, next) => {
     });
 
     if (!uniqueUser) {
-      return res.status(404).send('User not found.');
+      return res.status(404).send("User not found.");
     }
     return res.send(uniqueUser);
   } catch (error) {
@@ -132,7 +135,7 @@ app.get('/api/users/:id', async (req, res, next) => {
 });
 
 //get a specific/unique meat by ID
-app.get('/api/meats/:id', async (req, res, next) => {
+app.get("/api/meats/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -143,7 +146,7 @@ app.get('/api/meats/:id', async (req, res, next) => {
     });
 
     if (!uniqueMeat) {
-      return res.status(404).send('Meat not found.');
+      return res.status(404).send("Meat not found.");
     }
     return res.send(uniqueMeat);
   } catch (error) {
@@ -152,7 +155,7 @@ app.get('/api/meats/:id', async (req, res, next) => {
 });
 
 // get a specific/unique butcher
-app.get('/api/butchers/:id', async (req, res, next) => {
+app.get("/api/butchers/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -163,7 +166,7 @@ app.get('/api/butchers/:id', async (req, res, next) => {
     });
 
     if (!uniqueButcher) {
-      return res.status(404).send('Meat not found');
+      return res.status(404).send("Meat not found");
     }
     return res.send(uniqueButcher);
   } catch (error) {
@@ -185,9 +188,9 @@ app.get('/api/experiences', async (req, res, next) => {
 });
 
 //create a user
-app.post('/api/users', async (req, res, next) => {
+app.post("/api/users", async (req, res, next) => {
   try {
-    console.log('Hello from try.');
+    console.log("Hello from try.");
     const { name, password, email } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
@@ -206,7 +209,7 @@ app.post('/api/users', async (req, res, next) => {
 });
 
 // create a meat
-app.post('/api/meats', async (req, res, next) => {
+app.post("/api/meats", async (req, res, next) => {
   try {
     const { name, description } = req.body;
     const newMeat = await prisma.meat.create({
@@ -222,7 +225,7 @@ app.post('/api/meats', async (req, res, next) => {
 });
 
 // create a butcher
-app.post('/api/butchers', async (req, res, next) => {
+app.post("/api/butchers", async (req, res, next) => {
   try {
     const { name, street, city, state, zipcode, phonenumber } = req.body;
     const newButcher = await prisma.butcher.create({
@@ -264,7 +267,7 @@ app.post('/api/new-experience', async (req, res) => {
 
 //update a user
 // still needs a way to update the password, we'll do this after authentication is ironed out
-app.patch('/api/users/:id', async (req, res, next) => {
+app.patch("/api/users/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, email } = req.body;
@@ -290,7 +293,7 @@ app.patch('/api/users/:id', async (req, res, next) => {
 });
 
 // update a meat
-app.patch('/api/meats/:id', async (req, res, next) => {
+app.patch("/api/meats/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, description } = req.body;
@@ -316,7 +319,7 @@ app.patch('/api/meats/:id', async (req, res, next) => {
 });
 
 // update a butcher
-app.patch('/api/butchers/:id', async (req, res, next) => {
+app.patch("/api/butchers/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const updateFields = Object.keys(req.body);
@@ -341,7 +344,7 @@ app.patch('/api/butchers/:id', async (req, res, next) => {
 });
 
 //delete a user
-app.delete('/api/users/:id', async (req, res, next) => {
+app.delete("/api/users/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -357,7 +360,7 @@ app.delete('/api/users/:id', async (req, res, next) => {
 });
 
 // delete a meat
-app.delete('/api/meats/:id', async (req, res, next) => {
+app.delete("/api/meats/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -373,7 +376,7 @@ app.delete('/api/meats/:id', async (req, res, next) => {
 });
 
 // delete a butcher
-app.delete('/api/butchers/:id', async (req, res, next) => {
+app.delete("/api/butchers/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -389,26 +392,32 @@ app.delete('/api/butchers/:id', async (req, res, next) => {
 });
 
 // find user by token
-// const findUserByToken = async (token, next) => {
-//   let id;
-//   try {
-//     const payload = await jwt.verify(token, JWT);
-//     id = payload.id;
-//     console.log(payload);
-//   } catch (error) {
-//     next(error);
-//   }
-//   const user = await prisma.user.findUnique({
-//     where: {
-//       id: id,
-//     },
-//   });
+const findUserByToken = async (token, next) => {
+  let id;
+  try {
+    const payload = await jwt.verify(token, secretKey);
+    id = payload.id;
+    console.log(payload);
+  } catch (error) {
+    next(error);
+  }
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
 
-//   const response = await prisma.query(user.id, [id]);
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-//   // INCOMPLETE HERE
-// };
-
+    return user;
+  } catch (error) {
+    console.error("Error finding user by token:", error);
+    throw error;
+  }
+};
 // authenticate user email and password
 const authenticate = async ({ email, password }) => {
   const user = await prisma.user.findUnique({
@@ -418,14 +427,14 @@ const authenticate = async ({ email, password }) => {
   });
 
   if (!user) {
-    const error = Error('not authorized');
+    const error = Error("not authorized");
     error.status = 401;
     throw error;
   }
 
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) {
-    const error = Error('not authorized');
+    const error = Error("not authorized");
     error.status = 401;
     throw error;
   }
@@ -438,7 +447,6 @@ const authenticate = async ({ email, password }) => {
 // login
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const { token } = await authenticate({ email, password });
     res.json({ token });
@@ -451,7 +459,7 @@ const port = 3001;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
-  console.log('Curl commands to test application');
+  console.log("Curl commands to test application");
   console.log(
     `curl -X POST localhost:${port}/api/meats -d '{ "name": "NewMeat", "description": "NewYummy"}' -H "Content-Type:application/json"`
   );
@@ -465,4 +473,5 @@ app.listen(port, () => {
 
 module.exports = {
   authenticate,
+  findUserByToken,
 };

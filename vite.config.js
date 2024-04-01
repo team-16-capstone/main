@@ -8,9 +8,10 @@ const serverPort = 3001;
 export default defineConfig({
   plugins: [react(), mkcert()],
   server: {
-    proxy: {
-      '/api': `https://localhost:${serverPort}`,
-    },
-    https: true,
+    cors: true,
+  //   proxy: {
+  //     '/api': `https://localhost:${serverPort}`,
+  //   },
+  //   https: true,
   },
 });
