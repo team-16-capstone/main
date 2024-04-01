@@ -1,4 +1,3 @@
-
 import { PrismaClient } from '@prisma/client';
 import express from 'express';
 import bcrypt from 'bcrypt';
@@ -13,10 +12,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import Stripe from 'stripe';
 
-
 const prisma = new PrismaClient();
 const app = express();
-
 
 // const defaultJWT = "shhh";
 // const JWT = process.env.JWT || defaultJWT;
@@ -25,12 +22,11 @@ const app = express();
 //   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
 // }
 
-
 const secretKey = process.env.JWT_SECRET_KEY;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 app.use(express.json());
 app.use(morgan('dev'));
-
 
 //////stripe related//////
 dotenv.config();
@@ -175,6 +171,19 @@ app.get('/api/butchers/:id', async (req, res, next) => {
   }
 });
 
+// get all experiences
+app.get('/api/experiences', async (req, res, next) => {
+  try {
+    const experiences = await prisma.experience.findMany();
+    if (!experiences) {
+      return res.status(404).send('experiences not found.');
+    }
+    return res.send(experiences);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //create a user
 app.post('/api/users', async (req, res, next) => {
   try {
@@ -229,6 +238,27 @@ app.post('/api/butchers', async (req, res, next) => {
     return res.status(201).json(newButcher);
   } catch (error) {
     next(error);
+  }
+});
+
+//create an experience
+app.post('/api/new-experience', async (req, res) => {
+  try {
+    const { butcher, meats, review } = req.body;
+    const newExperience = await prisma.experience.create({
+      data: {
+        butcher,
+        meats: { set: meats },
+        review,
+      },
+    });
+
+    return res
+      .status(201)
+      .json({ message: 'Form submitted successfully', data: newExperience });
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -401,12 +431,12 @@ const authenticate = async ({ email, password }) => {
   }
 
   const token = jwt.sign({ id: user.id }, secretKey);
-  console.log("Token is:", token);
+  console.log('Token is:', token);
   return { token: token };
 };
 
 // login
-app.post("/api/login", async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
