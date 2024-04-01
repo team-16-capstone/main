@@ -10,11 +10,13 @@ import NewExperience from "./components/NewExperience";
 import Butchers from "./components/Butchers";
 import Community from "./components/Community";
 import StripeTest from "./components/StripeTest";
+import SingleButcher from "./components/SingleButcher";
 
 function App() {
 
   const [auth, setAuth] = useState([]);
   const [butchers, setButchers] = useState([]);
+  const [singleButcher, setSingleButcher] = useState([]);
 
   // useEffect(() => {
   //   // console.log(auth);
@@ -36,6 +38,15 @@ function App() {
       setButchers(json);
   };
     fetchButchers();
+  }, []); 
+
+  useEffect(()=> {
+    const fetchSingleButcher = async()=> {
+    const response = await fetch ('http://localhost:3001/api/butchers/id');
+    const json = await response.json();
+      setSingleButcher(json);
+  };
+    fetchSingleButcher();
   }, []); 
 
   useEffect(() => {
@@ -145,6 +156,7 @@ function App() {
             <Route path="/meat-your-match" element={<MeatYourMatch />}></Route>
             <Route path="/new-experience" element={<NewExperience />}></Route>
             <Route path="/butchers" element={<Butchers />}></Route>
+            <Route path="/butchers/:id" element={<SingleButcher />}></Route>
             <Route path="/community" element={<Community />}></Route>
             <Route path="/stripetest" element={<StripeTest />}></Route>
           </Routes>
