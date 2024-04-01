@@ -1,3 +1,4 @@
+
 import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -13,9 +14,11 @@ import StripeTest from './components/StripeTest';
 // import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
+
 function App() {
   const [auth, setAuth] = useState([]);
   const [butchers, setButchers] = useState([]);
+  const [singleButcher, setSingleButcher] = useState([]);
 
   // useEffect(() => {
   //   // console.log(auth);
@@ -38,6 +41,15 @@ function App() {
     };
     fetchButchers();
   }, []);
+
+  useEffect(()=> {
+    const fetchSingleButcher = async()=> {
+    const response = await fetch ('http://localhost:3001/api/butchers/id');
+    const json = await response.json();
+      setSingleButcher(json);
+  };
+    fetchSingleButcher();
+  }, []); 
 
   useEffect(() => {
     const attemptLoginWithToken = async () => {
@@ -144,6 +156,7 @@ function App() {
         <button onClick={logout}>LOGOUT</button>
       ) : (
         <>
+
           <>
             <Routes>
               <Route path='/' element={<Login login={login} />}></Route>
@@ -167,6 +180,7 @@ function App() {
               </Route>
             </Routes>
           </>
+
         </>
       )}
     </>

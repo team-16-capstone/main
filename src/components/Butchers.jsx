@@ -29,9 +29,10 @@ import { Link } from "react-router-dom";
   return (
     <>
     <NavBar/>
-    <div>
+    <h2>PARTICIPATING BUTCHERS</h2>
+    <div id='butcher-container'>
       {butchersData.map((butcher) => (
-        <div id="butcher-body" key={butcher.id}>
+        <div id='butcher-body' key={butcher.id}>
           <h2>{butcher.name}</h2>
           <h3>{butcher.street}</h3>
           <h3>{butcher.city}</h3>
@@ -40,7 +41,7 @@ import { Link } from "react-router-dom";
           <h3>{butcher.phonenumber}</h3>
           <br />
           <Link to={`/butchers/${butcher.id}`}>
-          <button>DETAILS</button>
+          <button>BUTCHER PROFILE</button>
           </Link>
         </div>
       ))}

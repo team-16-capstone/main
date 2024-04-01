@@ -70,6 +70,13 @@ button:hover {
 
 }
 
+#butcher-container {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
 #account-body {
   background-color: rgba(228, 228, 228, 0.85);
   text-align: center;
@@ -105,8 +112,9 @@ button:hover {
 #butcher-body {
   background-color: rgba(228, 228, 228, 0.85);
   text-align: center;
+  width: 250px;
   margin: 5px;
-  padding: 100px;
+  padding: 40px;
   border-radius: 8px;
 }
 
