@@ -59,7 +59,6 @@ function App() {
 
   const login = async (credentials) => {
     let response = await fetch("http://localhost:3001/api/login", {
-main
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
