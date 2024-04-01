@@ -12,29 +12,35 @@ import Community from "./components/Community";
 import StripeTest from "./components/StripeTest";
 
 function App() {
-  const [auth, setAuth] = useState({});
 
-  // const devUser = {
-  //   id: "7",
-  //   token: "10489571n45gjqckjnv",
-  //   email: "devuser@email.com",
-  // };
+  const [auth, setAuth] = useState([]);
+  const [butchers, setButchers] = useState([]);
 
-  useEffect(() => {
-    // console.log(auth);
-    if (auth.id) {
-      console.log("load user account");
-    } else {
-      console.log("clear user account");
-    }
+  // useEffect(() => {
+  //   // console.log(auth);
+  //   if (auth.id) {
+  //     console.log("load user account");
+  //   } else {
+  //     console.log("clear user account");
+  //   }
+
     // client.Meat.findMany().then((response) =>
     //   console.log("this is the response", response)
     // );
-  }, [auth]);
+  // }, [auth]);
+
+  useEffect(()=> {
+    const fetchButchers = async()=> {
+    const response = await fetch ('http://localhost:3001/api/butchers/');
+    const json = await response.json();
+      setButchers(json);
+  };
+    fetchButchers();
+  }, []); 
 
   useEffect(() => {
     const attemptLoginWithToken = async () => {
-      const response = await fetch("https://pocketbutcher.com/api/users/me", {
+      const response = await fetch("https://localhost:5173/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -63,6 +69,7 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem("token", token);
+
       response = await fetch("http://localhost:3001/api/users", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -78,7 +85,7 @@ function App() {
   };
 
   const register = async (credentials) => {
-    let response = await fetch("http://localhost:3001/api/users", {
+    let response = await fetch("https://localhost:5173/register", {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -89,7 +96,7 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem("token", token);
-      response = await fetch("http://localhost:3001/api/users", {
+      response = await fetch("https://localhost:5173/account", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
