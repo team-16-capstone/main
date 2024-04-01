@@ -12,13 +12,13 @@ import Community from "./components/Community";
 import StripeTest from "./components/StripeTest";
 
 function App() {
-  const [auth, setAuth] = useState([]);
+  const [auth, setAuth] = useState({});
 
-  const devUser = {
-    id: "7",
-    token: "10489571n45gjqckjnv",
-    email: "devuser@email.com",
-  };
+  // const devUser = {
+  //   id: "7",
+  //   token: "10489571n45gjqckjnv",
+  //   email: "devuser@email.com",
+  // };
 
   useEffect(() => {
     // console.log(auth);
@@ -71,8 +71,6 @@ function App() {
       json = await response.json();
       if (response.ok) {
         setAuth(json);
-      } else {
-        setAuth(devUser);
       }
     } else {
       console.log(json);
