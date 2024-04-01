@@ -12,6 +12,7 @@ import Community from "./components/Community";
 import StripeTest from "./components/StripeTest";
 
 function App() {
+
   const [auth, setAuth] = useState([]);
   const [butchers, setButchers] = useState([]);
 
@@ -22,6 +23,7 @@ function App() {
   //   } else {
   //     console.log("clear user account");
   //   }
+
     // client.Meat.findMany().then((response) =>
     //   console.log("this is the response", response)
     // );
@@ -56,7 +58,8 @@ function App() {
   }, []);
 
   const login = async (credentials) => {
-    let response = await fetch("https://localhost:5173/", {
+    let response = await fetch("http://localhost:3001/api/login", {
+main
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {
@@ -67,7 +70,8 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem("token", token);
-      response = await fetch("https://localhost:5173/account", {
+
+      response = await fetch("http://localhost:3001/api/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,8 +79,6 @@ function App() {
       json = await response.json();
       if (response.ok) {
         setAuth(json);
-      } else {
-        setAuth(devUser);
       }
     } else {
       console.log(json);

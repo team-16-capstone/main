@@ -5,24 +5,71 @@ import morgan from "morgan";
 import jwt from "jsonwebtoken";
 import process from "process";
 import module from "module";
+//stripe related
+import dotenv from "dotenv";
+import stripePackage from "stripe";
+import bodyParser from "body-parser";
 import cors from "cors";
+import Stripe from "stripe";
 
 const prisma = new PrismaClient();
 const app = express();
 
-const defaultJWT = "shhh";
-const JWT = process.env.JWT || defaultJWT;
+// const defaultJWT = "shhh";
+// const JWT = process.env.JWT || defaultJWT;
 
-if (JWT === defaultJWT) {
-  console.log("IF THIS IS DEPLOYED SET process.env.JWT");
-}
+// if (JWT === defaultJWT) {
+//   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
+// }
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
 app.use(express.json());
 app.use(morgan("dev"));
+
+//////stripe related//////
+dotenv.config();
+const stripe = stripePackage(process.env.STRIPE_SECRET_TEST);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
+////////////STRIPE CODE///////////////
+app.post("/api/payment", async (req, res) => {
+  let { amount, id } = req.body;
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "Pocket Butcher",
+      payment_method: id,
+      confirm: true,
+      automatic_payment_methods: {
+        enabled: true,
+        allow_redirects: "never",
+      },
+    });
+    console.log("Payment", payment);
+    res.json({
+      message: "Payment successful",
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error", error);
+    res.status(500).json({
+      message: "Payment failed",
+      success: false,
+    });
+  }
+});
+
+////////////PRISMA CODE///////////////
 //get all users
 app.get("/api/users", async (req, res, next) => {
   try {
@@ -307,31 +354,37 @@ app.delete("/api/butchers/:id", async (req, res, next) => {
 });
 
 // find user by token
-// const findUserByToken = async (token, next) => {
-//   let id;
-//   try {
-//     const payload = await jwt.verify(token, JWT);
-//     id = payload.id;
-//     console.log(payload);
-//   } catch (error) {
-//     next(error);
-//   }
-//   const user = await prisma.user.findUnique({
-//     where: {
-//       id: id,
-//     },
-//   });
+const findUserByToken = async (token, next) => {
+  let id;
+  try {
+    const payload = await jwt.verify(token, secretKey);
+    id = payload.id;
+    console.log(payload);
+  } catch (error) {
+    next(error);
+  }
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
 
-//   const response = await prisma.query(user.id, [id]);
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-//   // INCOMPLETE HERE
-// };
-
-// authenticate user name and password
-const authenticate = async ({ name, password }) => {
+    return user;
+  } catch (error) {
+    console.error("Error finding user by token:", error);
+    throw error;
+  }
+};
+// authenticate user email and password
+const authenticate = async ({ email, password }) => {
   const user = await prisma.user.findUnique({
     where: {
-      name: name,
+      email: email,
     },
   });
 
@@ -347,10 +400,22 @@ const authenticate = async ({ name, password }) => {
     error.status = 401;
     throw error;
   }
+
   const token = jwt.sign({ id: user.id }, secretKey);
   console.log("Token is:", token);
   return { token: token };
 };
+
+// login
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const { token } = await authenticate({ email, password });
+    res.json({ token });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
+  }
+});
 
 const port = 3001;
 
@@ -370,4 +435,5 @@ app.listen(port, () => {
 
 module.exports = {
   authenticate,
+  findUserByToken,
 };
