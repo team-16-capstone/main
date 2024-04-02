@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 
-const SingleButcher = ({ butchersData }) => {
+const SingleButcher = () => {
   const [singleButcherData, setSingleButcherData] = useState(null);
 
   const { id } = useParams();
@@ -41,12 +41,13 @@ const SingleButcher = ({ butchersData }) => {
       <div id='single-butcher-container'>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <h2>{singleButcherData.name}</h2>
+          <img>{singleButcherData.image}</img>
+          {/* <img src='https://lh3.googleusercontent.com/p/AF1QipPnj3XYxvcMJ2OvGnpJ4RBQRL_7jK5ezNy71AVX=s680-w680-h510'/> */}
           <h3>{singleButcherData.street}</h3>
-          <h3>{singleButcherData.city}</h3>
-          <h3>{singleButcherData.state}</h3>
-          <h3>{singleButcherData.zipcode}</h3>
+          <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
           <h3>{singleButcherData.phonenumber}</h3>
           <br />
+          <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
           <br />
           <button onClick={() => navigate("/butchers")}>RETURN TO BUTCHERS</button>
         </div>

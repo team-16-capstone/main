@@ -35,9 +35,7 @@ import { Link } from "react-router-dom";
         <div id='butcher-body' key={butcher.id}>
           <h2>{butcher.name}</h2>
           <h3>{butcher.street}</h3>
-          <h3>{butcher.city}</h3>
-          <h3>{butcher.state}</h3>
-          <h3>{butcher.zipcode}</h3>
+          <h3>{butcher.city}, {butcher.state}  {butcher.zipcode}</h3>
           <h3>{butcher.phonenumber}</h3>
           <br />
           <Link to={`/butchers/${butcher.id}`}>

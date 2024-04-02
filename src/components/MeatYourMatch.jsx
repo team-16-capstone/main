@@ -7,10 +7,10 @@ const MeatYourMatch = ({ auth })=> {
   return (
     <>
     <NavBar/>
-      <div id="match-body">
-      <h2>
+    <h2>
       MEAT YOUR MATCH
       </h2>
+      <div id="match-body">
       <form>
       <label>Search 
         <input
