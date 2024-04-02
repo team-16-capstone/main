@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = ({ register }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [zip, setZip] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [zip, setZip] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [name, setName] = useState('');
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Register = ({ register }) => {
 
     try {
       await register(credentials);
-      // Navigate('/account');
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }
@@ -32,44 +32,43 @@ const Register = ({ register }) => {
 
   return (
     <>
-      <div id="register-container">
+      <div id='register-container'>
         <form onSubmit={submit}>
           <input
-            placeholder="First Name"
+            placeholder='First Name'
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
           <br />
           <input
-            placeholder="Last Name"
+            placeholder='Last Name'
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
           <br />
           <input
-            placeholder="zip code"
+            placeholder='zip code'
             value={zip}
             onChange={(event) => setZip(event.target.value)}
           />
           <br />
           <input
-            placeholder="email"
+            placeholder='email'
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
           <br />
           <input
-            placeholder="password"
+            placeholder='password'
             value={password}
-            type="password"
+            type='password'
             onChange={(event) => setPassword(event.target.value)}
           />
           <br />
-          <button onClick={() => submit}>REGISTER</button>
-          {/* <button onClick={() => navigate('/account')}>REGISTER</button> */}
+          <button type='submit'>REGISTER</button>
           <br />
         </form>
-        <Link className="link" to="/">
+        <Link className='link' to='/'>
           Already a Member? Login
         </Link>
       </div>

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = ({ login }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -15,29 +15,29 @@ const Login = ({ login }) => {
       password,
     };
     await login(credentials);
+    navigate('/account');
   };
 
   return (
     <>
-      <div id="login-container">
+      <div id='login-container'>
         <form onSubmit={submit}>
           <input
-            placeholder="email"
+            placeholder='email'
             value={email}
             onChange={(ev) => setEmail(ev.target.value)}
           />
           <br />
           <input
-            placeholder="password"
+            placeholder='password'
             value={password}
-            type="password"
+            type='password'
             onChange={(ev) => setPassword(ev.target.value)}
           />
           <br />
           <button onClick={() => submit}>LOGIN</button>
-          {/* <button onClick={() => navigate("/account")}>LOGIN</button> */}
         </form>
-        <Link className="link" to="/register">
+        <Link className='link' to='/register'>
           Become a Member
         </Link>
       </div>
