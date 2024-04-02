@@ -12,6 +12,7 @@ import Community from './components/Community';
 import StripeTest from './components/StripeTest';
 // import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import SingleButcher from './components/SingleButcher.jsx';
 
 function App() {
   const [auth, setAuth] = useState([]);
@@ -172,6 +173,7 @@ function App() {
                   element={<NewExperience />}
                 ></Route>
                 <Route path='/butchers' element={<Butchers />}></Route>
+                <Route path='/butchers/:id' element={<SingleButcher />}></Route>
                 <Route path='/community' element={<Community />}></Route>
                 <Route path='/stripetest' element={<StripeTest />}></Route>
               </Route>
