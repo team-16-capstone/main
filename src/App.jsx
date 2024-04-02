@@ -113,10 +113,9 @@ function App() {
       },
     });
     let json = await response.json();
+    console.log(json);
     if (response.ok) {
-      const token = json.token;
-      window.localStorage.setItem('token', token);
-      // response = await fetch('http://localhost:5173/account', {
+      // response = await fetch('http://localhost:3001/api/users', {
       //   headers: {
       //     Authorization: `Bearer ${token}`,
       //   },
