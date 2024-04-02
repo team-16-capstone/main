@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
-import Butchers from './Butchers';
 
   const SingleButcher = ()=> {
     const [singleButcherData, setSingleButcherData] = useState(null);
@@ -12,7 +11,7 @@ import Butchers from './Butchers';
     useEffect(() => {
       const fetchSingleButcher = async () => {
         try {
-          const url = 'http://localhost:3001/api/butchers/:id';
+          const url = `http://localhost:3001/api/butchers/${id}`;
           const options = {
             method: 'GET',
             headers: {
@@ -37,15 +36,14 @@ import Butchers from './Butchers';
     <>
     <NavBar/>
     <div id='single-butcher-container'>
-      {Butchers.map((butcher) => (
         <div id='single-butcher-body' key={singleButcherData.id}>
-          <h2>{butcher.name}</h2>
+          <h2>{singleButcherData.name}</h2>
       {/* <img src={book.coverimage} alt={`${book.img}'s image`} width="300" height="300" /> */}
-          <h3>{butcher.street}</h3>
-          <h3>{butcher.city}</h3>
-          <h3>{butcher.state}</h3>
-          <h3>{butcher.zipcode}</h3>
-          <h3>{butcher.phonenumber}</h3>
+          <h3>{singleButcherData.street}</h3>
+          <h3>{singleButcherData.city}</h3>
+          <h3>{singleButcherData.state}</h3>
+          <h3>{singleButcherData.zipcode}</h3>
+          <h3>{singleButcherData.phonenumber}</h3>
           <br />
           <br />
           <button onClick={() => navigate("/butchers")}>RETURN TO BUTCHERS</button>
@@ -55,7 +53,6 @@ import Butchers from './Butchers';
       ) : (null)
       }   */}
         </div>
-      ))};
     </div>
     </>
   );
