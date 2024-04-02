@@ -13,6 +13,7 @@ import StripeTest from './components/StripeTest';
 // import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import SingleButcher from './components/SingleButcher.jsx';
+import MyExperiences from './components/MyExperiences.jsx';
 
 function App() {
   const [auth, setAuth] = useState([]);
@@ -113,7 +114,6 @@ function App() {
       },
     });
     let json = await response.json();
-    console.log(json);
     if (response.ok) {
       // response = await fetch('http://localhost:3001/api/users', {
       //   headers: {
@@ -148,6 +148,7 @@ function App() {
                 element={<MeatYourMatch />}
               ></Route>
               <Route path='/new-experience' element={<NewExperience />}></Route>
+              <Route path='/my-experiences' element={<MyExperiences />}></Route>
               <Route path='/butchers' element={<Butchers />}></Route>
               <Route path='/butchers/:id' element={<SingleButcher />}></Route>
               <Route path='/community' element={<Community />}></Route>

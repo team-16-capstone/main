@@ -84,8 +84,8 @@ function NewExperience() {
   return (
     <>
       <NavBar />
+      <h2>CREATE EXPERIENCE</h2>
       <div id="new-exp-body">
-        <h2>CREATE EXPERIENCE</h2>
         <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
             Butcher:
