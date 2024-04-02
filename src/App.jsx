@@ -50,24 +50,24 @@ function App() {
     fetchSingleButcher();
   }, []);
 
-  useEffect(() => {
-    const attemptLoginWithToken = async () => {
-      const response = await fetch('https://localhost:5173/', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const json = await response.json();
-      if (response.ok) {
-        setAuth(json);
-      }
-    };
-    const token = window.localStorage.getItem('token');
-    if (token) {
-      attemptLoginWithToken();
-    } else {
-    }
-  }, []);
+  // useEffect(() => {
+  //   const attemptLoginWithToken = async () => {
+  //     const response = await fetch('https://localhost:5173/', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const json = await response.json();
+  //     if (response.ok) {
+  //       setAuth(json);
+  //     }
+  //   };
+  //   const token = window.localStorage.getItem('token');
+  //   if (token) {
+  //     attemptLoginWithToken();
+  //   } else {
+  //   }
+  // }, []);
 
   // const isLoggedIn = async (req, res, next) => {
   //   try {
@@ -120,7 +120,6 @@ function App() {
       //     Authorization: `Bearer ${token}`,
       //   },
       // });
-      json = await response.json();
       if (response.ok) {
         setAuth(json);
       }
@@ -129,57 +128,34 @@ function App() {
     }
   };
 
-  //   const logout = ()=> {
-  //     window.localStorage.removeItem('token');
-  //     setAuth({});
-  //   };
-
   return (
     <>
       <div>
         <h1 id='logo'>Pocket Butcher</h1>
       </div>
-      {/* <nav>
-          {
-            auth.id ? (
-              <Link to='/account'>MY ACCOUNT</Link>
-            ) : (null)
-          }
-          <div>
-          Welcome! { auth.email }
-          </div>
-      </nav> */}
-
-      {auth.id ? (
-        <button onClick={logout}>LOGOUT</button>
-      ) : (
+      <>
         <>
-          <>
-            <Routes>
-              <Route path='/' element={<Login login={login} />}></Route>
+          <Routes>
+            <Route path='/' element={<Login login={login} />}></Route>
+            <Route
+              path='/register'
+              element={<Register register={register} />}
+            ></Route>
+            <Route element={<ProtectedRoute />}>
+              <Route path='/account' element={<Account />}></Route>
               <Route
-                path='/register'
-                element={<Register register={register} />}
+                path='/meat-your-match'
+                element={<MeatYourMatch />}
               ></Route>
-              <Route element={<ProtectedRoute />}>
-                <Route path='/account' element={<Account />}></Route>
-                <Route
-                  path='/meat-your-match'
-                  element={<MeatYourMatch />}
-                ></Route>
-                <Route
-                  path='/new-experience'
-                  element={<NewExperience />}
-                ></Route>
-                <Route path='/butchers' element={<Butchers />}></Route>
-                <Route path='/butchers/:id' element={<SingleButcher />}></Route>
-                <Route path='/community' element={<Community />}></Route>
-                <Route path='/stripetest' element={<StripeTest />}></Route>
-              </Route>
-            </Routes>
-          </>
+              <Route path='/new-experience' element={<NewExperience />}></Route>
+              <Route path='/butchers' element={<Butchers />}></Route>
+              <Route path='/butchers/:id' element={<SingleButcher />}></Route>
+              <Route path='/community' element={<Community />}></Route>
+              <Route path='/stripetest' element={<StripeTest />}></Route>
+            </Route>
+          </Routes>
         </>
-      )}
+      </>
     </>
   );
 }
