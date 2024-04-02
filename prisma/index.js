@@ -28,6 +28,24 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Middleware to protect routes
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized: Missing token' });
+  }
+
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden: Invalid token' });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
 //////stripe related//////
 dotenv.config();
 const stripe = stripePackage(process.env.STRIPE_SECRET_TEST);
@@ -207,7 +225,6 @@ app.get('/api/experiences/:id', async (req, res, next) => {
 //create a user
 app.post('/api/users', async (req, res, next) => {
   try {
-    console.log('Hello from try.');
     const { name, password, email } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
@@ -225,7 +242,7 @@ app.post('/api/users', async (req, res, next) => {
 });
 
 // create a meat
-app.post('/api/meats', async (req, res, next) => {
+app.post('/api/meats', authenticateToken, async (req, res, next) => {
   try {
     const { name, description } = req.body;
     const newMeat = await prisma.meat.create({
@@ -241,7 +258,7 @@ app.post('/api/meats', async (req, res, next) => {
 });
 
 // create a butcher
-app.post('/api/butchers', async (req, res, next) => {
+app.post('/api/butchers', authenticateToken, async (req, res, next) => {
   try {
     const { name, street, city, state, zipcode, phonenumber } = req.body;
     const newButcher = await prisma.butcher.create({
@@ -261,7 +278,7 @@ app.post('/api/butchers', async (req, res, next) => {
 });
 
 //create an experience
-app.post('/api/new-experience', async (req, res) => {
+app.post('/api/new-experience', authenticateToken, async (req, res) => {
   try {
     const { butcher, meats, review } = req.body;
     const newExperience = await prisma.experience.create({
@@ -283,7 +300,7 @@ app.post('/api/new-experience', async (req, res) => {
 
 //update a user
 // still needs a way to update the password, we'll do this after authentication is ironed out
-app.patch('/api/users/:id', async (req, res, next) => {
+app.patch('/api/users/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, email } = req.body;
@@ -309,7 +326,7 @@ app.patch('/api/users/:id', async (req, res, next) => {
 });
 
 // update a meat
-app.patch('/api/meats/:id', async (req, res, next) => {
+app.patch('/api/meats/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, description } = req.body;
@@ -335,7 +352,7 @@ app.patch('/api/meats/:id', async (req, res, next) => {
 });
 
 // update a butcher
-app.patch('/api/butchers/:id', async (req, res, next) => {
+app.patch('/api/butchers/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const updateFields = Object.keys(req.body);
@@ -360,7 +377,7 @@ app.patch('/api/butchers/:id', async (req, res, next) => {
 });
 
 //delete a user
-app.delete('/api/users/:id', async (req, res, next) => {
+app.delete('/api/users/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -376,7 +393,7 @@ app.delete('/api/users/:id', async (req, res, next) => {
 });
 
 // delete a meat
-app.delete('/api/meats/:id', async (req, res, next) => {
+app.delete('/api/meats/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -392,7 +409,7 @@ app.delete('/api/meats/:id', async (req, res, next) => {
 });
 
 // delete a butcher
-app.delete('/api/butchers/:id', async (req, res, next) => {
+app.delete('/api/butchers/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -481,12 +498,12 @@ app.post('/api/verifyToken', (req, res) => {
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ message: 'Token is missing' });
+    return res.status(401).json({ message: 'Unauthorized: Missing token' });
   }
 
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: 'Token is invalid' });
+      return res.status(401).json({ message: 'Forbidden: Invalid token' });
     }
     res.json({ message: 'Token is valid', userId: decoded.userId });
   });
