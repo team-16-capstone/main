@@ -8,6 +8,7 @@ const SingleButcher = ({ butchersData }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const fetchSingleButcher = async () => {
       try {
@@ -28,12 +29,14 @@ const SingleButcher = ({ butchersData }) => {
     fetchSingleButcher();
   }, [id]);
 
+
   if (!singleButcherData) {
     return <div>Loading...</div>;
   }
 
   return (
     <>
+
       <NavBar />
       <div id='single-butcher-container'>
         <div id='single-butcher-body' key={singleButcherData.id}>
