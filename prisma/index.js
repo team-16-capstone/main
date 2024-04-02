@@ -456,7 +456,6 @@ const authenticate = async ({ email, password }) => {
   }
 
   const token = jwt.sign({ id: user.id }, secretKey);
-  console.log('Token is:', token);
   return { token: token };
 };
 
@@ -474,6 +473,23 @@ app.post('/api/login', async (req, res) => {
   } catch (error) {
     res.status(error.status || 500).json({ error: error.message });
   }
+});
+
+// Verifies if token is correct
+app.post('/api/verifyToken', (req, res) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Token is missing' });
+  }
+
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Token is invalid' });
+    }
+    res.json({ message: 'Token is valid', userId: decoded.userId });
+  });
 });
 
 const port = 3001;

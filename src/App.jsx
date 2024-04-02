@@ -113,7 +113,6 @@ function App() {
       },
     });
     let json = await response.json();
-    console.log(json);
     if (response.ok) {
       // response = await fetch('http://localhost:3001/api/users', {
       //   headers: {
