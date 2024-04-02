@@ -8,14 +8,14 @@ const Account = ({ auth })=> {
   return (
     <>
     <NavBar/>
-    <div id="account-body">
     <h2>
       MY ACCOUNT
     </h2>
+    <div id="account-body">
     <h3 className="account-cards">
       MY EXPERIENCES
       <br/>
-      <button>Browse All</button>
+      <button onClick={() => navigate('/my-experiences')}>Browse All</button>
     </h3>
     <h3 className="account-cards">
       MEET YOUR MATCH

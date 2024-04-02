@@ -18,6 +18,8 @@ h2 {
 
 h3 {
   color: black;
+  padding: 0px;
+  margin: 5px;
 }
 
 button {
@@ -77,7 +79,19 @@ button:hover {
   justify-content: space-evenly;
 }
 
+#single-butcher-container {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 0px;
+  border-radius: 8px;
+}
+
 #account-body {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
   background-color: rgba(228, 228, 228, 0.85);
   text-align: center;
   margin: 5px;
@@ -85,11 +99,11 @@ button:hover {
   border-radius: 8px;
 }
 
-#account-card {
-  background-color: rgba(228, 228, 228, 0.85);
+.account-cards {
+  background-color: rgba(160, 157, 157, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 30px;
   border-radius: 8px;
 }
 
@@ -114,11 +128,19 @@ button:hover {
   text-align: center;
   width: 250px;
   margin: 5px;
-  padding: 40px;
+  padding: 20px 40px;
   border-radius: 8px;
 }
 
 #community-body {
+  background-color: rgba(228, 228, 228, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+#exp-history-body {
   background-color: rgba(228, 228, 228, 0.85);
   text-align: center;
   margin: 5px;
@@ -155,7 +177,7 @@ button:hover {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0px;
   text-align: center;
 }
 

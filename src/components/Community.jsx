@@ -6,10 +6,10 @@ const Community = ({ auth })=> {
   return (
     <>
     <NavBar/>
-    <div id="community-body">
     <h2>
       COMMUNITY
     </h2>
+    <div id="community-body">
       <h3>
       FLEXBOX CONTAINER OF MOST RECENT EXPERIENCES CREATED BY USERS
       </h3>
