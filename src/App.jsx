@@ -44,7 +44,7 @@ function App() {
 
   useEffect(()=> {
     const fetchSingleButcher = async()=> {
-    const response = await fetch ('http://localhost:3001/api/butchers/id');
+    const response = await fetch ('http://localhost:3001/api/butchers/:id');
     const json = await response.json();
       setSingleButcher(json);
   };

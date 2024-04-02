@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
+import Butchers from './Butchers';
 
-  const SingleButcher = (butcher)=> {
+  const SingleButcher = ()=> {
     const [singleButcherData, setSingleButcherData] = useState(null);
 
     const {id} = useParams();
@@ -11,7 +12,7 @@ import NavBar from './NavBar';
     useEffect(() => {
       const fetchSingleButcher = async () => {
         try {
-          const url = 'http://localhost:3001/api/butchers/id';
+          const url = 'http://localhost:3001/api/butchers/:id';
           const options = {
             method: 'GET',
             headers: {
@@ -28,15 +29,15 @@ import NavBar from './NavBar';
       fetchSingleButcher();
     }, [id]);
 
-    if (!singleButcherData) {
-        return <div>Loading...</div>;
-    }
+    // if (!singleButcherData) {
+    //     return <div>Loading...</div>;
+    // }
 
   return (
     <>
     <NavBar/>
     <div id='single-butcher-container'>
-      {singleButcherData.map((butcher) => (
+      {Butchers.map((butcher) => (
         <div id='single-butcher-body' key={singleButcherData.id}>
           <h2>{butcher.name}</h2>
       {/* <img src={book.coverimage} alt={`${book.img}'s image`} width="300" height="300" /> */}
