@@ -1,4 +1,3 @@
-
 import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -13,7 +12,6 @@ import Community from './components/Community';
 import StripeTest from './components/StripeTest';
 // import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-
 
 function App() {
   const [auth, setAuth] = useState([]);
@@ -42,14 +40,14 @@ function App() {
     fetchButchers();
   }, []);
 
-  useEffect(()=> {
-    const fetchSingleButcher = async()=> {
-    const response = await fetch ('http://localhost:3001/api/butchers/:id');
-    const json = await response.json();
+  useEffect(() => {
+    const fetchSingleButcher = async () => {
+      const response = await fetch('http://localhost:3001/api/butchers/3');
+      const json = await response.json();
       setSingleButcher(json);
-  };
+    };
     fetchSingleButcher();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     const attemptLoginWithToken = async () => {
@@ -106,7 +104,7 @@ function App() {
   };
 
   const register = async (credentials) => {
-    let response = await fetch('https://localhost:5173/register', {
+    let response = await fetch('http://localhost:3001/api/users', {
       method: 'POST',
       body: JSON.stringify(credentials),
       headers: {
@@ -117,11 +115,11 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem('token', token);
-      response = await fetch('https://localhost:5173/account', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // response = await fetch('http://localhost:5173/account', {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
       json = await response.json();
       if (response.ok) {
         setAuth(json);
@@ -156,7 +154,6 @@ function App() {
         <button onClick={logout}>LOGOUT</button>
       ) : (
         <>
-
           <>
             <Routes>
               <Route path='/' element={<Login login={login} />}></Route>
@@ -180,7 +177,6 @@ function App() {
               </Route>
             </Routes>
           </>
-
         </>
       )}
     </>
