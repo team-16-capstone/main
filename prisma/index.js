@@ -217,9 +217,8 @@ app.post('/api/users', async (req, res, next) => {
         password: hashedPassword,
       },
     });
-    const token = jwt.sign({ userId: newUser.id }, secretKey);
 
-    res.status(201).json({ newUser: newUser, token: token });
+    res.status(201).json({ newUser: newUser });
   } catch (error) {
     next(error);
   }
@@ -464,6 +463,11 @@ const authenticate = async ({ email, password }) => {
 // login
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ error: 'Email and password cannot be blank' });
+  }
   try {
     const { token } = await authenticate({ email, password });
     res.json({ token });

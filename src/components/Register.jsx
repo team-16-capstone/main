@@ -26,6 +26,7 @@ const Register = ({ register }) => {
       await register(credentials);
       navigate('/');
     } catch (error) {
+      console.error(error);
       setError(error.message);
     }
   };
