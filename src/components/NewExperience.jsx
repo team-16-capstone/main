@@ -92,7 +92,7 @@ function NewExperience() {
             <select value={butcher} onChange={handleButcher}>
               <option value="">***Select Butchers***</option>
               {butcherOptions.map((option, index) => (
-                <option key={index} value={option.id}>{option.name}</option>
+                <option key={index} value={option.name}>{option.name}</option>
               ))}
             </select>
           </label>
