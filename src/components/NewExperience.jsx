@@ -6,6 +6,7 @@ function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [meats, setMeats] = useState([]);
+  const [price, setPrice] = useState('');
   const [review, setReview] = useState('');
   const navigate = useNavigate();
 
@@ -45,11 +46,16 @@ function NewExperience() {
     setReview(event.target.value);
   };
 
+  const handlePrice = (event) => {
+    setPrice(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = {
       butcher: butcher,
       meats: meats,
+      price: price,
       review: review
     };
 
@@ -65,7 +71,7 @@ function NewExperience() {
       if (response.ok) {
         const data = await response.json();
         console.log('Form submitted successfully:', data);
-        navigate('/community');
+        navigate('/my-experiences');
       } else {
         console.error('Form submission failed:', response.statusText);
       }
@@ -86,26 +92,32 @@ function NewExperience() {
       <NavBar />
       <h2>CREATE EXPERIENCE</h2>
       <div id="new-exp-body">
+        <h3>LOG YOUR LATEST PURCHASE</h3>
         <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
-            Butcher:
             <select value={butcher} onChange={handleButcher}>
-              <option value="">***Select Butchers***</option>
+              <option value="">Butchers</option>
               {butcherOptions.map((option, index) => (
                 <option key={index} value={option.name}>{option.name}</option>
               ))}
             </select>
           </label>
-          <br />
+          <br/>
+          <br/>
           <label>
-            Meats:
-            <input type="checkbox" value="beef" onChange={handleMeat} /> Beef
-            <input type="checkbox" value="chicken" onChange={handleMeat} /> Chicken
-            <input type="checkbox" value="pork" onChange={handleMeat} /> Pork
+            <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png'/>
+            <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png'/>
+            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png'/>
           </label>
-          <br />
+          <br/>
           <label>
-            Review:
+            <p>Price/lb: $</p>
+            <input value={price} onChange={handlePrice} />
+          </label>
+          <br/>
+          <br/>
+          <label>
+            <p>Review:</p>
             <textarea value={review} onChange={handleReview} />
           </label>
           <br />

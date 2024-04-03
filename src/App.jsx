@@ -10,7 +10,6 @@ import NewExperience from './components/NewExperience';
 import Butchers from './components/Butchers';
 import Community from './components/Community';
 import StripeTest from './components/StripeTest';
-// import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
@@ -33,23 +32,23 @@ function App() {
   // );
   // }, [auth]);
 
-  useEffect(() => {
-    const fetchButchers = async () => {
-      const response = await fetch('http://localhost:3001/api/butchers/');
-      const json = await response.json();
-      setButchers(json);
-    };
-    fetchButchers();
-  }, []);
+  // useEffect(() => {
+  //   const fetchButchers = async () => {
+  //     const response = await fetch('http://localhost:3001/api/butchers/');
+  //     const json = await response.json();
+  //     setButchers(json);
+  //   };
+  //   fetchButchers();
+  // }, []);
 
-  useEffect(() => {
-    const fetchSingleButcher = async () => {
-      const response = await fetch('http://localhost:3001/api/butchers/3');
-      const json = await response.json();
-      setSingleButcher(json);
-    };
-    fetchSingleButcher();
-  }, []);
+  // useEffect(() => {
+  //   const fetchSingleButcher = async () => {
+  //     const response = await fetch('http://localhost:3001/api/butchers/:id');
+  //     const json = await response.json();
+  //     setSingleButcher(json);
+  //   };
+  //   fetchSingleButcher();
+  // }, []);
 
   // useEffect(() => {
   //   const attemptLoginWithToken = async () => {
@@ -152,8 +151,8 @@ function App() {
               <Route path='/butchers' element={<Butchers />}></Route>
               <Route path='/butchers/:id' element={<SingleButcher />}></Route>
               <Route path='/community' element={<Community />}></Route>
-              <Route path='/stripetest' element={<StripeTest />}></Route>
             </Route>
+            <Route path='/stripetest' element={<StripeTest />}></Route>
           </Routes>
         </>
       </>
