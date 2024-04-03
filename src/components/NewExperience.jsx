@@ -27,7 +27,6 @@ function NewExperience() {
     }
   };
 
-
   const handleButcher = (event) => {
     setButcher(event.target.value);
   };
@@ -37,7 +36,7 @@ function NewExperience() {
     if (checked) {
       setMeats([...meats, value]);
     } else {
-      setMeats(meats.filter(meat => meat !== value));
+      setMeats(meats.filter((meat) => meat !== value));
     }
   };
 
@@ -50,16 +49,18 @@ function NewExperience() {
     const formData = {
       butcher: butcher,
       meats: meats,
-      review: review
+      review: review,
     };
 
     try {
+      const token = window.localStorage.getItem('token');
       const response = await fetch('http://localhost:3001/api/new-experience', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -85,23 +86,26 @@ function NewExperience() {
     <>
       <NavBar />
       <h2>CREATE EXPERIENCE</h2>
-      <div id="new-exp-body">
+      <div id='new-exp-body'>
         <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
             Butcher:
             <select value={butcher} onChange={handleButcher}>
-              <option value="">***Select Butchers***</option>
+              <option value=''>***Select Butchers***</option>
               {butcherOptions.map((option, index) => (
-                <option key={index} value={option.name}>{option.name}</option>
+                <option key={index} value={option.name}>
+                  {option.name}
+                </option>
               ))}
             </select>
           </label>
           <br />
           <label>
             Meats:
-            <input type="checkbox" value="beef" onChange={handleMeat} /> Beef
-            <input type="checkbox" value="chicken" onChange={handleMeat} /> Chicken
-            <input type="checkbox" value="pork" onChange={handleMeat} /> Pork
+            <input type='checkbox' value='beef' onChange={handleMeat} /> Beef
+            <input type='checkbox' value='chicken' onChange={handleMeat} />{' '}
+            Chicken
+            <input type='checkbox' value='pork' onChange={handleMeat} /> Pork
           </label>
           <br />
           <label>
@@ -109,8 +113,7 @@ function NewExperience() {
             <textarea value={review} onChange={handleReview} />
           </label>
           <br />
-          <button type="submit">Submit</button>
-
+          <button type='submit'>Submit</button>
         </form>
       </div>
     </>

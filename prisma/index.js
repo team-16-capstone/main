@@ -29,9 +29,13 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Middleware to protect routes
+// If protecting a route with this middleware, make sure the client side API call has:
+// const token = window.localStorage.getItem('token'); (retrieves the token)
+// Authorization: `Bearer ${token}` (within the header of the call)
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
+  console.log('req.headers is', req.headers);
 
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized: Missing token' });
