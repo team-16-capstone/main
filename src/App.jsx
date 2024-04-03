@@ -33,23 +33,23 @@ function App() {
   // );
   // }, [auth]);
 
-  useEffect(() => {
-    const fetchButchers = async () => {
-      const response = await fetch('http://localhost:3001/api/butchers/');
-      const json = await response.json();
-      setButchers(json);
-    };
-    fetchButchers();
-  }, []);
+  // useEffect(() => {
+  //   const fetchButchers = async () => {
+  //     const response = await fetch('http://localhost:3001/api/butchers/');
+  //     const json = await response.json();
+  //     setButchers(json);
+  //   };
+  //   fetchButchers();
+  // }, []);
 
-  useEffect(() => {
-    const fetchSingleButcher = async () => {
-      const response = await fetch('http://localhost:3001/api/butchers/3');
-      const json = await response.json();
-      setSingleButcher(json);
-    };
-    fetchSingleButcher();
-  }, []);
+  // useEffect(() => {
+  //   const fetchSingleButcher = async () => {
+  //     const response = await fetch('http://localhost:3001/api/butchers/:id');
+  //     const json = await response.json();
+  //     setSingleButcher(json);
+  //   };
+  //   fetchSingleButcher();
+  // }, []);
 
   // useEffect(() => {
   //   const attemptLoginWithToken = async () => {

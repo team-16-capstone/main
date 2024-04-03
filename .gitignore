@@ -26,3 +26,4 @@ dist-ssr
 package-lock.json
 package-lock.json
 package.json
+prisma/migrations/20240402203410_/
