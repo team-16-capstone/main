@@ -16,7 +16,6 @@ import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
 
 function App() {
-
   const [error, setError] = useState('');
   const location = useLocation();
 
@@ -55,17 +54,18 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   if (location.pathname === '/register') {
-  //     setError('');
-  //   }
-  // }, [location.pathname]); // Watch for changes in the pathname
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token || location.pathname === '/register') {
+      setError('');
+    }
+  }, [location.pathname]);
 
   return (
     <>
       <div>
         <h1 id='logo'>Pocket Butcher</h1>
-        {/* {error && <p id='error-container'>{error}</p>} */}
+        {error && <p id='error-container'>{error}</p>}
       </div>
       <>
         <>
