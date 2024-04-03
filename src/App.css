@@ -1,4 +1,5 @@
 body {
+  width: 100%;
   margin: 0;
   display: flex;
   place-items: center;
@@ -35,6 +36,11 @@ h3 {
   margin: 5px;
 }
 
+h4 {
+  font-size: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
 p {
   color: black;
   font-weight: bold;
@@ -52,7 +58,8 @@ button {
 }
 
 button:hover {
-  color:rgb(0, 0, 0);
+  color:rgb(167, 49, 49);
+  background-color: white;
 }
 
 .nav-bar {
@@ -106,6 +113,13 @@ button:hover {
   justify-content: space-evenly;
 }
 
+#community-container {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
 #single-butcher-container {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
@@ -133,6 +147,16 @@ button:hover {
   padding: 115px 40px 115px 40px;
   border-radius: 8px;
 }
+
+.experience-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  width: 300px;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 8px;
+}
+
 
 #match-body {
   background-color: rgba(255, 255, 255, 0.85);
@@ -163,7 +187,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 30px;
   border-radius: 8px;
 }
 
@@ -171,8 +195,23 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 30px;
   border-radius: 8px;
+}
+
+#price-input {
+  width: 50px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#notes-input {
+  min-width: 350px;
+  max-width: 350px;
+  min-height: 80px;
+  text-align: center;
+  font-size: 15px;
 }
 
 .checkout {
@@ -203,6 +242,7 @@ button:hover {
 
 #root {
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding: 0px;
   text-align: center;

@@ -108,20 +108,21 @@ function NewExperience() {
           <br/>
           <br/>
           <label>
-            <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png'/>
+            <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
             <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png'/>
             <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png'/>
           </label>
           <br/>
           <label>
-            <p>Price/lb: $</p>
-            <input value={price} onChange={handlePrice} />
+            <p>Price/lb:</p>
+            $
+            <input id='price-input' value={price} onChange={handlePrice} />
           </label>
           <br/>
           <br/>
           <label>
-            <p>Review:</p>
-            <textarea value={review} onChange={handleReview} />
+            <p>Notes:</p>
+            <textarea id='notes-input' value={review} onChange={handleReview} />
           </label>
           <br />
           <button type='submit'>Submit</button>

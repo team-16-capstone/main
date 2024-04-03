@@ -284,13 +284,13 @@ app.post('/api/butchers', authenticateToken, async (req, res, next) => {
 //create an experience
 app.post('/api/new-experience', authenticateToken, async (req, res) => {
   try {
-    const { butcher, meats, review } = req.body;
+    const { butcher, meats, price, review } = req.body;
     const newExperience = await prisma.experience.create({
       data: {
         butcher,
         meats: { set: meats },
-        price:
-        review,
+        price: price,
+        review: review,
       },
     });
 
