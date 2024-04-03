@@ -30,14 +30,16 @@ const Community = ({ auth }) => {
       </h2>
       <div id="community-body">
         <h3>
-          FLEXBOX CONTAINER OF MOST RECENT EXPERIENCES CREATED BY REAL CUSTOMERS!
+          RECENT CUSTOMER EXPERIENCES
         </h3>
-        <div>
+        <div id='community-container'>
           {experiences.map((experience) => (
-            <div key={experience.id}>
-              <h4>Butcher: {experience.butcher}</h4>
-              <p>Meats: {experience.meats.join(', ')}</p>
-              <p>Review: {experience.review}</p>
+            <div className='experience-card' key={experience.id}>
+              <h4>{experience.butcher}</h4>
+              <p>Purchased: {experience.meats.join(', ')}</p>
+              <p>Price/lb: ${experience.price}</p>
+              <p>Notes:</p>
+              <p>{experience.review}</p>
             </div>
           ))}
         </div>
