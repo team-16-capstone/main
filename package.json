@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "start:dev": "nodemon prisma/index",
     "seed": "node prisma/seed",
-    "generate:secretkey": "node generateSecretKey.js"
+    "generate:secretkey": "node generateSecretKey.js",
+    "all": "npm run start:dev & npm run dev"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
