@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const Register = ({ register }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [zip, setZip] = useState('');
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [zip, setZip] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,7 +24,7 @@ const Register = ({ register }) => {
 
     try {
       await register(credentials);
-      navigate('/');
+      navigate('/stripepayment');
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -41,26 +41,26 @@ const Register = ({ register }) => {
             onChange={(event) => setName(event.target.value)}
           />
           <br />
-          <input
+          {/* <input
             placeholder='Last Name'
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
-          <br />
-          <input
-            placeholder='zip code'
+          <br /> */}
+          {/* <input
+            placeholder='Zip code'
             value={zip}
             onChange={(event) => setZip(event.target.value)}
           />
-          <br />
+          <br /> */}
           <input
-            placeholder='email'
+            placeholder='Email'
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
           <br />
           <input
-            placeholder='password'
+            placeholder='Password'
             value={password}
             type='password'
             onChange={(event) => setPassword(event.target.value)}
