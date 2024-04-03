@@ -27,13 +27,14 @@ const Register = ({ register }) => {
       navigate('/');
     } catch (error) {
       console.error(error);
-      setError(error.message);
+      setError('Could not register your account, please try again.');
     }
   };
 
   return (
     <>
       <div id='register-container'>
+        {error && <p id='error-container'>{error}</p>}
         <form onSubmit={submit}>
           <input
             placeholder='First Name'

@@ -29,11 +29,11 @@ button {
 }
 
 button:hover {
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .nav-bar {
-  color:rgb(167, 49, 49);
+  color: rgb(167, 49, 49);
 }
 
 .link {
@@ -60,6 +60,12 @@ button:hover {
   border-radius: 8px;
 }
 
+#error-container {
+  color: white;
+  background-color: rgb(167, 49, 49);
+  margin: 10px;
+}
+
 #nav-container {
   background-color: rgba(228, 228, 228, 0.85);
   display: flex;
@@ -69,7 +75,6 @@ button:hover {
   margin: 5px;
   padding: 10px;
   border-radius: 8px;
-
 }
 
 #butcher-container {
