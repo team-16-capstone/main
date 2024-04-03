@@ -241,6 +241,7 @@ app.post('/api/users', async (req, res, next) => {
 
     res.status(201).json({ newUser: newUser });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
@@ -304,11 +305,17 @@ app.post('/api/new-experience', authenticateToken, async (req, res) => {
 });
 
 //update a user
-// still needs a way to update the password, we'll do this after authentication is ironed out
+// WHEN CALLING THIS ROUTE, I added a passwordConfirmation on the request body.
+// This should be an additional value in the form, where the user has to input their password again
+// If they don't match, the call to this route will fail. :)
 app.patch('/api/users/:id', authenticateToken, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, email } = req.body;
+    const { name, email, password, passwordConfirmation } = req.body;
+
+    if (password !== passwordConfirmation) {
+      return res.status(400).json({ error: 'Passwords do not match' });
+    }
 
     const data = {};
     if (name) {
@@ -316,6 +323,9 @@ app.patch('/api/users/:id', authenticateToken, async (req, res, next) => {
     }
     if (email) {
       data.email = email;
+    }
+    if (password) {
+      data.password = password;
     }
 
     const updateUser = await prisma.user.update({
