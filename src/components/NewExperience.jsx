@@ -28,7 +28,6 @@ function NewExperience() {
     }
   };
 
-
   const handleButcher = (event) => {
     setButcher(event.target.value);
   };
@@ -38,7 +37,7 @@ function NewExperience() {
     if (checked) {
       setMeats([...meats, value]);
     } else {
-      setMeats(meats.filter(meat => meat !== value));
+      setMeats(meats.filter((meat) => meat !== value));
     }
   };
 
@@ -60,12 +59,14 @@ function NewExperience() {
     };
 
     try {
+      const token = window.localStorage.getItem('token');
       const response = await fetch('http://localhost:3001/api/new-experience', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -98,7 +99,9 @@ function NewExperience() {
             <select value={butcher} onChange={handleButcher}>
               <option value="">Butchers</option>
               {butcherOptions.map((option, index) => (
-                <option key={index} value={option.name}>{option.name}</option>
+                <option key={index} value={option.name}>
+                  {option.name}
+                </option>
               ))}
             </select>
           </label>
@@ -121,8 +124,7 @@ function NewExperience() {
             <textarea value={review} onChange={handleReview} />
           </label>
           <br />
-          <button type="submit">Submit</button>
-
+          <button type='submit'>Submit</button>
         </form>
       </div>
     </>

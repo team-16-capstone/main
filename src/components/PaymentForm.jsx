@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
@@ -25,6 +26,7 @@ export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +50,9 @@ export default function PaymentForm() {
         if (responseData.success) {
           console.log('successful payment');
           setSuccess(true);
+          setTimeout(() => {
+            navigate('/');
+          }, 1500); // redirect after 1.5 seconds
         }
       } catch (error) {
         console.log('Error', error);
