@@ -10,16 +10,39 @@ body {
   background-size: 110%;
 }
 
+/* https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=1024x1024&w=is&k=20&c=Em6A3W0ZVl--yb-xaqjVY05IeKH8XqF9VyAISnJ1I0g= */
+
 h2 {
+  background-color: rgba(167, 49, 49, 0.85);
   font-size: 40px;
-  color: black;
-  margin: 0px;
+  color: rgb(255, 255, 255);
+  margin: 0px 5px 5px 5px;
+  padding: 0px 10px 5px 10px;
+  border-radius: 0px 0px 8px 8px;
+}
+
+#butcher-name {
+  background-color: transparent;
+  font-size: 40px;
+  color: rgb(167, 49, 49);
+  margin: 0px 5px 5px 5px;
+  padding: 0px 10px 5px 10px;
 }
 
 h3 {
   color: black;
   padding: 0px;
   margin: 5px;
+}
+
+p {
+  color: black;
+  font-weight: bold;
+  margin: 0px;
+}
+
+option {
+  text-align: center;
 }
 
 button {
@@ -44,8 +67,12 @@ button:hover {
   color: black;
 }
 
+.icon {
+  width: 45px;
+}
+
 #login-container {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 100px;
@@ -53,7 +80,7 @@ button:hover {
 }
 
 #register-container {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 100px;
@@ -67,14 +94,15 @@ button:hover {
 }
 
 #nav-container {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   justify-content: space-evenly;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 8px;
+
+  margin: 5px 5px 0px 5px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px 8px 0px 0px;
 }
 
 #butcher-container {
@@ -85,9 +113,9 @@ button:hover {
 }
 
 #single-butcher-container {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 5px;
+  margin: 0px;
   padding: 0px;
   border-radius: 8px;
 }
@@ -97,23 +125,23 @@ button:hover {
   flex-flow: row wrap;
   list-style: none;
   justify-content: space-evenly;
-  background-color: rgba(228, 228, 228, 0.85);
+  /* background-color: rgba(228, 228, 228, 0.85); */
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 5px;
   border-radius: 8px;
 }
 
 .account-cards {
-  background-color: rgba(160, 157, 157, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 5px;
-  padding: 30px;
+  margin: 10px;
+  padding: 115px 40px 115px 40px;
   border-radius: 8px;
 }
 
 #match-body {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 100px;
@@ -121,15 +149,15 @@ button:hover {
 }
 
 #new-exp-body {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 40px 100px;
   border-radius: 8px;
 }
 
 #butcher-body {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   width: 250px;
   margin: 5px;
@@ -138,7 +166,7 @@ button:hover {
 }
 
 #community-body {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 100px;
@@ -146,7 +174,7 @@ button:hover {
 }
 
 #exp-history-body {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 100px;
@@ -154,7 +182,7 @@ button:hover {
 }
 
 .checkout {
-  background-color: rgba(228, 228, 228, 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
   padding: 20px;

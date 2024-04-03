@@ -33,10 +33,10 @@ import { Link } from "react-router-dom";
     <div id='butcher-container'>
       {butchersData.map((butcher) => (
         <div id='butcher-body' key={butcher.id}>
-          <h2>{butcher.name}</h2>
+          <h2 id='butcher-name'>{butcher.name}</h2>
           <h3>{butcher.street}</h3>
           <h3>{butcher.city}, {butcher.state}  {butcher.zipcode}</h3>
-          <h3>{butcher.phonenumber}</h3>
+          <h3>Contact: {butcher.phonenumber}</h3>
           <br />
           <Link to={`/butchers/${butcher.id}`}>
           <button>BUTCHER PROFILE</button>

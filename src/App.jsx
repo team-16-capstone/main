@@ -9,13 +9,14 @@ import MeatYourMatch from './components/MeatYourMatch';
 import NewExperience from './components/NewExperience';
 import Butchers from './components/Butchers';
 import Community from './components/Community';
-import StripeTest from './components/StripeTest';
+import StripePayment from './components/StripePayment.jsx';
 // import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
 
 function App() {
+
   const [error, setError] = useState('');
   const location = useLocation();
 
@@ -74,6 +75,7 @@ function App() {
               path='/register'
               element={<Register register={register} />}
             ></Route>
+            <Route path='/stripepayment' element={<StripePayment />}></Route>
             <Route element={<ProtectedRoute />}>
               <Route path='/account' element={<Account />}></Route>
               <Route
@@ -85,7 +87,6 @@ function App() {
               <Route path='/butchers' element={<Butchers />}></Route>
               <Route path='/butchers/:id' element={<SingleButcher />}></Route>
               <Route path='/community' element={<Community />}></Route>
-              <Route path='/stripetest' element={<StripeTest />}></Route>
             </Route>
           </Routes>
         </>
