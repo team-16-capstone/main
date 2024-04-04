@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const Login = ({ login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
@@ -20,7 +19,6 @@ const Login = ({ login }) => {
       navigate('/account');
     } catch (error) {
       console.error(error);
-      setError(error.message);
     }
   };
 

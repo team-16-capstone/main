@@ -3,19 +3,12 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Account from './components/Account';
 import { useState, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
-import { Link, useLocation } from 'react-router-dom';
-
-import { Navigate, Router, Routes, Route } from 'react-router-dom';
-
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import MeatYourMatch from './components/MeatYourMatch';
 import NewExperience from './components/NewExperience';
 import Butchers from './components/Butchers';
 import Community from './components/Community';
 import StripePayment from './components/StripePayment.jsx';
-// import findUserByToken from '../prisma/index.js';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
@@ -36,7 +29,6 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem('token', token);
-      console.log('Login succesful!');
     } else {
       setError('Error during login, please try again.');
       console.error('Error during login:', json);
@@ -61,7 +53,11 @@ function App() {
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
-    if (token || location.pathname === '/register') {
+    if (
+      token ||
+      location.pathname === '/register' ||
+      location.pathname === '/stripepayment'
+    ) {
       setError('');
     }
   }, [location.pathname]);

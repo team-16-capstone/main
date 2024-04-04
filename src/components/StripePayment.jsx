@@ -1,41 +1,37 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import StripeContainer from './StripeContainer';
-import PaymentForm from './PaymentForm';
 import membercard from '../assets/membercard.png';
-import { Input } from 'postcss';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 export default function StripePayment() {
-  const [showItem, setShowItem] = useState(false);
   const [email, setEmail] = useState('');
   const [connection, setConnection] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // this api call will check if the user already is authorized as a StripeUser. if so, it will redirect them.
-    const getUserByEmail = await fetch(
-      `http://localhost:3001/api/users/stripe/get/${email}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json',
-        },
+    try {
+      const getUserByEmail = await fetch(
+        `http://localhost:3001/api/users/stripe/get/${email}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
+      const responseData = await getUserByEmail.json();
+      if (responseData.stripeUser === true) {
+        console.log('This user is already registered for Stripe.');
+        setError('This user is already registered for Stripe.');
+        return setConnection(false);
       }
-    );
-    const responseData = await getUserByEmail.json();
-    if (responseData.stripeUser === true) {
-      console.log('This user is already registered for Stripe.');
+      return setConnection(true);
+    } catch (ex) {
+      setError('This user has not been registered.');
       return setConnection(false);
     }
-    if (!responseData) {
-      console.log('This user does not exist.');
-      return setConnection(false);
-    }
-
-    console.log('Submitted email:', email);
-    setConnection(true);
   };
 
   return (
@@ -47,6 +43,7 @@ export default function StripePayment() {
             To purchase a membership, please enter the email associated with
             your Pocket Butcher account.
           </h3>
+          {error ? <h3>{error}</h3> : <></>}
           <form onSubmit={handleSubmit}>
             <input
               type='email'

@@ -10,17 +10,9 @@ import dotenv from 'dotenv';
 import stripePackage from 'stripe';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import Stripe from 'stripe';
 
 const prisma = new PrismaClient();
 const app = express();
-
-// const defaultJWT = "shhh";
-// const JWT = process.env.JWT || defaultJWT;
-
-// if (JWT === defaultJWT) {
-//   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
-// }
 
 const secretKey = process.env.JWT_SECRET_KEY;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -57,11 +49,14 @@ const stripe = stripePackage(process.env.STRIPE_SECRET_TEST);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
+  next(err);
 });
+
+// To remove a harmless error, I added next(err) to the above chunk of code. IF there is an issue when sending another
+// response in a subsequent middleware, remove the line "next(err)"
 
 ////////////STRIPE CODE///////////////
 app.post('/api/payment', async (req, res) => {

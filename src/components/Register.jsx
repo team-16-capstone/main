@@ -23,6 +23,13 @@ const Register = ({ register }) => {
     };
 
     try {
+      if (
+        credentials.name === '' ||
+        credentials.email === '' ||
+        credentials.password === ''
+      ) {
+        return console.log('Form cannot be blank');
+      }
       await register(credentials);
       navigate('/stripepayment');
     } catch (error) {

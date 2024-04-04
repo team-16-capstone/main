@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,8 +27,6 @@ export default function PaymentForm({ email }) {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-
-  console.log({ email });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
