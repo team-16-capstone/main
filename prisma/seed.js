@@ -74,6 +74,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10036',
         phonenumber: '+12125632555',
+        image_url: '',
       },
       {
         name: 'Piccinini Bros',
@@ -82,6 +83,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10036',
         phonenumber: '+12122468277',
+        image_url: '',
       },
       {
         name: 'Dickson Farmstand Meats',
@@ -98,6 +100,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10019',
         phonenumber: '+12127572276',
+        image_url: '',
       },
       {
         name: 'Ceriello Fine Foods',
@@ -114,6 +117,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10022',
         phonenumber: '+12128882299',
+        image_url: '',
       },
       {
         name: 'East Village Meat Market',
@@ -130,6 +134,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10012',
         phonenumber: '+12124758134',
+        image_url: '',
       },
       {
         name: 'Luis Meat Market',
@@ -138,6 +143,7 @@ const main = async () => {
         state: 'NY',
         zipcode: '10002',
         phonenumber: '+12125632555',
+        image_url: '',
       },
     ];
 

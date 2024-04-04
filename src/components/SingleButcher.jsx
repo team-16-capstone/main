@@ -41,7 +41,7 @@ const SingleButcher = () => {
       <div id='single-butcher-container'>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <h2>{singleButcherData.name}</h2>
-          <img src={singleButcherData.image_url} alt={singleButcherData.name} />
+          <img src={singleButcherData.image_url} />
           <h3>{singleButcherData.street}</h3>
           <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
           <h3>Contact: {singleButcherData.phonenumber}</h3>
