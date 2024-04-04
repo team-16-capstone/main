@@ -40,6 +40,8 @@ const Community = ({ auth }) => {
               <p>Price/lb: ${experience.price}</p>
               <p>Notes:</p>
               <p>{experience.review}</p>
+              <button>EDIT</button>
+              <button>DELETE</button>
             </div>
           ))}
         </div>
