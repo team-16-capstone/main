@@ -14,6 +14,9 @@ function NavBar() {
         <Link className='link' to='/butchers'>
           BUTCHERS
         </Link>
+        <Link className='link' to='/my-experiences'>
+          MY EXPERIENCES
+        </Link>
         <Link className='link' to='/community'>
           COMMUNITY
         </Link>
