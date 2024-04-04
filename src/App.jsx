@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import { Router, Routes, Route } from 'react-router-dom';
+import { Navigate, Router, Routes, Route } from 'react-router-dom';
+
 import MeatYourMatch from './components/MeatYourMatch';
 import NewExperience from './components/NewExperience';
 import Butchers from './components/Butchers';
@@ -65,6 +66,8 @@ function App() {
     }
   }, [location.pathname]);
 
+  const token = window.localStorage.getItem('token');
+
   return (
     <>
       <div>
@@ -74,7 +77,16 @@ function App() {
       <>
         <>
           <Routes>
-            <Route path='/' element={<Login login={login} />}></Route>
+            <Route
+              path='/'
+              element={
+                token ? (
+                  <Navigate to='/account' replace />
+                ) : (
+                  <Login login={login} />
+                )
+              }
+            ></Route>
             <Route
               path='/register'
               element={<Register register={register} />}

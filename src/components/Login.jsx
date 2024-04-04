@@ -46,6 +46,10 @@ const Login = ({ login }) => {
         <Link className='link' to='/register'>
           Become a Member
         </Link>
+        <br />
+        <Link className='link' to='/stripepayment'>
+          Pay for your Membership
+        </Link>
       </div>
     </>
   );

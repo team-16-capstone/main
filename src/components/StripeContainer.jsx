@@ -8,10 +8,11 @@ const PUBLIC_KEY =
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
-export default function StripeContainer() {
+export default function StripeContainer({ email }) {
   return (
     <Elements stripe={stripeTestPromise}>
-      <PaymentForm />
+      {/* Email is passed as a prop from StripePayment towards PaymentForm */}
+      <PaymentForm email={email} />
     </Elements>
   );
 }
