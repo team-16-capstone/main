@@ -34,6 +34,7 @@ model User {
   name     String
   email    String @unique
   password String
+  stripeUser Boolean @default(false)
 }
 
 model Experience {
