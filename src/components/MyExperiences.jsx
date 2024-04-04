@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const MyExperiences = ({ auth }) => {
   const [experiences, setExperiences] = useState([]);
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchExperiences();
@@ -67,9 +67,12 @@ const MyExperiences = ({ auth }) => {
               </Link>
             </div>
           ))}
-        </div>
       </div>
-    </>
+      <div>
+      <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
+      </div>
+      </div>
+      </>
   );
 };
 

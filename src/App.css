@@ -57,10 +57,10 @@ button {
   margin: 10px;
 }
 
-
+button:hover {
   color:rgb(167, 49, 49);
   background-color: white;
-
+}  
 
 .nav-bar {
   color: rgb(167, 49, 49);
