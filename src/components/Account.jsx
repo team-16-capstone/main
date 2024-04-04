@@ -18,7 +18,7 @@ const Account = ({ auth })=> {
       <button onClick={() => navigate('/my-experiences')}>Browse All</button>
     </h3>
     <h3 className="account-cards">
-      MEET YOUR MATCH
+      MEAT YOUR MATCH
       <br/>
       <button onClick={() => navigate('/meat-your-match')}>Search</button>
     </h3>

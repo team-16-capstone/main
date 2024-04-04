@@ -20,13 +20,14 @@ model Meat {
 }
 
 model Butcher {
-  id          Int    @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String
   street      String
   city        String
   state       String
   zipcode     String
   phonenumber String
+  image_url   String?
 }
 
 model User {
