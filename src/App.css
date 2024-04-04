@@ -57,13 +57,13 @@ button {
   margin: 10px;
 }
 
-button:hover {
+
   color:rgb(167, 49, 49);
   background-color: white;
-}
+
 
 .nav-bar {
-  color:rgb(167, 49, 49);
+  color: rgb(167, 49, 49);
 }
 
 .link {
@@ -94,16 +94,22 @@ button:hover {
   border-radius: 8px;
 }
 
+#error-container {
+  color: white;
+  background-color: rgb(167, 49, 49);
+  margin: 10px;
+}
+
 #nav-container {
   background-color: rgba(255, 255, 255, 0.85);
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   justify-content: space-evenly;
+
   margin: 5px 5px 0px 5px;
   padding: 5px 10px 5px 10px;
   border-radius: 8px 8px 0px 0px;
-
 }
 
 #butcher-container {

@@ -3,8 +3,11 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Account from './components/Account';
 import { useState, useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
+import { Link, useLocation } from 'react-router-dom';
+
 import { Router, Routes, Route } from 'react-router-dom';
 import MeatYourMatch from './components/MeatYourMatch';
 import NewExperience from './components/NewExperience';
@@ -17,67 +20,8 @@ import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
 
 function App() {
-  const [auth, setAuth] = useState([]);
-  const [butchers, setButchers] = useState([]);
-  const [singleButcher, setSingleButcher] = useState([]);
-
-  // useEffect(() => {
-  //   // console.log(auth);
-  //   if (auth.id) {
-  //     console.log("load user account");
-  //   } else {
-  //     console.log("clear user account");
-  //   }
-
-  // client.Meat.findMany().then((response) =>
-  //   console.log("this is the response", response)
-  // );
-  // }, [auth]);
-
-  // useEffect(() => {
-  //   const fetchButchers = async () => {
-  //     const response = await fetch('http://localhost:3001/api/butchers/');
-  //     const json = await response.json();
-  //     setButchers(json);
-  //   };
-  //   fetchButchers();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchSingleButcher = async () => {
-  //     const response = await fetch('http://localhost:3001/api/butchers/:id');
-  //     const json = await response.json();
-  //     setSingleButcher(json);
-  //   };
-  //   fetchSingleButcher();
-  // }, []);
-
-  // useEffect(() => {
-  //   const attemptLoginWithToken = async () => {
-  //     const response = await fetch('https://localhost:5173/', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     const json = await response.json();
-  //     if (response.ok) {
-  //       setAuth(json);
-  //     }
-  //   };
-  //   const token = window.localStorage.getItem('token');
-  //   if (token) {
-  //     attemptLoginWithToken();
-  //   } else {
-  //   }
-  // }, []);
-
-  // const isLoggedIn = async (req, res, next) => {
-  //   try {
-  //     req.user = await findUserByToken(req.headers.authorization);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
+  const [error, setError] = useState('');
+  const location = useLocation();
 
   const login = async (credentials) => {
     let response = await fetch('http://localhost:3001/api/login', {
@@ -91,18 +35,10 @@ function App() {
     if (response.ok) {
       const token = json.token;
       window.localStorage.setItem('token', token);
-
-      response = await fetch('http://localhost:3001/api/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      json = await response.json();
-      if (response.ok) {
-        setAuth(json);
-      }
+      console.log('Login succesful!');
     } else {
-      console.log(json);
+      setError('Error during login, please try again.');
+      console.error('Error during login:', json);
     }
   };
 
@@ -116,23 +52,24 @@ function App() {
     });
     let json = await response.json();
     if (response.ok) {
-      // response = await fetch('http://localhost:3001/api/users', {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // });
-      if (response.ok) {
-        setAuth(json);
-      }
+      console.log('Registration succesful:', json);
     } else {
-      console.log(json);
+      console.error('Error during registration:', json);
     }
   };
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token || location.pathname === '/register') {
+      setError('');
+    }
+  }, [location.pathname]);
 
   return (
     <>
       <div>
         <h1 id='logo'>Pocket Butcher</h1>
+        {error && <p id='error-container'>{error}</p>}
       </div>
       <>
         <>
