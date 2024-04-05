@@ -45,6 +45,11 @@ p {
   margin: 0px;
 }
 
+img {
+  width: 400px;
+  height: 425px;
+}
+
 option {
   text-align: center;
 }
@@ -147,6 +152,7 @@ button:hover {
   border-radius: 8px;
   padding: 20px;
   margin: 5px;
+  max-height: 600px;
 }
 
 #right-butcher-div {
@@ -157,6 +163,7 @@ button:hover {
   flex-flow: column wrap;
   list-style: none;
   justify-content: space-evenly;
+  
 }
 
 #account-body {

@@ -28,6 +28,7 @@ model Butcher {
   zipcode     String
   phonenumber String
   image_url   String?
+  map_url     String?
 }
 
 model User {

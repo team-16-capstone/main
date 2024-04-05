@@ -66,6 +66,8 @@ const main = async () => {
         phonenumber: '+1(212)279-3298',
         image_url:
           'https://lh3.googleusercontent.com/p/AF1QipPnj3XYxvcMJ2OvGnpJ4RBQRL_7jK5ezNy71AVX=s680-w680-h510',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Big Apple Meat Market',

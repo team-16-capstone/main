@@ -64,10 +64,6 @@ const Community = ({ auth }) => {
               <p>Price/lb: ${experience.price}</p>
               <p>Notes:</p>
               <p>{experience.review}</p>
-              <button>EDIT</button>
-              <Link to={'/community'}>
-              <button onClick={()=> deleteExperience(experience.id)}>DELETE</button>
-              </Link>
             </div>
           ))}
         </div>
