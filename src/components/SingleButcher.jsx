@@ -60,8 +60,8 @@ const SingleButcher = () => {
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
             <div id='img-div'>
-            <img src={singleButcherData.image_url} />
-            <img src={singleButcherData.map_url} />
+            <img className='butcher-img'src={singleButcherData.image_url} />
+            <img className='butcher-img'src={singleButcherData.map_url} />
             </div>
             <h3>{singleButcherData.street}</h3>
             <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
@@ -81,7 +81,6 @@ const SingleButcher = () => {
                 </div>
               ))}
             </div>
-            <br />
             <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
           </div>
         </div>
