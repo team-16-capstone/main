@@ -521,6 +521,7 @@ const findUserByToken = async (token, next) => {
     throw error;
   }
 };
+
 // authenticate user email and password
 const authenticate = async ({ email, password }) => {
   const user = await prisma.user.findUnique({
@@ -568,8 +569,8 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Verifies if token is correct
-app.post('/api/verifyToken', (req, res) => {
+// Verifies if token is correct/returns userId
+app.post('/api/verifytoken', (req, res) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -581,7 +582,7 @@ app.post('/api/verifyToken', (req, res) => {
     if (err) {
       return res.status(401).json({ message: 'Forbidden: Invalid token' });
     }
-    res.json({ message: 'Token is valid', userId: decoded.userId });
+    res.json({ userId: decoded.id });
   });
 });
 
