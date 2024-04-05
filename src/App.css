@@ -45,6 +45,11 @@ p {
   margin: 0px;
 }
 
+.butcher-img {
+  width: 345px;
+  height: 345px;
+}
+
 option {
   text-align: center;
 }
@@ -135,7 +140,7 @@ button:hover {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
-  justify-content: space-evenly;
+  justify-content: flex;
   text-align: center;
   margin: 5px;
   padding: 0px;
@@ -147,6 +152,8 @@ button:hover {
   border-radius: 8px;
   padding: 20px;
   margin: 5px;
+  max-height: 600px;
+  max-width: 780px;
 }
 
 #right-butcher-div {
@@ -155,8 +162,12 @@ button:hover {
   margin: 5px;
   display: flex;
   flex-flow: column wrap;
+  overflow-y: scroll;
   list-style: none;
   justify-content: space-evenly;
+  max-width: 450px;
+  max-height: 600px;
+  
 }
 
 #account-body {
