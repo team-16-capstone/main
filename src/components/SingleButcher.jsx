@@ -68,6 +68,7 @@ const SingleButcher = () => {
             <h3>Contact: {singleButcherData.phonenumber}</h3>
             <br />
             <button onClick={() => navigate("/butchers")}>RETURN TO BUTCHERS</button>
+            <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
           </div>
           <div id='right-butcher-div'>
             <div>
@@ -80,10 +81,11 @@ const SingleButcher = () => {
                   <p>{experience.review}</p>
                 </div>
               ))}
+              <br/>
             </div>
-            <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
           </div>
         </div>
+        
       </div>
       </>
     );

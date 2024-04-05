@@ -16,6 +16,7 @@ const Account = ({ auth })=> {
       const response = await fetch('http://localhost:3001/api/users');
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setUser(data);
       } else {
         console.error('Failed to fetch users:', response.statusText);
