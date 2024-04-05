@@ -1,4 +1,3 @@
-
 import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const Account = ({ auth }) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
-
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -50,25 +48,6 @@ const Account = ({ auth }) => {
 
   // HI JULIE! currentUser is equal to the user that's currently logged in :) so currentUser.name will be their name, etc.
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/users');
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setUser(data);
-      } else {
-        console.error('Failed to fetch users:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
-
   return (
     <>
       <NavBar />
@@ -93,7 +72,6 @@ const Account = ({ auth }) => {
           <button onClick={() => navigate('/new-experience')}>New</button>
         </h3>
       </div>
-
     </>
   );
 };
