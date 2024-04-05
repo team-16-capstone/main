@@ -66,6 +66,8 @@ const main = async () => {
         phonenumber: '+1(212)279-3298',
         image_url:
           'https://lh3.googleusercontent.com/p/AF1QipPnj3XYxvcMJ2OvGnpJ4RBQRL_7jK5ezNy71AVX=s680-w680-h510',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Big Apple Meat Market',
@@ -73,8 +75,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10036',
-        phonenumber: '+12125632555',
-        image_url: '',
+        phonenumber: '+1(212)563-2555',
+        image_url: 'https://d2sg5tibg946xl.cloudfront.net/eyJidWNrZXQiOiJtZXJjYXRvLWltYWdlcyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJmaWxsIiwid2lkdGgiOjM5MCwiaGVpZ2h0IjozOTB9fSwia2V5Ijoic3RvcmUtaW1hZ2VzL0w2M25wODdEQk1LUEFaRlRjOTlKbXhYeWRENGFPcXNSMjJXM29HVDIuanBnIn0=',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Piccinini Bros',
@@ -82,8 +86,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10036',
-        phonenumber: '+12122468277',
-        image_url: '',
+        phonenumber: '+1(212)246-8277',
+        image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSE4ZmAZj4JA7Nl2rxzT_oHcbFnMxv6WzRxt6hSscuqQ&s',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Dickson Farmstand Meats',
@@ -91,7 +97,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10010',
-        phonenumber: '+12122422630',
+        phonenumber: '+1(212)242-2630',
+        image_url: 'https://myannoyingopinions.files.wordpress.com/2019/10/chelsea-market-dicksons-farmstand-meats.jpg?w=800',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Sonny 10th Ave Meat Market',
@@ -99,8 +108,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10019',
-        phonenumber: '+12127572276',
-        image_url: '',
+        phonenumber: '+1(212)757-2276',
+        image_url: 'https://images-pw.pixieset.com/elementfield/631743402/chicago__sunnyparkphoto_2-3cf7fd92.png',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Ceriello Fine Foods',
@@ -108,7 +119,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10017',
-        phonenumber: '+12129724266',
+        phonenumber: '+1(212)972-4266',
+        image_url: 'https://cdn.shopify.com/s/files/1/1035/4561/files/wp_delisection_2048x2048.jpg?v=1527871848',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'L. Simchick, & Co.',
@@ -116,8 +130,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10022',
-        phonenumber: '+12128882299',
-        image_url: '',
+        phonenumber: '+1(212)888-2299',
+        image_url: 'https://untappedcities.com/wp-content/uploads/2014/06/simchick-midtown-manhattan-old-school-butcher-shop.jpg',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'East Village Meat Market',
@@ -125,16 +141,21 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10003',
-        phonenumber: '+12122285590',
+        phonenumber: '+1(212)228-5590',
+        image_url: 'https://carpecity.com/wp-content/uploads/2022/07/J-Baczynsky-Meat-Market-Exterior-East-Village.jpg',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
-        name: 'Pino Prime Meat Market',
+        name: "Pino's Prime Meat Market",
         street: '149 Sullivan St',
         city: 'New York',
         state: 'NY',
         zipcode: '10012',
-        phonenumber: '+12124758134',
-        image_url: '',
+        phonenumber: '+1(212)475-8134',
+        image_url: 'https://www.thecitycook.com/merchants/pino-prime-meats/_res/id=Picture',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
       {
         name: 'Luis Meat Market',
@@ -142,8 +163,10 @@ const main = async () => {
         city: 'New York',
         state: 'NY',
         zipcode: '10002',
-        phonenumber: '+12125632555',
-        image_url: '',
+        phonenumber: '+1(212)563-2555',
+        image_url: 'https://www.shoparc.com/wp-content/uploads/2020/12/131013_SHoP_EssexMrkt_Ewing-9761_jpg.jpg',
+        map_url:
+          'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en'
       },
     ];
 
