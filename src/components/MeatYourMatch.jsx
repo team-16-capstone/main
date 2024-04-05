@@ -1,13 +1,13 @@
 import NavBar from './NavBar';
 import { useState } from 'react';
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow,
-} from '@vis.gl/react-google-maps';
-import process from 'process';
+// import {
+//   APIProvider,
+//   Map,
+//   AdvancedMarker,
+//   Pin,
+//   InfoWindow,
+// } from '@vis.gl/react-google-maps';
+// import process from 'process';
 
 // apiKey and mapId should be PRIVATE, this will be fixed! it's a client-sever issue
 

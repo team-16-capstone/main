@@ -73,7 +73,9 @@ const Account = ({ auth }) => {
     <>
       <NavBar />
       <h2>MY ACCOUNT</h2>
-      {currentUser ? <h2>Welcome {currentUser.name}</h2> : null}
+      <div id='user-welcome'>
+      {currentUser ? <h3>Welcome {currentUser.name}!</h3> : null}
+      </div>
       <div id='account-body'>
         <h3 className='account-cards'>
           MY EXPERIENCES
