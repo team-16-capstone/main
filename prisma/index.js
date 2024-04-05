@@ -10,17 +10,9 @@ import dotenv from 'dotenv';
 import stripePackage from 'stripe';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import Stripe from 'stripe';
 
 const prisma = new PrismaClient();
 const app = express();
-
-// const defaultJWT = "shhh";
-// const JWT = process.env.JWT || defaultJWT;
-
-// if (JWT === defaultJWT) {
-//   console.log("IF THIS IS DEPLOYED SET process.env.JWT");
-// }
 
 const secretKey = process.env.JWT_SECRET_KEY;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -57,11 +49,14 @@ const stripe = stripePackage(process.env.STRIPE_SECRET_TEST);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
+  next(err);
 });
+
+// To remove a harmless error, I added next(err) to the above chunk of code. IF there is an issue when sending another
+// response in a subsequent middleware, remove the line "next(err)"
 
 ////////////STRIPE CODE///////////////
 app.post('/api/payment', async (req, res) => {
@@ -340,6 +335,50 @@ app.patch('/api/users/:id', authenticateToken, async (req, res, next) => {
   }
 });
 
+// update user stripe status
+app.patch('/api/users/stripe/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+    const updateUser = await prisma.user.update({
+      where: {
+        email: email,
+      },
+      data: {
+        stripeUser: true,
+      },
+    });
+    const responseData = {
+      message: 'User stripe status updated successfully',
+      updatedUser: updateUser,
+    };
+
+    return res.status(200).json(responseData);
+  } catch (error) {
+    console.log('hi');
+    next(error);
+  }
+});
+
+// get a user for stripe status
+app.get('/api/users/stripe/get/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+
+    const uniqueUser = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!uniqueUser) {
+      return res.status(404).send('User not found.');
+    }
+    return res.send(uniqueUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // update a meat
 app.patch('/api/meats/:id', authenticateToken, async (req, res, next) => {
   try {
@@ -491,14 +530,20 @@ const authenticate = async ({ email, password }) => {
   });
 
   if (!user) {
-    const error = Error('not authorized');
+    const error = new Error('Invalid user');
+    error.status = 401;
+    throw error;
+  }
+
+  if (!user.stripeUser) {
+    const error = new Error('You have not completed your Stripe payment');
     error.status = 401;
     throw error;
   }
 
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) {
-    const error = Error('not authorized');
+    const error = new Error('Invalid password');
     error.status = 401;
     throw error;
   }

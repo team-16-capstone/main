@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const CARD_OPTIONS = {
   },
 };
 
-export default function PaymentForm() {
+export default function PaymentForm({ email }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -47,7 +47,22 @@ export default function PaymentForm() {
           body: JSON.stringify({ amount: 1000, id }),
         });
         const responseData = await response.json();
+        // If the payment is successful, another API call will be made to patch the user with the associated email,
+        // So that stripeUser is set to true, therefore being able to log in
         if (responseData.success) {
+          const updateResponse = await fetch(
+            `http://localhost:3001/api/users/stripe/${email}`,
+            {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+          const updateResponseData = await updateResponse.json();
+          if (updateResponseData.ok) {
+            console.log('succesfully update user status');
+          }
           console.log('successful payment');
           setSuccess(true);
           setTimeout(() => {
@@ -66,8 +81,8 @@ export default function PaymentForm() {
     <>
       {!success ? (
         <form onSubmit={handleSubmit}>
-          <fieldset className="FormGroup">
-            <div className="FormRow">
+          <fieldset className='FormGroup'>
+            <div className='FormRow'>
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
