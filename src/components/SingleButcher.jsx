@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 
 const SingleButcher = () => {
   const [singleButcherData, setSingleButcherData] = useState(null);
+  const [experiences, setExperiences] = useState([]);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,6 +30,23 @@ const SingleButcher = () => {
     fetchSingleButcher();
   }, [id]);
 
+  useEffect(() => {
+    fetchExperiences();
+  }, []);
+
+  const fetchExperiences = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/experiences');
+      if (response.ok) {
+        const data = await response.json();
+        setExperiences(data);
+      } else {
+        console.error('Failed to fetch experiences:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching experiences:', error);
+    }
+  };
 
   if (!singleButcherData) {
     return <div>Loading...</div>;
@@ -36,23 +54,37 @@ const SingleButcher = () => {
 
   return (
     <>
-
       <NavBar />
       <div id='single-butcher-container'>
+      <h2>{singleButcherData.name}</h2>
         <div id='single-butcher-body' key={singleButcherData.id}>
-          <h2>{singleButcherData.name}</h2>
-          <img src={singleButcherData.image_url} />
-          <h3>{singleButcherData.street}</h3>
-          <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
-          <h3>Contact: {singleButcherData.phonenumber}</h3>
-          <br />
-          <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
-          <br />
-          <button onClick={() => navigate("/butchers")}>RETURN TO BUTCHERS</button>
+          <div id='left-butcher-div'>
+            <img src={singleButcherData.image_url} />
+            <h3>{singleButcherData.street}</h3>
+            <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
+            <h3>Contact: {singleButcherData.phonenumber}</h3>
+            <br />
+            <button onClick={() => navigate("/butchers")}>RETURN TO BUTCHERS</button>
+          </div>
+          <div id='right-butcher-div'>
+            <div>
+              {experiences.map((experience) => (
+                <div className='experience-card' key={experience.id}>
+                  <h4>{experience.butcher}</h4>
+                  <p>Purchased: {experience.meats.join(', ')}</p>
+                  <p>Price/lb: ${experience.price}</p>
+                  <p>Notes:</p>
+                  <p>{experience.review}</p>
+                </div>
+              ))}
+            </div>
+            <br />
+            <button onClick={() => navigate("/new-experience")}>CREATE EXPERIENCE</button>
+          </div>
         </div>
       </div>
-    </>
-  );
+      </>
+    );
 };
 
 export default SingleButcher;

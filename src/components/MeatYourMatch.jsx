@@ -18,6 +18,7 @@ const MeatYourMatch = ({ auth }) => {
 
   return (
     <>
+
       <NavBar />
       <h2>MEAT YOUR MATCH</h2>
       <div id='match-body'>
@@ -51,6 +52,7 @@ const MeatYourMatch = ({ auth }) => {
           </div>
         </APIProvider>
       </div>
+
     </>
   );
 };
