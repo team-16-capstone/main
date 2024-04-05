@@ -11,8 +11,6 @@ body {
   background-size: 110%;
 }
 
-/* https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=1024x1024&w=is&k=20&c=Em6A3W0ZVl--yb-xaqjVY05IeKH8XqF9VyAISnJ1I0g= */
-
 h2 {
   background-color: rgba(167, 49, 49, 0.85);
   font-size: 40px;
@@ -127,11 +125,38 @@ button:hover {
 }
 
 #single-butcher-container {
-  background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 0px;
   padding: 0px;
   border-radius: 8px;
+}
+
+#single-butcher-body {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: 5px;
+  padding: 0px;
+  border-radius: 8px;
+}
+
+#left-butcher-div {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 5px;
+}
+
+#right-butcher-div {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  margin: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  list-style: none;
+  justify-content: space-evenly;
 }
 
 #account-body {
