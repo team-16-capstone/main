@@ -1,5 +1,6 @@
 import NavBar from './NavBar';
 import { useState } from 'react';
+
 import {
   APIProvider,
   Map,
@@ -7,6 +8,7 @@ import {
   Pin,
   InfoWindow,
 } from '@vis.gl/react-google-maps';
+
 
 // API KEY and map ID should not be hard coded, that will be resolved later. It's a quick client-server fix
 
