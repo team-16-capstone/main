@@ -61,9 +61,9 @@ button {
 }
 
 button:hover {
-  color:rgb(167, 49, 49);
+  color: rgb(167, 49, 49);
   background-color: white;
-}  
+}
 
 .nav-bar {
   color: rgb(167, 49, 49);
@@ -198,7 +198,6 @@ button:hover {
   padding: 30px;
   border-radius: 8px;
 }
-
 
 #match-body {
   background-color: rgba(255, 255, 255, 0.85);
