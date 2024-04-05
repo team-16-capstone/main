@@ -1,8 +1,12 @@
 import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Community = ({ auth }) => {
   const [experiences, setExperiences] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchExperiences();
@@ -21,6 +25,26 @@ const Community = ({ auth }) => {
       console.error('Error fetching experiences:', error);
     }
   };
+
+  const deleteExperience = async (id, token) => {
+    try{
+      const response = await fetch(`http://localhost:3001/api/experiences/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify(),
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      if (response.ok) {
+        fetchExperiences();
+    } else {
+      console.error ('Something went wrong');
+    }
+  } catch (error) {
+    console.error('Error deleting experience:');
+  }
+};
 
   return (
     <>
@@ -41,10 +65,15 @@ const Community = ({ auth }) => {
               <p>Notes:</p>
               <p>{experience.review}</p>
               <button>EDIT</button>
-              <button>DELETE</button>
+              <Link to={'/community'}>
+              <button onClick={()=> deleteExperience(experience.id)}>DELETE</button>
+              </Link>
             </div>
           ))}
         </div>
+        <div>
+      <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
+      </div>
       </div>
     </>
   );
