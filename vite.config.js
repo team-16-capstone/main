@@ -9,9 +9,9 @@ export default defineConfig({
   plugins: [react(), mkcert()],
   server: {
     cors: true,
-  //   proxy: {
-  //     '/api': `https://localhost:${serverPort}`,
-  //   },
-  //   https: true,
+    //   proxy: {
+    //     '/api': `https://localhost:${serverPort}`,
+    //   },
+    //   https: true,
   },
 });

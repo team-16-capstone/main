@@ -18,8 +18,12 @@ const app = express();
 const secretKey = process.env.JWT_SECRET_KEY;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
+const nodemailerPW = process.env.NODEMAILER_PW;
+
 app.use(express.json());
 app.use(morgan('dev'));
+
+// NODEMAILER PASS SHOULD COME FROM ENV, FIX!
 
 // Middleware to protect routes
 // If protecting a route with this middleware, make sure the client side API call has:
@@ -94,7 +98,7 @@ const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'contactpocketbutcher@gmail.com',
-    pass: 'ouwg gfan mmbp ayvk',
+    pass: nodemailerPW,
   },
 });
 
