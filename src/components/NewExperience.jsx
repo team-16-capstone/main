@@ -34,8 +34,8 @@ function NewExperience() {
   };
 
   const handleDate = (event) => {
-    // setDate(event.target.value);
-    setDate({...date, [event.target.name]: event.target.value});
+    setDate(event.target.value);
+    // setDate({[event.target.name]: event.target.value});
   };
 
   const handleMeat = (event) => {
@@ -57,11 +57,11 @@ function NewExperience() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(date);
+    console.log('Date:',date);
     const formattedDate = new Date(date).toISOString().split('T')[0];
     const formData = {
       butcher: butcher,
-      date: formattedDate,
+      date: date,
       meats: meats,
       price: price,
       review: review
@@ -120,7 +120,7 @@ function NewExperience() {
           <br/>
           <label>
             <p>Purchased on: </p>
-            <input type='date' value={date.date} onChange={handleDate} />
+            <input type='date' value={date} onChange={handleDate} />
           </label>
           <br/>
           <br/>
