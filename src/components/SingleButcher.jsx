@@ -62,6 +62,8 @@ const SingleButcher = () => {
             <div id='img-div'>
             <img className='butcher-img'src={singleButcherData.image_url} />
             <img className='butcher-img'src={singleButcherData.map_url} />
+            <br/>
+            <br/>
             </div>
             <h3>{singleButcherData.street}</h3>
             <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>

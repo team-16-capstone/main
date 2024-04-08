@@ -47,5 +47,5 @@ model Experience {
   meats     String[]
   price     String
   review    String
-  createdAt DateTime @default(now())
+  date      String
 }
