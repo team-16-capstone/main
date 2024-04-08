@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import jwt from 'jsonwebtoken';
 import process from 'process';
 import module from 'module';
+import nodemailer from 'nodemailer';
 //stripe related
 import dotenv from 'dotenv';
 import stripePackage from 'stripe';
@@ -86,6 +87,33 @@ app.post('/api/payment', async (req, res) => {
     });
   }
 });
+
+////////////EMAIL CODE/////////////
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'contactpocketbutcher@gmail.com',
+    pass: 'ouwg gfan mmbp ayvk',
+  },
+});
+
+const sendConfirmationEmail = (email) => {
+  const mailOptions = {
+    from: 'contactpocketbutcher@gmail.com',
+    to: email,
+    subject: 'Confirmation Email',
+    text: 'Your registration was successful! Thank you for joining Pocket Butcher. Please make sure to finish registering your account by completing your payment with Stripe!',
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+};
 
 ////////////PRISMA CODE///////////////
 //get all users
@@ -233,6 +261,8 @@ app.post('/api/users', async (req, res, next) => {
         password: hashedPassword,
       },
     });
+
+    sendConfirmationEmail(email);
 
     res.status(201).json({ newUser: newUser });
   } catch (error) {
