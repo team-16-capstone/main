@@ -29,6 +29,8 @@ model Butcher {
   phonenumber String
   image_url   String?
   map_url     String?
+  lat         String
+  lng         String
 }
 
 model User {
