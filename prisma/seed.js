@@ -6,7 +6,10 @@ const main = async () => {
   try {
     //Manually created users
     const userData = [
-      { name: 'julie', email: 'julie@team16.com', password: 'password123' },
+      { name: 'julie', 
+        email: 'julie@team16.com', 
+        password: 'password123',
+      },
       {
         name: 'juan pablo',
         email: 'juanpablo@team16.com',
