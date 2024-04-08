@@ -78,6 +78,7 @@ const SingleButcher = () => {
                 <div className='experience-card' key={experience.id}>
                   <h4>{experience.butcher}</h4>
                   <p>Purchased: {experience.meats.join(', ')}</p>
+                  <p>Date: {experience.date}</p>
                   <p>Price/lb: ${experience.price}</p>
                   <p>Notes:</p>
                   <p>{experience.review}</p>
