@@ -9,8 +9,7 @@ import {
   InfoWindow,
 } from '@vis.gl/react-google-maps';
 
-
-// API KEY and map ID should not be hard coded, that will be resolved later. It's a quick client-server fix
+const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const MeatYourMatch = () => {
   const [search, setSearch] = useState('');
@@ -54,7 +53,7 @@ const MeatYourMatch = () => {
             />
           </label>
         </form>
-        <APIProvider apiKey='AIzaSyCtFRXZffWGD5Pz-JQd799Vhg4oxoaUI4A'>
+        <APIProvider apiKey={secretKey}>
           <div style={{ height: '50vh' }}>
             <Map
               zoom={14}
