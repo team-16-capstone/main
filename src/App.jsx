@@ -12,6 +12,7 @@ import StripePayment from './components/StripePayment.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import SingleButcher from './components/SingleButcher.jsx';
 import MyExperiences from './components/MyExperiences.jsx';
+import EditExperience from './components/EditExperience.jsx';
 
 function App() {
   const [error, setError] = useState('');
@@ -96,6 +97,7 @@ function App() {
               ></Route>
               <Route path='/new-experience' element={<NewExperience />}></Route>
               <Route path='/my-experiences' element={<MyExperiences />}></Route>
+              <Route path='/edit-experience' element={<EditExperience />}></Route>
               <Route path='/butchers' element={<Butchers />}></Route>
               <Route path='/butchers/:id' element={<SingleButcher />}></Route>
               <Route path='/community' element={<Community />}></Route>

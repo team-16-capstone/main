@@ -2,6 +2,8 @@ import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import EditExperience from "./EditExperience";
 
 const MyExperiences = ({ auth }) => {
   const [experiences, setExperiences] = useState([]);
@@ -63,10 +65,10 @@ const MyExperiences = ({ auth }) => {
               <p>Rating: {experience.rating} out of 5 stars </p>
               <p>Notes:</p>
               <p>{experience.review}</p>
-              <button>EDIT</button>
-              <Link to={'/my-experiences'}>
-                <button onClick={() => deleteExperience(experience.id)}>DELETE</button>
+              <Link to={`/edit-experience/${experience.id}`}>
+                <button>EDIT</button>
               </Link>
+              <button onClick={() => deleteExperience(experience.id)}>DELETE</button>
             </div>
           ))}
         </div>
@@ -74,7 +76,6 @@ const MyExperiences = ({ auth }) => {
           <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
         </div>
       </div>
-    </>
   );
 };
 
