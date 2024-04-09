@@ -76,6 +76,7 @@ const MyExperiences = ({ auth }) => {
           <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
         </div>
       </div>
+    </>
   );
 };
 
