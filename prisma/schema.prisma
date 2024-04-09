@@ -17,6 +17,7 @@ model Meat {
   id          Int    @id @default(autoincrement())
   name        String
   description String
+  butchers MeatButcher[]
 }
 
 model Butcher {
@@ -31,6 +32,7 @@ model Butcher {
   map_url     String?
   lat         String
   lng         String
+  meats     MeatButcher[]
 }
 
 model User {
@@ -48,4 +50,14 @@ model Experience {
   price     String
   review    String
   date      String
+}
+
+model MeatButcher {
+  meatId    Int
+  butcherId Int
+  price     Decimal       @db.Decimal(10, 2)
+  meat      Meat          @relation(fields: [meatId], references: [id])
+  butcher   Butcher       @relation(fields: [butcherId], references: [id])
+  
+  @@id([meatId, butcherId])
 }
