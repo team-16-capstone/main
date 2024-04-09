@@ -106,8 +106,8 @@ const sendConfirmationEmail = (email) => {
   const mailOptions = {
     from: 'contactpocketbutcher@gmail.com',
     to: email,
-    subject: 'Confirmation Email',
-    text: 'Your registration was successful! Thank you for joining Pocket Butcher. Please make sure to finish registering your account by completing your payment with Stripe!',
+    subject: 'Welcome to Pocket Butcher! Your Confirmation Email Inside',
+    text: 'Congratulations! Your registration with Pocket Butcher was successful, and we are thrilled to have you on board.\n\nBefore you dive in, please take a moment to finalize your registration by completing your payment with Stripe.\n\nIf you encounter any issues or have any questions along the way, do not hesitate to reach out to our support team. We are here to help!\n\nWe are excited to embark on this culinary journey with you!\n\n\nThe Pocket Butcher Team',
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -314,7 +314,7 @@ app.post('/api/butchers', authenticateToken, async (req, res, next) => {
 //create an experience
 app.post('/api/new-experience', authenticateToken, async (req, res) => {
   try {
-    const { butcher, date, meats, price, review } = req.body;
+    const { butcher, date, meats, price, review, rating } = req.body;
     const newExperience = await prisma.experience.create({
       data: {
         butcher,
@@ -323,6 +323,7 @@ app.post('/api/new-experience', authenticateToken, async (req, res) => {
         meats: { set: meats },
         price: price,
         review: review,
+        rating: rating,
       },
     });
 
