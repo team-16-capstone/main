@@ -253,6 +253,33 @@ app.get('/api/experiences/:id', async (req, res, next) => {
   }
 });
 
+//get meats from a specific butcher
+app.get('/api/butchers/:butcherId/meats', async (req, res) => {
+  try {
+    const { butcherId } = req.params;
+
+    const meats = await prisma.meatButcher.findMany({
+      where: {
+        butcherId: parseInt(butcherId),
+      },
+      include: {
+        meat: true,
+      },
+    });
+
+    if (!meats || meats.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'Meats not found for the specified butcher ID.' });
+    }
+
+    res.json(meats);
+  } catch (error) {
+    console.error('Error fetching meats:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 //create a user
 app.post('/api/users', async (req, res, next) => {
   try {

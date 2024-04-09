@@ -5,7 +5,6 @@ import {
   Map,
   AdvancedMarker,
   Pin,
-  InfoWindow,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
 
@@ -13,7 +12,7 @@ const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const PositionDetails = ({ position }) => {
   return (
-    <div>
+    <div key={position.id}>
       <br />
       <h3>{position.name}</h3>
       <br />
@@ -34,6 +33,21 @@ const PositionDetails = ({ position }) => {
         )}
       <br />
       {position.phonenumber && <p>Phone number: {position.phonenumber}</p>}
+      <br />
+      {position.meats && position.meats.length > 0 && (
+        <>
+          <h3>Available Meats:</h3>
+          {position.meats.map((meat) => {
+            return (
+              <div key={meat.meatId}>
+                <p>Name: {meat.meat.name}</p>
+                <p>Description: {meat.meat.description}</p>
+                <p>Price: ${meat.price}</p>
+              </div>
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };
@@ -43,13 +57,12 @@ const defaultPosition = {
 };
 
 const MeatYourMatch = () => {
-  const [search, setSearch] = useState('');
   const [activeMarkerId, setActiveMarkerId] = useState(null);
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [positions, setPositions] = useState([]);
 
-  const handleMarkerClick = (markerId, position) => {
+  const handleMarkerClick = async (markerId, position) => {
     const updatedPositions = positions.map((pos) => ({
       ...pos,
       selected: pos.id === markerId,
@@ -57,20 +70,34 @@ const MeatYourMatch = () => {
     setPositions(updatedPositions);
     setActiveMarkerId(markerId);
     setSelectedPosition(position);
+
+    try {
+      const meatsData = await fetchButcherMeats(position.id);
+      setSelectedPosition((prevSelectedPosition) => ({
+        ...prevSelectedPosition,
+        meats: meatsData,
+      }));
+    } catch (error) {
+      console.error('Error fetching butcher meats:', error);
+    }
   };
 
-  const handleDropdownChange = (event) => {
+  const handleDropdownChange = async (event) => {
     const selectedName = event.target.value;
-    const updatedPositions = positions.map((pos) => ({
-      ...pos,
-      selected: pos.name === selectedName,
-    }));
-    const selectedPos = updatedPositions.find(
-      (pos) => pos.name === selectedName
-    );
+    const selectedPos = positions.find((pos) => pos.name === selectedName);
+
     if (selectedPos) {
-      setPositions(updatedPositions);
       setSelectedPosition(selectedPos);
+
+      try {
+        const meatsData = await fetchButcherMeats(selectedPos.id);
+        setSelectedPosition((prevSelectedPosition) => ({
+          ...prevSelectedPosition,
+          meats: meatsData,
+        }));
+      } catch (error) {
+        console.error('Error fetching butcher meats:', error);
+      }
     }
   };
 
@@ -88,6 +115,23 @@ const MeatYourMatch = () => {
       return responseData;
     } catch (error) {
       console.error('Error fetching butchers:', error);
+    }
+  };
+
+  const fetchButcherMeats = async (butcherId) => {
+    try {
+      const url = `http://localhost:3001/api/butchers/${butcherId}/meats`;
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await fetch(url, options);
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error('Error fetching butcher meats:', error);
     }
   };
 
@@ -167,7 +211,7 @@ const MeatYourMatch = () => {
                 ))}
               </Map>
             </div>
-            {selectedPosition ? (
+            {selectedPosition && selectedPosition !== defaultPosition ? (
               <div style={{ flex: '1 1 auto' }}>
                 <PositionDetails position={selectedPosition} />
               </div>
