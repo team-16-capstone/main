@@ -466,6 +466,31 @@ app.patch('/api/butchers/:id', authenticateToken, async (req, res, next) => {
   }
 });
 
+// update an experience
+app.patch('/api/experiences/:id', authenticateToken, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const updateFields = Object.keys(req.body);
+
+    const data = {};
+
+    updateFields.forEach((field) => {
+      data[field] = req.body[field];
+    });
+
+    const updateExperiences = await prisma.experience.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: data,
+    });
+
+    return res.status(204).json(updateExperiences);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //delete a user
 app.delete('/api/users/:id', authenticateToken, async (req, res, next) => {
   try {

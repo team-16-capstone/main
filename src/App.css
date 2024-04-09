@@ -214,11 +214,19 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 100px;
+  padding: 45px;
   border-radius: 8px;
 }
 
 #new-exp-body {
+  background-color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin: 5px;
+  padding: 40px 100px;
+  border-radius: 8px;
+}
+
+#edit-exp-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
