@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import RatingSystem from './RatingSystem';
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
@@ -9,6 +10,7 @@ function NewExperience() {
   const [meats, setMeats] = useState([]);
   const [price, setPrice] = useState('');
   const [review, setReview] = useState('');
+  const [rating, setRating] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,23 +53,28 @@ function NewExperience() {
     setReview(event.target.value);
   };
 
+  const updateRating = (newRating) => {
+    setRating(newRating);
+  };
+
   const handlePrice = (event) => {
     setPrice(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Date:',date);
+    console.log('Date:', date);
     const formattedDate = new Date(date).toISOString().split('T')[0];
     const formData = {
       butcher: butcher,
       date: date,
       meats: meats,
       price: price,
-      review: review
+      rating: rating,
+      review: review,
     };
 
-    
+    console.log("Form data:", formData);
 
     try {
       const token = window.localStorage.getItem('token');
@@ -116,31 +123,31 @@ function NewExperience() {
               ))}
             </select>
           </label>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <label>
             <p>Purchased on: </p>
             <input type='date' value={date} onChange={handleDate} />
           </label>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <label>
             <p>Cut Purchased: </p>
             <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
-            <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png'/>
-            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png'/>
+            <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png' />
+            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png' />
           </label>
-          <br/>
+          <br />
           <label>
             <p>Price/lb:</p>
             $
             <input id='price-input' value={price} onChange={handlePrice} />
           </label>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <label>
             <p>Review:</p>
-            <p>-rating from 1 to 5 starts will live here-</p>
+            <RatingSystem rating={rating} onRatingChange={updateRating} />
             <textarea id='notes-input' value={review} onChange={handleReview} />
           </label>
           <br />
