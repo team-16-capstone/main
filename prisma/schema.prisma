@@ -34,18 +34,19 @@ model Butcher {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
+  id         Int     @id @default(autoincrement())
+  name       String
+  email      String  @unique
+  password   String
   stripeUser Boolean @default(false)
 }
 
 model Experience {
-  id        Int      @id @default(autoincrement())
-  butcher   String
-  meats     String[]
-  price     String
-  review    String
-  date      String
+  id      Int      @id @default(autoincrement())
+  butcher String
+  meats   String[]
+  price   String
+  review  String
+  date    String
+  rating  Int
 }
