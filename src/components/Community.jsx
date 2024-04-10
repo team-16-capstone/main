@@ -63,7 +63,8 @@ const Community = ({ auth }) => {
               <p>Purchased: {experience.meats.join(', ')}</p>
               <p>Date: {experience.date}</p>
               <p>Price/lb: ${experience.price}</p>
-              <p>Notes:</p>
+              <p>Rating: {experience.rating} out of 5 stars </p>
+              <p>Review:</p>
               <p>{experience.review}</p>
             </div>
           ))}
