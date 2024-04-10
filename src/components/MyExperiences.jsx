@@ -69,8 +69,8 @@ const MyExperiences = ({ auth }) => {
               <p>Rating: {experience.rating} out of 5 stars </p>
               <p>Review:</p>
               <p>{experience.review}</p>
-              <Link to={`/edit-experience/`}>
-                <button onClick={setExperienceId}>EDIT</button>
+              <Link to={`/edit-experience/${experience.id}`}>
+                <button onClick={() => setExperienceId(experience.id)}>EDIT</button>
               </Link>
               <button onClick={() => deleteExperience(experience.id)}>
                 DELETE
