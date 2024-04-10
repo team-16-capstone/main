@@ -10,7 +10,7 @@ import {
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const PositionDetails = ({ position }) => {
+const PositionDetails = ({ position, selectedMeat }) => {
   return (
     <div key={position.id}>
       <br />
@@ -38,13 +38,15 @@ const PositionDetails = ({ position }) => {
         <>
           <h3>Available Meats:</h3>
           {position.meats.map((meat) => {
-            return (
-              <div key={meat.meatId}>
-                <p>Name: {meat.meat.name}</p>
-                <p>Description: {meat.meat.description}</p>
-                <p>Price: ${meat.price}</p>
-              </div>
-            );
+            if (meat.meat.name === selectedMeat) {
+              return (
+                <div key={meat.meatId}>
+                  <p>Name: {meat.meat.name}</p>
+                  <p>Description: {meat.meat.description}</p>
+                  <p>Price: ${meat.price}</p>
+                </div>
+              );
+            }
           })}
         </>
       )}
@@ -61,6 +63,8 @@ const MeatYourMatch = () => {
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [positions, setPositions] = useState([]);
+  const [meats, setMeats] = useState([]);
+  const [selectedMeat, setSelectedMeat] = useState('');
 
   const handleMarkerClick = async (markerId, position) => {
     const updatedPositions = positions.map((pos) => ({
@@ -87,6 +91,13 @@ const MeatYourMatch = () => {
     const selectedPos = positions.find((pos) => pos.name === selectedName);
 
     if (selectedPos) {
+      // Set selected property for the newly selected position
+      const updatedPositions = positions.map((pos) => ({
+        ...pos,
+        selected: pos === selectedPos,
+      }));
+      setPositions(updatedPositions);
+
       setSelectedPosition(selectedPos);
 
       try {
@@ -99,6 +110,11 @@ const MeatYourMatch = () => {
         console.error('Error fetching butcher meats:', error);
       }
     }
+  };
+
+  const handleMeatSelection = async (event) => {
+    const selectedMeat = event.target.value;
+    setSelectedMeat(selectedMeat);
   };
 
   const fetchAllButchers = async () => {
@@ -115,6 +131,23 @@ const MeatYourMatch = () => {
       return responseData;
     } catch (error) {
       console.error('Error fetching butchers:', error);
+    }
+  };
+
+  const fetchAllMeats = async () => {
+    try {
+      const url = 'http://localhost:3001/api/meats/';
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await fetch(url, options);
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error('Error fetching meats:', error);
     }
   };
 
@@ -154,12 +187,41 @@ const MeatYourMatch = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchAllMeats();
+        const transformedData = data.map((meat) => ({
+          name: meat.name,
+        }));
+        setMeats(transformedData);
+      } catch (error) {
+        console.error('Error fetching meats:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <NavBar />
       <h2>MEAT YOUR MATCH</h2>
+
       <div id='match-body'>
         <div>
+          <label>
+            Select a meat:
+            <select value={selectedMeat} onChange={handleMeatSelection}>
+              <option value='' disabled>
+                Select a meat
+              </option>
+              {meats.map((meat) => (
+                <option key={meat.id} value={meat.name}>
+                  {meat.name}
+                </option>
+              ))}
+            </select>
+          </label>
           <label>
             Select a butcher:
             <select
@@ -213,7 +275,10 @@ const MeatYourMatch = () => {
             </div>
             {selectedPosition && selectedPosition !== defaultPosition ? (
               <div style={{ flex: '1 1 auto' }}>
-                <PositionDetails position={selectedPosition} />
+                <PositionDetails
+                  position={selectedPosition}
+                  selectedMeat={selectedMeat}
+                />
               </div>
             ) : (
               <div>
