@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Account = ({ auth }) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -48,6 +49,24 @@ const Account = ({ auth }) => {
 
   // HI JULIE! currentUser is equal to the user that's currently logged in :) so currentUser.name will be their name, etc.
 
+  useEffect(() => {
+    fetchExperiences();
+  }, []);
+
+  const fetchExperiences = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/experiences');
+      if (response.ok) {
+        const data = await response.json();
+        setExperiences(data);
+      } else {
+        console.error('Failed to fetch experiences:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching experiences:', error);
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -58,6 +77,9 @@ const Account = ({ auth }) => {
       <div id='account-body'>
         <h3 className='account-cards'>
           MY EXPERIENCES
+          <div className='border'>
+            <img id='acct-my-exp' src='https://t4.ftcdn.net/jpg/03/31/88/03/360_F_331880337_DmRJT2IUduSlW4RgCusaOEzA7mLX3NF6.jpg'/>
+          </div>
           <br />
           <button onClick={() => navigate('/my-experiences')}>
             Browse All
@@ -65,11 +87,17 @@ const Account = ({ auth }) => {
         </h3>
         <h3 className='account-cards'>
           MEAT YOUR MATCH
+          <div className='border'>
+          <img id='acct-meet' src='https://cdn.shopify.com/s/files/1/0428/9750/6468/files/5_Tips_For_Buying_Meat_at_a_Butchers_Shop_480x480.png?v=1616077091'/>
+          </div>
           <br />
           <button onClick={() => navigate('/meat-your-match')}>Search</button>
         </h3>
         <h3 className='account-cards'>
           CREATE EXPERIENCE
+          <div className='border'>
+            <img id='acct-exp-pic' src='https://media-cdn.tripadvisor.com/media/photo-s/09/d1/fc/bc/go-grilled-beef-presentation.jpg'/>
+          </div>
           <br />
           <button onClick={() => navigate('/new-experience')}>New</button>
         </h3>

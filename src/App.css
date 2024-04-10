@@ -166,8 +166,7 @@ button:hover {
   list-style: none;
   justify-content: space-evenly;
   max-width: 450px;
-  max-height: 615px;
-  
+  max-height: 615px; 
 }
 
 #user-welcome {
@@ -195,14 +194,71 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 115px 40px 115px 40px;
+  padding: 35px 40px 115px 40px;
   border-radius: 8px;
   width: 336px;
-  height: 360px;
+  height: 490px;
+}
+
+#acct-exp-view {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  margin: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  overflow-y: scroll;
+  list-style: none;
+  justify-content: space-evenly;
+  width: 354px;
+  max-height: 460px; 
+}
+
+#acct-experience-card {
+  background-color: rgb(255, 255, 255);
+  color:rgb(167, 49, 49);
+  text-align: center;
+  width: 255px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 350px;
+}
+
+.border {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+
+#acct-my-exp {
+  width: 290px;
+  height: 420px;
+  border-radius: 8px;
+  padding: 20px 0px 15px 0px;
+  justify-content: center;
+  opacity: .50;
+}
+
+#acct-meet {
+  width: 290px;
+  height: 420px;
+  border-radius: 8px;
+  padding: 20px 0px 15px 0px;
+  justify-content: center;
+  opacity: .50;
+}
+
+#acct-exp-pic {
+  width: 290px;
+  height: 420px;
+  border-radius: 8px;
+  padding: 20px 0px 15px 0px;
+  justify-content: center;
+  opacity: .50;
 }
 
 .experience-card {
   background-color: rgba(255, 255, 255, 0.85);
+  color:rgb(167, 49, 49);
   text-align: center;
   width: 300px;
   margin: 20px;
@@ -214,19 +270,11 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
-  padding: 45px;
+  padding: 100px;
   border-radius: 8px;
 }
 
 #new-exp-body {
-  background-color: rgba(255, 255, 255, 0.85);
-  text-align: center;
-  margin: 5px;
-  padding: 40px 100px;
-  border-radius: 8px;
-}
-
-#edit-exp-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   margin: 5px;
