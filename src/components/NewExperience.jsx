@@ -5,9 +5,10 @@ import RatingSystem from './RatingSystem';
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
+  const [meatOptions, setMeatOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [date, setDate] = useState('');
-  const [meats, setMeats] = useState([]);
+  const [meat, setMeat] = useState([]);
   const [price, setPrice] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
@@ -15,6 +16,7 @@ function NewExperience() {
 
   useEffect(() => {
     fetchButchers();
+    fetchMeats();
   }, []);
 
   const fetchButchers = async () => {
@@ -31,23 +33,40 @@ function NewExperience() {
     }
   };
 
+  const fetchMeats = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/meats');
+      if (response.ok) {
+        const data = await response.json();
+        setMeatOptions(data);
+      } else {
+        console.error('Failed to fetch meats:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching meats:', error);
+    }
+  };
+
   const handleButcher = (event) => {
     setButcher(event.target.value);
   };
 
-  const handleDate = (event) => {
-    setDate(event.target.value);
-    // setDate({[event.target.name]: event.target.value});
+  const handleMeat = (event) => {
+    setMeat(event.target.value);
   };
 
-  const handleMeat = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setMeats([...meats, value]);
-    } else {
-      setMeats(meats.filter((meat) => meat !== value));
-    }
+  const handleDate = (event) => {
+    setDate(event.target.value);
   };
+
+  // const handleMeat = (event) => {
+  //   const { value, checked } = event.target;
+  //   if (checked) {
+  //     setMeats([...meats, value]);
+  //   } else {
+  //     setMeats(meats.filter((meat) => meat !== value));
+  //   }
+  // };
 
   const handleReview = (event) => {
     setReview(event.target.value);
@@ -68,7 +87,7 @@ function NewExperience() {
     const formData = {
       butcher: butcher,
       date: date,
-      meats: meats,
+      meat: meat,
       price: price,
       rating: rating,
       review: review,
@@ -126,18 +145,25 @@ function NewExperience() {
           <br />
           <br />
           <label>
-            <p>Purchased on: </p>
+            <p>Date Purchased: </p>
             <input type='date' value={date} onChange={handleDate} />
           </label>
           <br />
           <br />
           <label>
-            <p>Cut Purchased: </p>
-            <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
+          <select value={meat} onChange={handleMeat}>
+              <option value="">Cut Purchased</option>
+              {meatOptions.map((option, index) => (
+                <option key={index} value={option.name}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+            <br/>
+            {/* <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
             <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png' />
-            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png' />
+            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png' /> */}
           </label>
-          <br />
           <label>
             <p>Price/lb:</p>
             $

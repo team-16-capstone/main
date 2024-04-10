@@ -75,15 +75,17 @@ const SingleButcher = () => {
           <div id='right-butcher-div'>
             <div>
               {experiences.map((experience) => (
+                experience.butcher === singleButcherData.name && (
                 <div className='experience-card' key={experience.id}>
                   <h4>{experience.butcher}</h4>
-                  <p>Purchased: {experience.meats.join(', ')}</p>
+                  <p>Purchased: {experience.meat}</p>
                   <p>Date: {experience.date}</p>
                   <p>Price/lb: ${experience.price}</p>
                   <p>Rating: {experience.rating} out of 5 stars </p>
                   <p>Review:</p>
                   <p>{experience.review}</p>
                 </div>
+                )
               ))}
               <br/>
             </div>

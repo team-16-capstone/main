@@ -63,7 +63,7 @@ const MyExperiences = ({ auth }) => {
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
               <h4>{experience.butcher}</h4>
-              <p>Purchased: {experience.meats.join(', ')}</p>
+              <p>Purchased: {experience.meat}</p>
               <p>Date: {experience.date}</p>
               <p>Price/lb: ${experience.price}</p>
               <p>Rating: {experience.rating} out of 5 stars </p>

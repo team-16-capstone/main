@@ -20,6 +20,15 @@ h2 {
   border-radius: 0px 0px 8px 8px;
 }
 
+#account-header {
+  background-color: rgba(167, 49, 49, 0.85);
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  margin: 0px 5px 0px 5px;
+  padding: 0px 10px 5px 10px;
+  border-radius: 0px;
+}
+
 #butcher-name {
   background-color: transparent;
   font-size: 40px;
@@ -172,7 +181,7 @@ button:hover {
 #user-welcome {
   width: 1270px;
   text-align: right;
-  border-radius: 8px;
+  border-radius: 0px 0px 8px 8px;
   color:rgb(167, 49, 49);
   background-color: rgba(255, 255, 255, 0.85);
   padding: 0px 5px 0px 0px;
