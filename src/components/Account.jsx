@@ -70,9 +70,9 @@ const Account = ({ auth }) => {
   return (
     <>
       <NavBar />
-      <h2>MY ACCOUNT</h2>
+      <h2 id='account-header'>MY ACCOUNT</h2>
       <div id='user-welcome'>
-      {currentUser ? <h3>Welcome {currentUser.name}!</h3> : null}
+      {currentUser ? <h3 id='welcome-message'>Welcome {currentUser.name}!</h3> : null}
       </div>
       <div id='account-body'>
         <h3 className='account-cards'>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RatingSystem from './RatingSystem';
+import NavBar from './NavBar';
 
 const EditExperience = () => {
     const [updatedData, setUpdatedData] = useState();
@@ -105,6 +106,8 @@ const EditExperience = () => {
     };
 
   return (
+    <>
+    <NavBar />
     <div>
       <form id='edit-exp-body'>
       <h3>EDIT EXPERIENCE</h3>
@@ -152,6 +155,7 @@ const EditExperience = () => {
       </button>
       </form>
     </div>
+    </>
   );
 };
 
