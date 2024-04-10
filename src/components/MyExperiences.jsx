@@ -1,7 +1,11 @@
-import NavBar from "./NavBar";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
+import NavBar from './NavBar';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import EditExperience from './EditExperience';
+
 
 const MyExperiences = ({ auth }) => {
   const [experiences, setExperiences] = useState([]);
@@ -29,14 +33,17 @@ const MyExperiences = ({ auth }) => {
 
   const deleteExperience = async (id, token) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/experiences/${id}`, {
-        method: 'DELETE',
-        body: JSON.stringify(),
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/experiences/${id}`,
+        {
+          method: 'DELETE',
+          body: JSON.stringify(),
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       if (response.ok) {
         fetchExperiences();
       } else {
@@ -50,10 +57,8 @@ const MyExperiences = ({ auth }) => {
   return (
     <>
       <NavBar />
-      <h2>
-        MY EXPERIENCES
-      </h2>
-      <div id="community-body">
+      <h2>MY EXPERIENCES</h2>
+      <div id='community-body'>
         <div id='community-container'>
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
@@ -67,12 +72,16 @@ const MyExperiences = ({ auth }) => {
               <Link to={`/edit-experience/`}>
                 <button onClick={setExperienceId}>EDIT</button>
               </Link>
-              <button onClick={() => deleteExperience(experience.id)}>DELETE</button>
+              <button onClick={() => deleteExperience(experience.id)}>
+                DELETE
+              </button>
             </div>
           ))}
         </div>
         <div>
-          <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
+          <button onClick={() => navigate('/new-experience')}>
+            CREATE EXPERIENCE
+          </button>
         </div>
       </div>
     </>
