@@ -54,6 +54,38 @@ const PositionDetails = ({ position, selectedMeat }) => {
   );
 };
 
+const AllButchersPosition = ({ position, selectedMeat }) => {
+  const lowestPrice = Math.min(...position.meats.map((meat) => meat.price));
+
+  return (
+    <div key={position.id}>
+      <h3>{selectedMeat} price comparison:</h3>
+      <br />
+      {position.meats && position.meats.length > 0 && (
+        <>
+          {position.meats
+            .filter((meat) => meat.meat.name === selectedMeat)
+            .map((meat, index) => {
+              const isLowestPrice =
+                parseFloat(meat.price).toFixed(2) ===
+                parseFloat(lowestPrice).toFixed(2);
+
+              return (
+                <div key={index}>
+                  <p>Butcher: {position.name[index]}</p>{' '}
+                  <p>
+                    Price: ${meat.price}
+                    {isLowestPrice && <span> (LOWEST PRICE)</span>}
+                  </p>
+                </div>
+              );
+            })}
+        </>
+      )}
+    </div>
+  );
+};
+
 const defaultPosition = {
   name: 'Please click on one of the icons to display more information.',
 };
@@ -65,6 +97,7 @@ const MeatYourMatch = () => {
   const [positions, setPositions] = useState([]);
   const [meats, setMeats] = useState([]);
   const [selectedMeat, setSelectedMeat] = useState('');
+  const [allButchers, setAllButchers] = useState(false);
 
   const handleMarkerClick = async (markerId, position) => {
     const updatedPositions = positions.map((pos) => ({
@@ -88,26 +121,62 @@ const MeatYourMatch = () => {
 
   const handleDropdownChange = async (event) => {
     const selectedName = event.target.value;
-    const selectedPos = positions.find((pos) => pos.name === selectedName);
 
-    if (selectedPos) {
-      // Set selected property for the newly selected position
-      const updatedPositions = positions.map((pos) => ({
-        ...pos,
-        selected: pos === selectedPos,
-      }));
-      setPositions(updatedPositions);
+    if (selectedName === 'All Butchers') {
+      setSelectedPosition(null);
 
-      setSelectedPosition(selectedPos);
+      const meatsLength = meats.length;
+      let comparisonMeatIndex = 0;
+
+      for (let i = 0; i < meatsLength; i++) {
+        if (selectedMeat === meats[i].name) comparisonMeatIndex = i;
+      }
 
       try {
-        const meatsData = await fetchButcherMeats(selectedPos.id);
-        setSelectedPosition((prevSelectedPosition) => ({
-          ...prevSelectedPosition,
-          meats: meatsData,
-        }));
+        const butchers = await fetchAllButchers();
+        let butcherNames = [];
+
+        for (let i = 0; i < butchers.length; i++) {
+          butcherNames.push(butchers[i].name);
+        }
+        let butchersLength = butchers.length;
+        let allMeatData = [];
+        for (let i = 1; i <= butchersLength; i++) {
+          const allButcherMeats = await fetchButcherMeats(i);
+          const meatData = allButcherMeats[comparisonMeatIndex];
+          allMeatData.push(meatData);
+        }
+        const combinedData = {
+          name: butcherNames,
+          meats: allMeatData,
+        };
+        setSelectedPosition(combinedData);
+        setAllButchers(true);
       } catch (error) {
-        console.error('Error fetching butcher meats:', error);
+        console.error('Error fetching all butcher meats:', error);
+      }
+    } else {
+      setAllButchers(false);
+      const selectedPos = positions.find((pos) => pos.name === selectedName);
+
+      if (selectedPos) {
+        const updatedPositions = positions.map((pos) => ({
+          ...pos,
+          selected: pos === selectedPos,
+        }));
+        setPositions(updatedPositions);
+
+        setSelectedPosition(selectedPos);
+
+        try {
+          const meatsData = await fetchButcherMeats(selectedPos.id);
+          setSelectedPosition((prevSelectedPosition) => ({
+            ...prevSelectedPosition,
+            meats: meatsData,
+          }));
+        } catch (error) {
+          console.error('Error fetching butcher meats:', error);
+        }
       }
     }
   };
@@ -215,8 +284,8 @@ const MeatYourMatch = () => {
               <option value='' disabled>
                 Select a meat
               </option>
-              {meats.map((meat) => (
-                <option key={meat.id} value={meat.name}>
+              {meats.map((meat, index) => (
+                <option key={index} value={meat.name}>
                   {meat.name}
                 </option>
               ))}
@@ -231,6 +300,7 @@ const MeatYourMatch = () => {
               <option value='' disabled>
                 Select a butcher
               </option>
+              <option value='All Butchers'>All Butchers</option>
               {positions.map((position) => (
                 <option key={position.id} value={position.name}>
                   {position.name}
@@ -262,7 +332,10 @@ const MeatYourMatch = () => {
                   <AdvancedMarker
                     key={position.id}
                     position={{ lat: position.lat, lng: position.lng }}
-                    onClick={() => handleMarkerClick(position.id, position)}
+                    onClick={() => {
+                      setAllButchers(false);
+                      handleMarkerClick(position.id, position);
+                    }}
                     ref={markerRef}
                   >
                     <Pin
@@ -273,7 +346,12 @@ const MeatYourMatch = () => {
                 ))}
               </Map>
             </div>
-            {selectedPosition && selectedPosition !== defaultPosition ? (
+            {allButchers ? (
+              <AllButchersPosition
+                position={selectedPosition}
+                selectedMeat={selectedMeat}
+              />
+            ) : selectedPosition && selectedPosition !== defaultPosition ? (
               <div style={{ flex: '1 1 auto' }}>
                 <PositionDetails
                   position={selectedPosition}
