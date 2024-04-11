@@ -5,10 +5,10 @@ import RatingSystem from './RatingSystem';
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
-  const [meatOptions, setMeatOptions] = useState([]);
+  // const [meatOptions, setMeatOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [date, setDate] = useState('');
-  const [meat, setMeat] = useState([]);
+  const [meats, setMeats] = useState([]);
   const [price, setPrice] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
@@ -16,7 +16,7 @@ function NewExperience() {
 
   useEffect(() => {
     fetchButchers();
-    fetchMeats();
+    // fetchMeats();
   }, []);
 
   const fetchButchers = async () => {
@@ -33,40 +33,40 @@ function NewExperience() {
     }
   };
 
-  const fetchMeats = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/meats');
-      if (response.ok) {
-        const data = await response.json();
-        setMeatOptions(data);
-      } else {
-        console.error('Failed to fetch meats:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching meats:', error);
-    }
-  };
+  // const fetchMeats = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3001/api/meats');
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setMeatOptions(data);
+  //     } else {
+  //       console.error('Failed to fetch meats:', response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching meats:', error);
+  //   }
+  // };
 
   const handleButcher = (event) => {
     setButcher(event.target.value);
   };
 
-  const handleMeat = (event) => {
-    setMeat(event.target.value);
-  };
+  // const handleMeat = (event) => {
+  //   setMeat(event.target.value);
+  // };
 
   const handleDate = (event) => {
     setDate(event.target.value);
   };
 
-  // const handleMeat = (event) => {
-  //   const { value, checked } = event.target;
-  //   if (checked) {
-  //     setMeats([...meats, value]);
-  //   } else {
-  //     setMeats(meats.filter((meat) => meat !== value));
-  //   }
-  // };
+  const handleMeat = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setMeats([...meats, value]);
+    } else {
+      setMeats(meats.filter((meat) => meat !== value));
+    }
+  };
 
   const handleReview = (event) => {
     setReview(event.target.value);
@@ -87,7 +87,7 @@ function NewExperience() {
     const formData = {
       butcher: butcher,
       date: date,
-      meat: meat,
+      meats: meats,
       price: price,
       rating: rating,
       review: review,
@@ -155,18 +155,16 @@ function NewExperience() {
           <br />
           <br />
           <label>
-          <select value={meat} onChange={handleMeat}>
-              <option value="">Cut Purchased</option>
-              {meatOptions.map((option, index) => (
-                <option key={index} value={option.name}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-            <br/>
-            {/* <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
-            <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png' />
-            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png' /> */}
+            <input type="checkbox" value="ribeye steak" onChange={handleMeat} /> <img className='icon' alt='ribeye steak' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
+            <input type="checkbox" value="filet mignon" onChange={handleMeat} /> <img className='icon' alt='filet mignon' src='https://cdn-icons-png.flaticon.com/128/3703/3703413.png' />
+            <input type="checkbox" value="new york strip steak" onChange={handleMeat} /> <img className='icon' alt='new york strip steak' src='https://cdn-icons-png.flaticon.com/128/7391/7391874.png' />
+            <input type="checkbox" value="pork lion chop" onChange={handleMeat} /> <img className='icon' alt='pork lion chop' src='https://cdn-icons-png.flaticon.com/128/1702/1702779.png' />
+            <input type="checkbox" value="pork shoulder" onChange={handleMeat} /> <img className='icon' alt='pork shoulder' src='https://cdn-icons-png.flaticon.com/128/2851/2851158.png' />
+            <input type="checkbox" value="beef brisket" onChange={handleMeat} /> <img className='icon' alt='beef brisket' src='https://cdn-icons-png.flaticon.com/128/10292/10292654.png' />
+            <input type="checkbox" value="flank steak" onChange={handleMeat} /> <img className='icon' alt='flank steak' src='https://cdn-icons-png.flaticon.com/128/14657/14657631.png' />
+            <input type="checkbox" value="chicken breast" onChange={handleMeat} /> <img className='icon' alt='chicken breast' src='https://cdn-icons-png.flaticon.com/128/4327/4327229.png' />
+            <input type="checkbox" value="lamp chop" onChange={handleMeat} /> <img className='icon' alt='lamp chop' src='https://cdn-icons-png.flaticon.com/128/2040/2040142.png' />
+            <input type="checkbox" value="ground beef" onChange={handleMeat} /> <img className='icon' alt='ground beef' src='https://cdn-icons-png.flaticon.com/128/12470/12470153.png' />
           </label>
           <label>
             <p>Price/lb:</p>

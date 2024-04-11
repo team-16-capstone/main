@@ -27,24 +27,24 @@ const Community = ({ auth }) => {
   };
 
   const deleteExperience = async (id, token) => {
-    try{
+    try {
       const response = await fetch(`http://localhost:3001/api/experiences/${id}`, {
-      method: 'DELETE',
-      body: JSON.stringify(),
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+        method: 'DELETE',
+        body: JSON.stringify(),
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       if (response.ok) {
         fetchExperiences();
-    } else {
-      console.error ('Something went wrong');
+      } else {
+        console.error('Something went wrong');
+      }
+    } catch (error) {
+      console.error('Error deleting experience:');
     }
-  } catch (error) {
-    console.error('Error deleting experience:');
-  }
-};
+  };
 
   return (
     <>
@@ -64,7 +64,7 @@ const Community = ({ auth }) => {
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
               <h4>{experience.butcher}</h4>
-              <p>Purchased: {experience.meat}</p>
+              <p>Purchased: {experience.meats.join(', ')}</p>
               <p>Date: {experience.date}</p>
               <p>Price/lb: ${experience.price}</p>
               <p>Rating: {experience.rating} out of 5 stars </p>
@@ -74,8 +74,8 @@ const Community = ({ auth }) => {
           ))}
         </div>
         <div>
-      <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
-      </div>
+          <button onClick={() => navigate('/new-experience')}>CREATE EXPERIENCE</button>
+        </div>
       </div>
     </>
   );

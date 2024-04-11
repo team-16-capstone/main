@@ -64,10 +64,10 @@ const SingleButcher = () => {
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
             <div id='img-div'>
-            <img className='butcher-img'src={singleButcherData.image_url} />
-            <img className='butcher-img'src={singleButcherData.map_url} />
-            <br/>
-            <br/>
+              <img className='butcher-img' src={singleButcherData.image_url} />
+              <img className='butcher-img' src={singleButcherData.map_url} />
+              <br />
+              <br />
             </div>
             <h3>{singleButcherData.street}</h3>
             <h3>{singleButcherData.city}, {singleButcherData.state}  {singleButcherData.zipcode}</h3>
@@ -80,25 +80,25 @@ const SingleButcher = () => {
             <div>
               {experiences.map((experience) => (
                 experience.butcher === singleButcherData.name && (
-                <div className='experience-card' key={experience.id}>
-                  <h4>{experience.butcher}</h4>
-                  <p>Purchased: {experience.meat}</p>
-                  <p>Date: {experience.date}</p>
-                  <p>Price/lb: ${experience.price}</p>
-                  <p>Rating: {experience.rating} out of 5 stars </p>
-                  <p>Review:</p>
-                  <p>{experience.review}</p>
-                </div>
+                  <div className='experience-card' key={experience.id}>
+                    <h4>{experience.butcher}</h4>
+                    <p>Purchased: {experience.meats.join(', ')}</p>
+                    <p>Date: {experience.date}</p>
+                    <p>Price/lb: ${experience.price}</p>
+                    <p>Rating: {experience.rating} out of 5 stars </p>
+                    <p>Review:</p>
+                    <p>{experience.review}</p>
+                  </div>
                 )
               ))}
-              <br/>
+              <br />
             </div>
           </div>
         </div>
-        
+
       </div>
-      </>
-    );
+    </>
+  );
 };
 
 export default SingleButcher;
