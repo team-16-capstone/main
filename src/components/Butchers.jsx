@@ -31,7 +31,6 @@ import logowhite from '../assets/logowhite.png';
     <>
     <NavBar/>
     <div id='app-header'>
-    <img id='logo-account' src={logowhite}/>
     <h2>PARTICIPATING BUTCHERS</h2>
     </div>
     <div id='butcher-container'>

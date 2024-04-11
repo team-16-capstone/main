@@ -1,7 +1,9 @@
 import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logowhite from '../assets/logowhite.png';
+import logored from '../assets/logored.png';
 
 const Account = ({ auth }) => {
   const navigate = useNavigate();
@@ -72,8 +74,7 @@ const Account = ({ auth }) => {
     <>
       <NavBar />
       <div id='account-header'>
-      <img id='logo-account' src={logowhite}/>
-      <br/>
+      {/* <img id='logo-account' src={logowhite}/> */}
       <h2>MY ACCOUNT</h2>
       </div>
       <div id='user-welcome'>

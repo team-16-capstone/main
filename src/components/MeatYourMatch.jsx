@@ -207,7 +207,6 @@ const MeatYourMatch = () => {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src={logowhite}/>
       <h2>MEAT YOUR MATCH</h2>
       </div>
       <div id='match-body'>

@@ -59,7 +59,6 @@ const MyExperiences = ({ auth }) => {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src={logowhite}/>
       <br/>
       <h2>MY EXPERIENCES</h2>
       </div>

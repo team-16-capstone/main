@@ -91,10 +91,10 @@ export default function PaymentForm({ email }) {
         </form>
       ) : (
         <div>
-          <h2>
+          <h3>
             You just subscribed to the meat membership! This is the best
             decision of your life!
-          </h2>
+          </h3>
         </div>
       )}
     </>

@@ -58,7 +58,6 @@ const SingleButcher = () => {
       <NavBar />
       <div id='single-butcher-container'>  
       <div id='app-header'>
-      <img id='logo-account' src={logowhite}/>
       <h2>{singleButcherData.name}</h2>
       </div>
         <div id='single-butcher-body' key={singleButcherData.id}>

@@ -130,7 +130,6 @@ function NewExperience() {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src={logowhite}/>
       <br/>
       <h2>CREATE EXPERIENCE</h2>
       </div>
