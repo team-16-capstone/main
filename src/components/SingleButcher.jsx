@@ -55,8 +55,12 @@ const SingleButcher = () => {
   return (
     <>
       <NavBar />
-      <div id='single-butcher-container'>
-        <h2>{singleButcherData.name}</h2>
+      <div id='single-butcher-container'>  
+      <div id='app-header'>
+      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
+      <br/>
+      <h2>{singleButcherData.name}</h2>
+      </div>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
             <div id='img-div'>

@@ -57,7 +57,11 @@ const MyExperiences = ({ auth }) => {
   return (
     <>
       <NavBar />
+      <div id='app-header'>
+      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
+      <br/>
       <h2>MY EXPERIENCES</h2>
+      </div>
       <div id='community-body'>
         <div id='community-container'>
           {experiences.map((experience) => (

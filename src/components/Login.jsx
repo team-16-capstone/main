@@ -25,6 +25,7 @@ const Login = ({ login }) => {
   return (
     <>
       <div id='login-container'>
+      <img id='logo-login' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r7152435504917764301&th=18ecdbf99b6abeb1&view=att&disp=safe&realattid=f_luvdzmy30'/>
         <form onSubmit={submit}>
           <input
             placeholder='email'

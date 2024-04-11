@@ -68,7 +68,7 @@ function App() {
   return (
     <>
       <div>
-        <h1 id='logo'>Pocket Butcher</h1>
+        {/* <h1 id='logo'>Pocket Butcher</h1> */}
         {error && <p id='error-container'>{error}</p>}
       </div>
       <>

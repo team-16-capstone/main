@@ -29,7 +29,11 @@ import { Link } from "react-router-dom";
   return (
     <>
     <NavBar/>
+    <div id='app-header'>
+    <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
+      <br/>
     <h2>PARTICIPATING BUTCHERS</h2>
+    </div>
     <div id='butcher-container'>
       {butchersData.map((butcher) => (
         <div id='butcher-body' key={butcher.id}>

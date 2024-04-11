@@ -5,28 +5,57 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url(https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=1024x1024&w=is&k=20&c=Em6A3W0ZVl--yb-xaqjVY05IeKH8XqF9VyAISnJ1I0g=);
+  /* background-image: url(opaque-bg.jpg); */
+  background-color: rgb(214, 208, 208);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 110%;
 }
 
+#logo-login {
+  width: 600px;
+  margin: 0px 0px 10px 0px;
+}
+
+#logo-account {
+  width: 150px;
+  margin: 5px 10px 5px 10px;
+}
+
 h2 {
-  background-color: rgba(167, 49, 49, 0.85);
   font-size: 40px;
   color: rgb(255, 255, 255);
-  margin: 0px 5px 0px 5px;
-  padding: 0px 10px 5px 10px;
+  margin: 0px;
+  padding: 0px;
   border-radius: 0px 0px 8px 8px;
 }
 
 #account-header {
   background-color: rgba(167, 49, 49, 0.85);
+  width: 1275px;
   font-size: 40px;
   color: rgb(255, 255, 255);
-  margin: 0px 5px 0px 5px;
-  padding: 0px 10px 5px 10px;
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content:baseline;
+  margin: 0px;
+  padding: 0px;
   border-radius: 0px;
+}
+
+#app-header {
+  background-color: rgba(167, 49, 49, 0.85);
+  width: 1275px;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content:baseline;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 0px 0px 8px 8px;
 }
 
 #butcher-name {
@@ -118,8 +147,8 @@ button:hover {
   flex-flow: row wrap;
   list-style: none;
   justify-content: space-evenly;
-
-  margin: 5px 5px 0px 5px;
+  width: 1255px;
+  margin: 5px 5px 0px 0px;
   padding: 5px 10px 5px 10px;
   border-radius: 8px 8px 0px 0px;
 }
@@ -139,6 +168,7 @@ button:hover {
 }
 
 #single-butcher-container {
+  background-color:rgb(167, 49, 49);
   text-align: center;
   margin: 0px;
   padding: 0px;
@@ -151,7 +181,7 @@ button:hover {
   list-style: none;
   justify-content: flex;
   text-align: center;
-  margin: 5px;
+  margin: 0px 5px 5px 5px;
   padding: 0px;
   border-radius: 8px;
 }
@@ -160,7 +190,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   padding: 20px;
-  margin: 5px;
+  margin: 5px 5px 10px 5px;
   max-height: 600px;
   max-width: 850px;
 }
@@ -175,7 +205,7 @@ button:hover {
   list-style: none;
   justify-content: space-evenly;
   max-width: 450px;
-  max-height: 615px; 
+  max-height: 635px; 
 }
 
 #user-welcome {
