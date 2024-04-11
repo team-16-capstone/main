@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatingSystem from './RatingSystem';
 import NavBar from './NavBar';
+import logowhite from '../assets/logowhite.png';
 
 const EditExperience = () => {
     const [updatedData, setUpdatedData] = useState();
@@ -110,7 +111,11 @@ const EditExperience = () => {
     <NavBar />
     <div>
       <form id='edit-exp-body'>
-      <h3>EDIT EXPERIENCE</h3>
+      <div id='account-header'>
+      <img id='logo-account' src={logowhite}/>
+      <br/>
+      <h2>EDIT EXPERIENCE</h2>
+      </div>
       <label>
             <select value={butcher} onChange={handleButcher}>
               <option value="">Butcher Visited</option>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import RatingSystem from './RatingSystem';
+import logowhite from '../assets/logowhite.png';
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
@@ -129,7 +130,7 @@ function NewExperience() {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
+      <img id='logo-account' src={logowhite}/>
       <br/>
       <h2>CREATE EXPERIENCE</h2>
       </div>
