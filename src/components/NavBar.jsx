@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logored from '../assets/logored.png';
 
 function NavBar() {
   const handleLogout = () => {
@@ -23,6 +24,7 @@ function NavBar() {
         <Link className='link' to='/' onClick={handleLogout}>
           LOGOUT
         </Link>
+        <img id='logo-topper' src={logored}/>
       </div>
     </>
   );

@@ -112,7 +112,6 @@ const EditExperience = () => {
     <div>
       <form id='edit-exp-body'>
       <div id='account-header'>
-      <img id='logo-account' src={logowhite}/>
       <br/>
       <h2>EDIT EXPERIENCE</h2>
       </div>

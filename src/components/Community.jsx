@@ -51,7 +51,6 @@ const Community = ({ auth }) => {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src={logowhite}/>
       <h2>
         COMMUNITY
       </h2>
