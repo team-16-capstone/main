@@ -14,14 +14,14 @@ datasource db {
 }
 
 model Meat {
-  id          Int    @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
   description String
-  butchers MeatButcher[]
+  butchers    MeatButcher[]
 }
 
 model Butcher {
-  id          Int     @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
   street      String
   city        String
@@ -32,7 +32,7 @@ model Butcher {
   map_url     String?
   lat         String
   lng         String
-  meats     MeatButcher[]
+  meats       MeatButcher[]
 }
 
 model User {
@@ -46,7 +46,7 @@ model User {
 model Experience {
   id      Int      @id @default(autoincrement())
   butcher String
-  meat    String
+  meats   String[]
   price   String
   review  String
   date    String
@@ -56,9 +56,9 @@ model Experience {
 model MeatButcher {
   meatId    Int
   butcherId Int
-  price     Decimal       @db.Decimal(10, 2)
-  meat      Meat          @relation(fields: [meatId], references: [id])
-  butcher   Butcher       @relation(fields: [butcherId], references: [id])
-  
+  price     Decimal @db.Decimal(10, 2)
+  meat      Meat    @relation(fields: [meatId], references: [id])
+  butcher   Butcher @relation(fields: [butcherId], references: [id])
+
   @@id([meatId, butcherId])
 }
