@@ -7,6 +7,7 @@ import {
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
+import logowhite from '../assets/logowhite.png';
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -206,8 +207,7 @@ const MeatYourMatch = () => {
     <>
       <NavBar />
       <div id='app-header'>
-      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
-      <br/>
+      <img id='logo-account' src={logowhite}/>
       <h2>MEAT YOUR MATCH</h2>
       </div>
       <div id='match-body'>

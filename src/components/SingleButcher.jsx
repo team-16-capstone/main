@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
+import logowhite from '../assets/logowhite.png';
 
 const SingleButcher = () => {
   const [singleButcherData, setSingleButcherData] = useState(null);
@@ -57,8 +58,7 @@ const SingleButcher = () => {
       <NavBar />
       <div id='single-butcher-container'>  
       <div id='app-header'>
-      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
-      <br/>
+      <img id='logo-account' src={logowhite}/>
       <h2>{singleButcherData.name}</h2>
       </div>
         <div id='single-butcher-body' key={singleButcherData.id}>

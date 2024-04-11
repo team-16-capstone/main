@@ -1,6 +1,7 @@
 import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logowhite from '../assets/logowhite.png';
 
 const Account = ({ auth }) => {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const Account = ({ auth }) => {
     <>
       <NavBar />
       <div id='account-header'>
-      <img id='logo-account' src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r3048535673371188519&th=18ecdcf578acb712&view=att&disp=safe&realattid=f_luvelq7r0'/>
+      <img id='logo-account' src={logowhite}/>
       <br/>
       <h2>MY ACCOUNT</h2>
       </div>
