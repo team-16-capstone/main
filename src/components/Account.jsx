@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logowhite from '../assets/logowhite.png';
 import logored from '../assets/logored.png';
+import exppic from '../assets/exppic.jpg'
+import meatmatchpic from '../assets/meatmatchpic.jpg'
+import meatshop from '../assets/meatshop.jpg'
 
 const Account = ({ auth }) => {
   const navigate = useNavigate();
@@ -84,7 +87,7 @@ const Account = ({ auth }) => {
         <h3 className='account-cards'>
           MY EXPERIENCES
           <div className='border'>
-            <img id='acct-my-exp' src='https://t4.ftcdn.net/jpg/03/31/88/03/360_F_331880337_DmRJT2IUduSlW4RgCusaOEzA7mLX3NF6.jpg'/>
+            <img id='acct-my-exp' src={meatshop}/>
           </div>
           <br />
           <button onClick={() => navigate('/my-experiences')}>
@@ -94,7 +97,7 @@ const Account = ({ auth }) => {
         <h3 className='account-cards'>
           MEAT YOUR MATCH
           <div className='border'>
-          <img id='acct-meet' src='https://cdn.shopify.com/s/files/1/0428/9750/6468/files/5_Tips_For_Buying_Meat_at_a_Butchers_Shop_480x480.png?v=1616077091'/>
+          <img id='acct-meet' src={meatmatchpic}/>
           </div>
           <br />
           <button onClick={() => navigate('/meat-your-match')}>Search</button>
@@ -102,7 +105,7 @@ const Account = ({ auth }) => {
         <h3 className='account-cards'>
           CREATE EXPERIENCE
           <div className='border'>
-            <img id='acct-exp-pic' src='https://media-cdn.tripadvisor.com/media/photo-s/09/d1/fc/bc/go-grilled-beef-presentation.jpg'/>
+            <img id='acct-exp-pic' src={exppic}/>
           </div>
           <br />
           <button onClick={() => navigate('/new-experience')}>New</button>
