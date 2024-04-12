@@ -189,7 +189,7 @@ const EditExperience = () => {
             />
             <input 
               type="checkbox" 
-              value="pork lion chop" 
+              value="pork loin chop" 
               onChange={handleMeat}
               checked={experience.meats.includes('pork loin chop')}
             />{' '} 
@@ -244,7 +244,7 @@ const EditExperience = () => {
             />
             <input
               type="checkbox" 
-              value="lamp chop" 
+              value="lamb chop" 
               onChange={handleMeat}
               checked={experience.meats.includes('lamb chop')}
             />{' '}
