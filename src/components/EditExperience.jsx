@@ -1,123 +1,135 @@
 import React, { useState, useEffect } from 'react';
 import RatingSystem from './RatingSystem';
 import NavBar from './NavBar';
+import { useParams, useNavigate } from 'react-router-dom';
 import logowhite from '../assets/logowhite.png';
 
 const EditExperience = () => {
-    const [updatedData, setUpdatedData] = useState();
-    const [isLoading, setIsLoading] = useState(false);
-    const [experiences, setExperiences] = useState([]);
-    const [experienceId, setExperienceId] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [experience, setExperience] = useState({
+    butcher: '',
+    date: '',
+    meats: [],
+    price: '',
+    rating: null,
+    review: '',
+  });
+  const [butcherOptions, setButcherOptions] = useState([]);
 
-    const [butcherOptions, setButcherOptions] = useState([]);
-    const [butcher, setButcher] = useState('');
-    const [date, setDate] = useState('');
-    const [meats, setMeats] = useState([]);
-    const [price, setPrice] = useState('');
-    const [rating, setRating] = useState(0);
-    const [review, setReview] = useState('');
+  const token = localStorage.getItem('token');
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchExperiences();
-        fetchButcherOptions();
-    }, []);
+  useEffect(() => {
+    fetchUniqueExperience(id);
+    fetchButcherOptions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const fetchButcherOptions = async () => {
-        try {
-        const response = await fetch('http://localhost:3001/api/butchers');
-        if (response.ok) {
-            const data = await response.json();
-            setButcherOptions(data);
-        } else {
-            console.error('Failed to fetch butcher options:', response.statusText);
-        }
-        } catch (error) {
-        console.error('Error fetching butcher options:', error);
-        }
-    };
+  const fetchButcherOptions = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/butchers');
+      if (response.ok) {
+        const data = await response.json();
+        setButcherOptions(data);
+      } else {
+        console.error('Failed to fetch butcher options:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching butcher options:', error);
+    }
+  };
 
-    const fetchExperiences = async () => {
-        try {
-        const response = await fetch('http://localhost:3001/api/experiences');
-        if (response.ok) {
-            const data = await response.json();
-            setExperiences(data);
-        } else {
-            console.error('Failed to fetch experiences:', response.statusText);
-        }
-        } catch (error) {
-        console.error('Error fetching experiences:', error);
-        }
-    };
+  const fetchUniqueExperience = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/experiences/${id}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setExperience(data);
+      } else {
+        console.error('Failed to fetch experiences:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching experiences:', error);
+    }
+  };
 
-    //   const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setUpdatedData({ ...updatedData, [name]: value });
-    //   };
+  const handleButcher = (event) => {
+    const value = event.target.value;
+    setExperience((prevExperience) => ({
+      ...prevExperience,
+      butcher: value,
+    }));
+  };
 
-    const handleButcher = (event) => {
-        setButcher(event.target.value);
-    };
+  const handleMeat = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setExperience((prevExperience) => ({
+        ...prevExperience,
+        meats: [...prevExperience.meats, value],
+      }));
+    } else {
+      setExperience((prevExperience) => ({
+        ...prevExperience,
+        meats: prevExperience.meats.filter((meat) => meat !== value),
+      }));
+    }
+  };
 
-    //   const handleDate = (event) => {
-    //     setDate(event.target.value);
-    //     // setDate({[event.target.name]: event.target.value});
-    //   };
+  const updateRating = (newRating) => {
+    setExperience((prevExperience) => ({
+      ...prevExperience,
+      rating: newRating,
+    }));
+  };
 
-    const handleMeat = (event) => {
-        const { value, checked } = event.target;
-        if (checked) {
-        setMeats([...meats, value]);
-        } else {
-        setMeats(meats.filter((meat) => meat !== value));
-        }
-    };
-
-    //   const handleReview = (event) => {
-    //     setReview(event.target.value);
-    //   };
-
-    const updateRating = (newRating) => {
-        setRating(newRating);
-    };
-
-    //   const handlePrice = (event) => {
-    //     setPrice(event.target.value);
-    //   };
-
-    const handleUpdateData = async (experienceId) => {
-        setIsLoading(true);
-        try {
-        const response = await fetch(`http://localhost:3001/api/experiences/${experienceId}`, {
-            method: 'PUT',
-            headers: {
+  const handleUpdateData = async (experienceId, token) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/experiences/${experienceId}`,
+        {
+          method: 'PATCH',
+          headers: {
             'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedData),
-        });
-        if (!response.ok) {
-            throw new Error('Failed to update data');
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            butcher: experience.butcher,
+            date: experience.date,
+            meats: experience.meats,
+            price: experience.price,
+            rating: experience.rating,
+            review: experience.review,
+          }),
         }
-        setIsLoading(false);
-        fetchExperiences();
-        } catch (error) {
-        console.error('Error updating data:', error);
-        setIsLoading(false);
-        }
-    };
+      );
+      if (!response.ok) {
+        throw new Error('Failed to update data');
+      }
+      setIsLoading(false);
+      navigate('/my-experiences');
+    } catch (error) {
+      console.error('Error updating data:', error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
-    <NavBar />
-    <div>
-      <form id='edit-exp-body'>
-      <div id='account-header'>
-      <br/>
-      <h2>EDIT EXPERIENCE</h2>
-      </div>
-      <label>
-            <select value={butcher} onChange={handleButcher}>
-              <option value="">Butcher Visited</option>
+      <NavBar />
+      <div>
+        <form id='edit-exp-body'>
+          <div id='account-header'>
+            <br />
+            <h2>EDIT EXPERIENCE</h2>
+          </div>
+          <label>
+            <select value={experience.butcher} onChange={handleButcher}>
+              <option value=''>Butcher Visited</option>
               {butcherOptions.map((option, index) => (
                 <option key={index} value={option.name}>
                   {option.name}
@@ -125,40 +137,99 @@ const EditExperience = () => {
               ))}
             </select>
           </label>
-      <br/>
-      <br/>
-      <label>
-        <p>Date:</p>
-        <input type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      </label>
-      <br/>
-      <br/>
-      <label>
+          <br />
+          <br />
+          <label>
+            <p>Date:</p>
+            <input
+              type='date'
+              name='date'
+              value={experience.date}
+              onChange={(e) =>
+                setExperience({ ...experience, date: e.target.value })
+              }
+            />
+          </label>
+          <br />
+          <br />
+          <label>
             <p>Cut Purchased: </p>
-            <input type="checkbox" value="beef" onChange={handleMeat} /> <img className='icon' alt='beef' src='https://cdn-icons-png.flaticon.com/128/933/933310.png' />
-            <input type="checkbox" value="chicken" onChange={handleMeat} /> <img className='icon' alt='chicken' src='https://cdn-icons-png.flaticon.com/128/821/821074.png'/>
-            <input type="checkbox" value="pork" onChange={handleMeat} /> <img className='icon' alt='pork' src='https://cdn-icons-png.flaticon.com/128/1391/1391277.png'/>
-        </label>
-      <br/>
-      <br/>
-      <label>
-        <p>Price/lb:</p> 
-        <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
-      </label>
-      <br/>
-      <br/>
-      <label>
-        <p>Review:</p>
-        <RatingSystem rating={rating} onRatingChange={updateRating} />
-        <input type="text" name="review" value={review} onChange={(e) => setReview(e.target.value)} />
-      </label>
-      <br/>
-      <br/>
-      <button onClick={handleUpdateData} disabled={isLoading}>
-        {isLoading ? 'Updating...' : 'UPDATE'}
-      </button>
-      </form>
-    </div>
+            <input
+              type='checkbox'
+              value='ribeye steak'
+              onChange={handleMeat}
+              checked={experience.meats.includes('ribeye steak')}
+            />{' '}
+            <img
+              className='icon'
+              alt='ribeye steak'
+              src='https://cdn-icons-png.flaticon.com/128/933/933310.png'
+            />
+            <input
+              type='checkbox'
+              value='filet mignon'
+              onChange={handleMeat}
+              checked={experience.meats.includes('filet mignon')}
+            />{' '}
+            <img
+              className='icon'
+              alt='filet mignon'
+              src='https://cdn-icons-png.flaticon.com/128/3703/3703413.png'
+            />
+            <input
+              type='checkbox'
+              value='new york strip steak'
+              onChange={handleMeat}
+              checked={experience.meats.includes('new york strip steak')}
+            />{' '}
+            <img
+              className='icon'
+              alt='new york strip steak'
+              src='https://cdn-icons-png.flaticon.com/128/7391/7391874.png'
+            />
+          </label>
+          <br />
+          <br />
+          <label>
+            <p>Price/lb:</p>
+            <input
+              type='text'
+              name='price'
+              value={experience.price}
+              onChange={(e) =>
+                setExperience({ ...experience, price: e.target.value })
+              }
+            />
+          </label>
+          <br />
+          <br />
+          <label>
+            <p>Review:</p>
+            <RatingSystem
+              rating={experience.rating}
+              onRatingChange={updateRating}
+            />
+
+            <input
+              type='text'
+              name='review'
+              value={experience.review}
+              onChange={(e) =>
+                setExperience({ ...experience, review: e.target.value })
+              }
+            />
+          </label>
+          <br />
+          <br />
+          <button
+            onClick={() => handleUpdateData(id, token)}
+            disabled={isLoading}
+          >
+            {' '}
+            {isLoading ? 'Updating...' : 'UPDATE'}
+          </button>
+        </form>
+      </div>
     </>
   );
 };
