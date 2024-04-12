@@ -7,7 +7,6 @@ import {
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
-import logowhite from '../assets/logowhite.png';
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 

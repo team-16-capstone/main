@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RatingSystem from './RatingSystem';
 import NavBar from './NavBar';
-import logowhite from '../assets/logowhite.png';
 
 const EditExperience = () => {
     const [updatedData, setUpdatedData] = useState();

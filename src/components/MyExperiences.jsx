@@ -3,9 +3,6 @@ import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
-import EditExperience from './EditExperience';
-import logowhite from '../assets/logowhite.png';
 
 
 const MyExperiences = ({ auth }) => {
@@ -69,10 +66,9 @@ const MyExperiences = ({ auth }) => {
               <h4>{experience.butcher}</h4>
               <p>Purchased: {experience.meats.join(', ')}</p>
               <p>Date: {experience.date}</p>
-              <p>Price/lb: ${experience.price}</p>
+              <p className='price'>Price/lb: ${experience.price}</p>
               <p>Rating: {experience.rating} out of 5 stars </p>
-              <p>Review:</p>
-              <p>{experience.review}</p>
+              <p className='review-box'>{experience.review}</p>
               <Link to={`/edit-experience/${experience.id}`}>
                 <button onClick={() => setExperienceId(experience.id)}>EDIT</button>
               </Link>
