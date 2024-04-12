@@ -568,20 +568,24 @@ app.delete('/api/butchers/:id', authenticateToken, async (req, res, next) => {
 });
 
 // delete an experience
-app.delete('/api/experiences/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    console.log(req.params);
-    const deleteExperience = await prisma.experience.delete({
-      where: {
-        id: parseInt(id),
-      },
-    });
-    return res.status(202).json(deleteExperience);
-  } catch (error) {
-    next(error);
+app.delete(
+  '/api/experiences/:id',
+  authenticateToken,
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      console.log(req.params);
+      const deleteExperience = await prisma.experience.delete({
+        where: {
+          id: parseInt(id),
+        },
+      });
+      return res.status(202).json(deleteExperience);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 // find user by token
 const findUserByToken = async (token, next) => {
