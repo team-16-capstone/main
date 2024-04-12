@@ -168,14 +168,14 @@ function NewExperience() {
           <label>
             <p>Price/lb:</p>
             $
-            <input id='price-input' value={price} onChange={handlePrice} />
+            <input className='price-input' value={price} onChange={handlePrice} />
           </label>
           <br />
           <br />
           <label>
             <p>Review:</p>
             <RatingSystem rating={rating} onRatingChange={updateRating} />
-            <textarea id='notes-input' value={review} onChange={handleReview} />
+            <textarea className='notes-input' value={review} onChange={handleReview} />
           </label>
           <br />
           <button type='submit'>Submit</button>
