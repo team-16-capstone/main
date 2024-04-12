@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import RatingSystem from './RatingSystem';
-import logowhite from '../assets/logowhite.png';
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);

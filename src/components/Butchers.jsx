@@ -1,7 +1,6 @@
 import NavBar from "./NavBar";
 import { useState, useParams, useNavigate, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logowhite from '../assets/logowhite.png';
 
   const Butchers = ()=> {
     const [butchersData, setButchersData] = useState([]);

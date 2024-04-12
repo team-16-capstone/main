@@ -1,8 +1,6 @@
 import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import logowhite from '../assets/logowhite.png';
 
 const Community = ({ auth }) => {
   const [experiences, setExperiences] = useState([]);
@@ -56,19 +54,18 @@ const Community = ({ auth }) => {
       </h2>
       </div>
       <div id="community-body">
-        <h3>
-          RECENT CUSTOMER EXPERIENCES
-        </h3>
+        {/* <h3>
+          RECENT USER EXPERIENCES
+        </h3> */}
         <div id='community-container'>
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
               <h4>{experience.butcher}</h4>
               <p>Purchased: {experience.meats.join(', ')}</p>
               <p>Date: {experience.date}</p>
-              <p>Price/lb: ${experience.price}</p>
+              <p className='price'>Price/lb: ${experience.price}</p>
               <p>Rating: {experience.rating} out of 5 stars </p>
-              <p>Review:</p>
-              <p>{experience.review}</p>
+              <p className='review-box'>{experience.review}</p>
             </div>
           ))}
         </div>

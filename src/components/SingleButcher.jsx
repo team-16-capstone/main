@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
-import logowhite from '../assets/logowhite.png';
 
 const SingleButcher = () => {
   const [singleButcherData, setSingleButcherData] = useState(null);
@@ -83,10 +82,9 @@ const SingleButcher = () => {
                     <h4>{experience.butcher}</h4>
                     <p>Purchased: {experience.meats.join(', ')}</p>
                     <p>Date: {experience.date}</p>
-                    <p>Price/lb: ${experience.price}</p>
+                    <p className='price'>Price/lb: ${experience.price}</p>
                     <p>Rating: {experience.rating} out of 5 stars </p>
-                    <p>Review:</p>
-                    <p>{experience.review}</p>
+                    <p className='review-box'>{experience.review}</p>
                   </div>
                 )
               ))}

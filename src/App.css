@@ -5,8 +5,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url('https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=612x612&w=0&k=20&c=dru6r74GKoU45AVVfOK2bwxQ6eFYLEB50hWC4o8ZyQM=');
-  /* background-image: url(opaque-bg.jpg); */
+  /* background-image: url('https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=612x612&w=0&k=20&c=dru6r74GKoU45AVVfOK2bwxQ6eFYLEB50hWC4o8ZyQM='); */
   background-color: rgb(214, 208, 208);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -66,8 +65,8 @@ h2 {
 
 #butcher-name {
   background-color: transparent;
-  font-size: 40px;
-  color: rgb(167, 49, 49);
+  font-size: 37px;
+  color: rgb(0, 0, 0);
   margin: 0px 5px 5px 5px;
   padding: 0px 10px 5px 10px;
 }
@@ -79,7 +78,8 @@ h3 {
 }
 
 h4 {
-  font-size: 20px;
+  color: black;
+  font-size: 25px;
   margin: 10px 0px 10px 0px;
 }
 
@@ -90,8 +90,8 @@ p {
 }
 
 .butcher-img {
-  width: 396px;
-  height: 380px;
+  width: 413px;
+  height: 413px;
 }
 
 option {
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-  color: rgb(167, 49, 49);
+  color: rgb(0, 0, 0);
   background-color: white;
 }
 
@@ -181,7 +181,7 @@ button:hover {
 }
 
 #single-butcher-container {
-  background-color:rgb(167, 49, 49);
+  /* background-color:rgb(214, 208, 208, 0.80); */
   width: 1275px;
   text-align: center;
   margin: 0px;
@@ -195,7 +195,7 @@ button:hover {
   list-style: none;
   justify-content: flex;
   text-align: center;
-  margin: 0px 5px 5px 5px;
+  margin: 0px 0px 5px 0px;
   padding: 0px;
   border-radius: 8px;
 }
@@ -204,22 +204,22 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   padding: 20px;
-  margin: 5px 5px 10px 5px;
-  max-height: 600px;
+  margin: 10px 5px 10px 0px;
+  max-height: 620px;
   max-width: 850px;
 }
 
 #right-butcher-div {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
-  margin: 5px;
+  margin: 10px 0px 0px 5px;
   display: flex;
   flex-flow: column wrap;
   overflow-y: scroll;
   list-style: none;
   justify-content: space-evenly;
   max-width: 450px;
-  max-height: 635px; 
+  max-height: 660px; 
 }
 
 #user-welcome {
@@ -232,7 +232,7 @@ button:hover {
 }
 
 #welcome-message {
-  padding: 0px 63px 0px 0px;
+  padding: 0px 52px 0px 0px;
 }
 
 #account-body {
@@ -249,11 +249,35 @@ button:hover {
 .account-cards {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 5px;
-  padding: 35px 40px 115px 40px;
+  margin: 5px 10px 5px 0px;
+  padding: 35px 40px 130px 40px;
   border-radius: 8px;
-  width: 336px;
+  width: 338px;
   height: 490px;
+}
+
+.account-card-right {
+  background-color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+  padding: 35px 40px 130px 40px;
+  border-radius: 8px;
+  width: 338px;
+  height: 490px;
+}
+
+.acct-card-headers {
+  font-size: 25px;
+  margin: 0px 0px 20px 0px;
+}
+
+.acct-card-button {
+  margin: 25px 0px 0px 0px;
+}
+
+.border {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
 }
 
 #acct-exp-view {
@@ -278,11 +302,6 @@ button:hover {
   padding: 20px;
   border-radius: 8px;
   max-height: 350px;
-}
-
-.border {
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
 }
 
 #acct-my-exp {
@@ -313,13 +332,23 @@ button:hover {
 }
 
 .experience-card {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255);
   color:rgb(167, 49, 49);
   text-align: center;
   width: 300px;
   margin: 20px;
-  padding: 30px;
+  padding: 20px;
   border-radius: 8px;
+}
+
+.price {
+  color:rgb(167, 49, 49);
+}
+
+.review-box {
+  background-color: rgb(214, 208, 208, 0.20);
+  border-radius: 8px;
+  padding: 6px;
 }
 
 #match-body {
@@ -342,16 +371,15 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
   width: 250px;
-  margin: 5px;
-  padding: 20px 40px;
+  margin: 10px 10px 0px 0px;
+  padding: 20px 30px;
   border-radius: 8px;
-  width: 230px;
 }
 
 #community-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 5px;
+  margin: 10px 5px 5px 0px;
   padding: 30px;
   border-radius: 8px;
 }

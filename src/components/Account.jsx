@@ -1,12 +1,10 @@
 import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import logowhite from '../assets/logowhite.png';
-import logored from '../assets/logored.png';
-import exppic from '../assets/exppic.jpg'
-import meatmatchpic from '../assets/meatmatchpic.jpg'
-import meatshop from '../assets/meatshop.jpg'
+import exppic from '../assets/exppic.jpg';
+import meatmatchpic from '../assets/meatmatchpic.jpg';
+import meatshop from '../assets/meatshop.jpg';
+import meatsbw from '../assets/meatsbw.jpg';
 
 const Account = ({ auth }) => {
   const navigate = useNavigate();
@@ -85,30 +83,27 @@ const Account = ({ auth }) => {
       </div>
       <div id='account-body'>
         <h3 className='account-cards'>
-          MY EXPERIENCES
+          <p className='acct-card-headers'>MY EXPERIENCES</p>
           <div className='border'>
-            <img id='acct-my-exp' src={meatshop}/>
+            <img id='acct-my-exp' src={meatsbw}/>
           </div>
-          <br />
-          <button onClick={() => navigate('/my-experiences')}>
+          <button className='acct-card-button' onClick={() => navigate('/my-experiences')}>
             Browse All
           </button>
         </h3>
         <h3 className='account-cards'>
-          MEAT YOUR MATCH
+          <p className='acct-card-headers'>MEAT YOUR MATCH</p>
           <div className='border'>
-          <img id='acct-meet' src={meatmatchpic}/>
+          <img id='acct-meet' src={meatsbw}/>
           </div>
-          <br />
-          <button onClick={() => navigate('/meat-your-match')}>Search</button>
+          <button className='acct-card-button' onClick={() => navigate('/meat-your-match')}>Search</button>
         </h3>
-        <h3 className='account-cards'>
-          CREATE EXPERIENCE
+        <h3 className='account-card-right'>
+          <p className='acct-card-headers'>CREATE EXPERIENCE</p>
           <div className='border'>
-            <img id='acct-exp-pic' src={exppic}/>
+            <img id='acct-exp-pic' src={meatsbw}/>
           </div>
-          <br />
-          <button onClick={() => navigate('/new-experience')}>New</button>
+          <button className='acct-card-button' onClick={() => navigate('/new-experience')}>New</button>
         </h3>
       </div>
     </>
