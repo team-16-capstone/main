@@ -122,11 +122,11 @@ const EditExperience = () => {
     <>
       <NavBar />
       <div>
-        <form id='edit-exp-body'>
-          <div id='account-header'>
+          <div id='app-header'>
             <br />
             <h2>EDIT EXPERIENCE</h2>
           </div>
+          <form id='edit-exp-body'>
           <label>
             <select value={experience.butcher} onChange={handleButcher}>
               <option value=''>Butcher Visited</option>
@@ -187,12 +187,90 @@ const EditExperience = () => {
               alt='new york strip steak'
               src='https://cdn-icons-png.flaticon.com/128/7391/7391874.png'
             />
+            <input 
+              type="checkbox" 
+              value="pork lion chop" 
+              onChange={handleMeat}
+              checked={experience.meats.includes('pork loin chop')}
+            />{' '} 
+            <img 
+              className='icon' 
+              alt='pork lion chop' 
+              src='https://cdn-icons-png.flaticon.com/128/1702/1702779.png'
+            />
+            <input 
+              type="checkbox" 
+              value="pork shoulder" 
+              onChange={handleMeat}
+              checked={experience.meats.includes('pork shoulder')}
+            />{' '} 
+            <img 
+              className='icon' 
+              alt='pork shoulder' 
+              src='https://cdn-icons-png.flaticon.com/128/2851/2851158.png'
+            />
+            <input 
+              type="checkbox" 
+              value="beef brisket" 
+              onChange={handleMeat} 
+              checked={experience.meats.includes('beef brisket')}
+            />{' '}
+            <img 
+              className='icon' 
+              alt='beef brisket' 
+              src='https://cdn-icons-png.flaticon.com/128/10292/10292654.png'
+            />
+            <input 
+              type="checkbox" 
+              value="flank steak" 
+              onChange={handleMeat} 
+              checked={experience.meats.includes('flank steak')}
+            />{' '}
+            <img 
+              className='icon' 
+              alt='flank steak' 
+              src='https://cdn-icons-png.flaticon.com/128/14657/14657631.png'
+            />
+            <input
+              type="checkbox" 
+              value="chicken breast" 
+              onChange={handleMeat}
+              checked={experience.meats.includes('chicken breast')}
+            />{' '}
+            <img 
+              className='icon' 
+              alt='chicken breast' 
+              src='https://cdn-icons-png.flaticon.com/128/4327/4327229.png'
+            />
+            <input
+              type="checkbox" 
+              value="lamp chop" 
+              onChange={handleMeat}
+              checked={experience.meats.includes('lamb chop')}
+            />{' '}
+            <img 
+              className='icon' 
+              alt='lamp chop' 
+              src='https://cdn-icons-png.flaticon.com/128/2040/2040142.png'
+            />
+            <input 
+              type="checkbox" 
+              value="ground beef" 
+              onChange={handleMeat} 
+              checked={experience.meats.includes('ground beef')}
+            />{' '}
+            <img 
+              className='icon' 
+              alt='ground beef' 
+              src='https://cdn-icons-png.flaticon.com/128/12470/12470153.png'
+            />
           </label>
           <br />
           <br />
           <label>
             <p>Price/lb:</p>
             <input
+              className='price-input'
               type='text'
               name='price'
               value={experience.price}
@@ -210,7 +288,8 @@ const EditExperience = () => {
               onRatingChange={updateRating}
             />
 
-            <input
+            <textarea
+              className='notes-input'
               type='text'
               name='review'
               value={experience.review}

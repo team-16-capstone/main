@@ -362,7 +362,15 @@ button:hover {
 #new-exp-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 5px;
+  margin: 10px 5px 5px 0px;
+  padding: 40px 100px;
+  border-radius: 8px;
+}
+
+#edit-exp-body {
+  background-color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin: 10px 5px 5px 0px;
   padding: 40px 100px;
   border-radius: 8px;
 }
@@ -392,14 +400,14 @@ button:hover {
   border-radius: 8px;
 }
 
-#price-input {
+.price-input {
   width: 50px;
   height: 20px;
   text-align: center;
   font-weight: bold;
 }
 
-#notes-input {
+.notes-input {
   min-width: 350px;
   max-width: 350px;
   min-height: 80px;
