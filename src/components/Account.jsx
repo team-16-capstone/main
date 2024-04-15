@@ -2,9 +2,11 @@ import NavBar from './NavBar';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import exppic from '../assets/exppic.jpg';
-import meatmatchpic from '../assets/meatmatchpic.jpg';
 import meatshop from '../assets/meatshop.jpg';
 import meatsbw from '../assets/meatsbw.jpg';
+import myexppic from '../assets/my-exp-pic.jpg';
+import meatmatchpic from '../assets/meatmatchpic.jpg';
+import createexppic from '../assets/createexppic.jpg';
 import verifyToken from '../utilities/verifyToken';
 import fetchUserById from '../utilities/fetchUserById';
 import fetchExperiences from '../utilities/fetchExperiences';
@@ -42,7 +44,7 @@ const Account = () => {
         <h3 className='account-cards'>
           <p className='acct-card-headers'>MY EXPERIENCES</p>
           <div className='border'>
-            <img id='acct-my-exp' src={meatsbw} />
+            <img id='acct-my-exp' src={myexppic} />
           </div>
           <button
             className='acct-card-button'
@@ -54,7 +56,7 @@ const Account = () => {
         <h3 className='account-cards'>
           <p className='acct-card-headers'>MEAT YOUR MATCH</p>
           <div className='border'>
-            <img id='acct-meet' src={meatsbw} />
+            <img id='acct-meet' src={meatmatchpic} />
           </div>
           <button
             className='acct-card-button'
@@ -66,7 +68,7 @@ const Account = () => {
         <h3 className='account-card-right'>
           <p className='acct-card-headers'>CREATE EXPERIENCE</p>
           <div className='border'>
-            <img id='acct-exp-pic' src={meatsbw} />
+            <img id='acct-exp-pic' src={createexppic} />
           </div>
           <button
             className='acct-card-button'

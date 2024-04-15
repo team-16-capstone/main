@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import fetchExperiences from '../utilities/fetchExperiences';
 import deleteExperience from '../utilities/deleteExperience';
+import meatsbw from '../assets/meatsbw.jpg'
 
 const MyExperiences = () => {
   const [experiences, setExperiences] = useState([]);
