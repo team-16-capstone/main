@@ -15,8 +15,10 @@ const Community = () => {
   return (
     <>
       <NavBar />
-      <div id='app-header'>
-        <h2>COMMUNITY</h2>
+      <div id='experience-header'>
+      <h2>
+        COMMUNITY
+      </h2>
       </div>
       <div id='community-body'>
         {/* <h3>

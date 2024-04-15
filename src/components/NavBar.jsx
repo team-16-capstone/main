@@ -9,6 +9,7 @@ function NavBar() {
   return (
     <>
       <div id='nav-container'>
+        <div id='nav-contents'>
         <Link className='link' to='/account'>
           MY ACCOUNT
         </Link>
@@ -25,6 +26,7 @@ function NavBar() {
           LOGOUT
         </Link>
         <img id='logo-topper' src={logored}/>
+        </div>
       </div>
     </>
   );

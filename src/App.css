@@ -1,15 +1,15 @@
 body {
   width: 100%;
-  margin: 0;
+  margin: 0px;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
   /* background-image: url('https://media.istockphoto.com/id/1313696101/vector/hand-drawn-meat-steak-beef-and-pork-lamb-grill-sausage-seamless-pattern.jpg?s=612x612&w=0&k=20&c=dru6r74GKoU45AVVfOK2bwxQ6eFYLEB50hWC4o8ZyQM='); */
-  background-color: rgb(214, 208, 208);
+  background: linear-gradient(rgb(255, 255, 255), rgba(167, 49, 49));
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 110%;
+  background-size: 100%;
 }
 
 #logo-login {
@@ -18,7 +18,7 @@ body {
 }
 
 #logo-topper {
-  width: 250px;
+  width: 230px;
   justify-content: left;
 }
 
@@ -37,30 +37,72 @@ h2 {
 
 #account-header {
   background-color: rgba(167, 49, 49);
-  width: 1275px;
+  width: 69%;
   font-size: 40px;
   color: rgb(255, 255, 255);
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px;
+  margin: 45px auto auto auto;
+  padding: 0px;
+  border-radius: 8px 8px 0px 0px ;
+}
+
+#butcher-header {
+  background-color: rgba(167, 49, 49);
+  width: 100%;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: center;
+  margin: 90px 0px 0px 0px;
   padding: 0px;
   border-radius: 0px;
 }
 
-#app-header {
+#experience-header {
   background-color: rgba(167, 49, 49);
-  width: 1275px;
+  width: 100%;
   font-size: 40px;
   color: rgb(255, 255, 255);
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px;
+  margin: -65px 0px 0px 0px;
   padding: 0px;
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 0px;
+}
+
+#single-header {
+  background-color: rgba(167, 49, 49);
+  width: 100%;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: center;
+  margin: 30px 0px 0px 0px;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+#meat-header {
+  background-color: rgba(167, 49, 49);
+  width: 100%;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: center;
+  margin: 90px 0px 0px 0px;
+  padding: 0px;
+  border-radius: 0px;
 }
 
 #butcher-name {
@@ -117,32 +159,48 @@ button:hover {
   color: rgb(167, 49, 49);
   font-size: 20px;
   font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color:rgb(167, 49, 49);
+}
+
+.link:active {
+  text-decoration: underline;
 }
 
 .acct-link {
   color: white;
 }
 
-.link:hover {
-  color: black;
+.checkbox {
+  position: relative;
+  bottom: 45px;
+  left: 10px;
 }
 
 .icon {
-  width: 45px;
+  width: 70px;
 }
 
 #login-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  width: 50%;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
   text-align: center;
-  margin: 5px;
+  margin: auto;
   padding: 100px;
   border-radius: 8px;
 }
 
 #register-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  width: 50%;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
   text-align: center;
-  margin: 5px;
+  margin: auto;
   padding: 100px;
   border-radius: 8px;
 }
@@ -160,17 +218,39 @@ button:hover {
   list-style: none;
   justify-content: space-evenly;
   align-items: center;
-  width: 1255px;
-  margin: 5px 5px 0px 0px;
-  padding: 5px 10px 5px 10px;
-  border-radius: 8px 8px 0px 0px;
+  width: 100%;
+  height: 90px;
+  position: fixed;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+#nav-contents {
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 75%;
+  height: 90px;
+  position: fixed;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 0px;
 }
 
 #butcher-container {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
-  justify-content: flex;
+  justify-content: center;
+  width: 75%;
+  margin: auto;
+  padding: 0px;
 }
 
 #community-container {
@@ -182,7 +262,7 @@ button:hover {
 
 #single-butcher-container {
   /* background-color:rgb(214, 208, 208, 0.80); */
-  width: 1275px;
+  width: 100%;
   text-align: center;
   margin: 0px;
   padding: 0px;
@@ -191,11 +271,12 @@ button:hover {
 
 #single-butcher-body {
   display: flex;
+  width: 75%;
   flex-flow: row wrap;
   list-style: none;
-  justify-content: flex;
+  justify-content: center;
   text-align: center;
-  margin: 0px 0px 5px 0px;
+  margin: 10px auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -223,25 +304,26 @@ button:hover {
 }
 
 #user-welcome {
-  width: 1270px;
+  width: 69%;
   text-align: right;
   border-radius: 0px 0px 8px 8px;
   color:rgb(167, 49, 49);
   background-color: rgba(255, 255, 255, 0.85);
-  padding: 0px 5px 0px 0px;
+  padding: 0px;
+  margin: auto;
 }
 
 #welcome-message {
-  padding: 0px 52px 0px 0px;
+  width: 98%;
+  padding: 0px;
 }
 
 #account-body {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
-  justify-content: flex;
-  text-align: center;
-  margin: 0px;
+  justify-content: center;
+  margin: 0;
   padding: 0px;
   border-radius: 8px;
 }
@@ -252,7 +334,7 @@ button:hover {
   margin: 5px 10px 5px 0px;
   padding: 35px 40px 130px 40px;
   border-radius: 8px;
-  width: 338px;
+  width: 363px;
   height: 490px;
 }
 
@@ -349,29 +431,41 @@ button:hover {
   background-color: rgb(214, 208, 208, 0.20);
   border-radius: 8px;
   padding: 6px;
+  margin: 10px 0px 10px 0px;
 }
 
 #match-body {
   background-color: rgba(255, 255, 255, 0.85);
+  width: 75%;
   text-align: center;
-  margin: 5px;
-  padding: 100px;
+  margin: 10px auto;
+  padding: 30px 30px;
   border-radius: 8px;
+}
+
+#match-butch-name {
+  font-size: 20px;
+}
+
+#match-meat-price {
+  color:rgb(167, 49, 49);
 }
 
 #new-exp-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 10px 5px 5px 0px;
-  padding: 40px 100px;
+  width: 75%;
+  margin: 10px auto;
+  padding: 40px 0px;
   border-radius: 8px;
 }
 
 #edit-exp-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 10px 5px 5px 0px;
-  padding: 40px 100px;
+  width: 75%;
+  margin: 10px auto;
+  padding: 40px 0px;
   border-radius: 8px;
 }
 
@@ -387,7 +481,8 @@ button:hover {
 #community-body {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  margin: 10px 5px 5px 0px;
+  width: 65%;
+  margin: 10px auto;
   padding: 30px;
   border-radius: 8px;
 }
@@ -416,10 +511,12 @@ button:hover {
 }
 
 .checkout {
-  background-color: rgba(255, 255, 255, 0.85);
+  width: 50%;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
   text-align: center;
-  margin: 5px;
-  padding: 20px;
+  margin: auto;
+  padding: 100px;
   border-radius: 8px;
 }
 
@@ -442,9 +539,8 @@ button:hover {
 }
 
 #root {
-  max-width: 1280px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0px;
   text-align: center;
 }

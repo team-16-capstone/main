@@ -2,8 +2,19 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import RatingSystem from './RatingSystem';
+import ribeyesteak from '../assets/ribeyesteak.png';
+import filetmignon from '../assets/filetmignon.png';
+import nystripsteak from '../assets/nystripsteak.png';
+import porkloinchop from '../assets/porkloinchop.png';
+import porkshoulder from '../assets/porkshoulder.png';
+import beefbrisket from '../assets/beefbrisket.png';
+import flanksteak from '../assets/flanksteak.png';
+import chickenbreast from '../assets/chickenbreast.png';
+import lambchop from '../assets/lambchop.png';
+import groundbeef from '../assets/groundbeef.png';
 import fetchAllButchers from '../utilities/fetchAllButchers';
 import postNewExperience from '../utilities/postNewExperience';
+
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
@@ -75,9 +86,10 @@ function NewExperience() {
   return (
     <>
       <NavBar />
-      <div id='app-header'>
-        <br />
-        <h2>CREATE EXPERIENCE</h2>
+      <div id='experience-header'>
+      <br/>
+      <h2>CREATE EXPERIENCE</h2>
+
       </div>
       <div id='new-exp-body'>
         <h3>LOG YOUR LATEST PURCHASE</h3>
@@ -101,82 +113,16 @@ function NewExperience() {
           <br />
           <br />
           <label>
-            <input type='checkbox' value='ribeye steak' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='ribeye steak'
-              src='https://cdn-icons-png.flaticon.com/128/933/933310.png'
-            />
-            <input type='checkbox' value='filet mignon' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='filet mignon'
-              src='https://cdn-icons-png.flaticon.com/128/3703/3703413.png'
-            />
-            <input
-              type='checkbox'
-              value='new york strip steak'
-              onChange={handleMeat}
-            />{' '}
-            <img
-              className='icon'
-              alt='new york strip steak'
-              src='https://cdn-icons-png.flaticon.com/128/7391/7391874.png'
-            />
-            <input
-              type='checkbox'
-              value='pork lion chop'
-              onChange={handleMeat}
-            />{' '}
-            <img
-              className='icon'
-              alt='pork lion chop'
-              src='https://cdn-icons-png.flaticon.com/128/1702/1702779.png'
-            />
-            <input
-              type='checkbox'
-              value='pork shoulder'
-              onChange={handleMeat}
-            />{' '}
-            <img
-              className='icon'
-              alt='pork shoulder'
-              src='https://cdn-icons-png.flaticon.com/128/2851/2851158.png'
-            />
-            <input type='checkbox' value='beef brisket' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='beef brisket'
-              src='https://cdn-icons-png.flaticon.com/128/10292/10292654.png'
-            />
-            <input type='checkbox' value='flank steak' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='flank steak'
-              src='https://cdn-icons-png.flaticon.com/128/14657/14657631.png'
-            />
-            <input
-              type='checkbox'
-              value='chicken breast'
-              onChange={handleMeat}
-            />{' '}
-            <img
-              className='icon'
-              alt='chicken breast'
-              src='https://cdn-icons-png.flaticon.com/128/4327/4327229.png'
-            />
-            <input type='checkbox' value='lamp chop' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='lamp chop'
-              src='https://cdn-icons-png.flaticon.com/128/2040/2040142.png'
-            />
-            <input type='checkbox' value='ground beef' onChange={handleMeat} />{' '}
-            <img
-              className='icon'
-              alt='ground beef'
-              src='https://cdn-icons-png.flaticon.com/128/12470/12470153.png'
-            />
+            <input className='checkbox' type="checkbox" value="ribeye steak" onChange={handleMeat} />  <img className='icon' alt='ribeye steak' src={ribeyesteak} />
+            <input className='checkbox' type="checkbox" value="filet mignon" onChange={handleMeat} /> <img className='icon' alt='filet mignon' src={filetmignon} />
+            <input className='checkbox' type="checkbox" value="new york strip steak" onChange={handleMeat} /> <img className='icon' alt='new york strip steak' src={nystripsteak} />
+            <input className='checkbox' type="checkbox" value="pork lion chop" onChange={handleMeat} /> <img className='icon' alt='pork lion chop' src={porkloinchop} />
+            <input className='checkbox' type="checkbox" value="pork shoulder" onChange={handleMeat} /> <img className='icon' alt='pork shoulder' src={porkshoulder} />
+            <input className='checkbox' type="checkbox" value="beef brisket" onChange={handleMeat} /> <img className='icon' alt='beef brisket' src={beefbrisket} />
+            <input className='checkbox' type="checkbox" value="flank steak" onChange={handleMeat} /> <img className='icon' alt='flank steak' src={flanksteak} />
+            <input className='checkbox' type="checkbox" value="chicken breast" onChange={handleMeat} /> <img className='icon' alt='chicken breast' src={chickenbreast} />
+            <input className='checkbox' type="checkbox" value="lamb chop" onChange={handleMeat} /> <img className='icon' alt='lamb chop' src={lambchop} />
+            <input className='checkbox' type="checkbox" value="ground beef" onChange={handleMeat} /> <img className='icon' alt='ground beef' src={groundbeef} />
           </label>
           <label>
             <p>Price/lb:</p>

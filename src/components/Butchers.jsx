@@ -12,26 +12,24 @@ const Butchers = () => {
 
   return (
     <>
-      <NavBar />
-      <div id='app-header'>
-        <h2>PARTICIPATING BUTCHERS</h2>
-      </div>
-      <div id='butcher-container'>
-        {butchersData.map((butcher) => (
-          <div id='butcher-body' key={butcher.id}>
-            <h2 id='butcher-name'>{butcher.name}</h2>
-            <h3>{butcher.street}</h3>
-            <h3>
-              {butcher.city}, {butcher.state} {butcher.zipcode}
-            </h3>
-            <h3>{butcher.phonenumber}</h3>
-            <br />
-            <Link to={`/butchers/${butcher.id}`}>
-              <button>BUTCHER PROFILE</button>
-            </Link>
-          </div>
-        ))}
-      </div>
+    <NavBar/>
+    <div id='butcher-header'>
+    <h2>PARTICIPATING BUTCHERS</h2>
+    </div>
+    <div id='butcher-container'>
+      {butchersData.map((butcher) => (
+        <div id='butcher-body' key={butcher.id}>
+          <h2 id='butcher-name'>{butcher.name}</h2>
+          <h3>{butcher.street}</h3>
+          <h3>{butcher.city}, {butcher.state}  {butcher.zipcode}</h3>
+          <h3>{butcher.phonenumber}</h3>
+          <br />
+          <Link to={`/butchers/${butcher.id}`}>
+          <button>BUTCHER PROFILE</button>
+          </Link>
+        </div>
+      ))}
+    </div>
     </>
   );
 };

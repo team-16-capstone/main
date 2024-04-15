@@ -26,10 +26,11 @@ const SingleButcher = () => {
   return (
     <>
       <NavBar />
-      <div id='single-butcher-container'>
-        <div id='app-header'>
-          <h2>{singleButcherData.name}</h2>
-        </div>
+      <div id='single-butcher-container'>  
+      <div id='single-header'>
+      <h2>{singleButcherData.name}</h2>
+      ///PLACE AVERAGE RATING HERE///
+      </div>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
             <div id='img-div'>
