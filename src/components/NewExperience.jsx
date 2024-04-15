@@ -12,10 +12,12 @@ import flanksteak from '../assets/flanksteak.png';
 import chickenbreast from '../assets/chickenbreast.png';
 import lambchop from '../assets/lambchop.png';
 import groundbeef from '../assets/groundbeef.png';
+import fetchAllButchers from '../utilities/fetchAllButchers';
+import postNewExperience from '../utilities/postNewExperience';
+
 
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
-  // const [meatOptions, setMeatOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [date, setDate] = useState('');
   const [meats, setMeats] = useState([]);
@@ -24,46 +26,15 @@ function NewExperience() {
   const [rating, setRating] = useState(0);
   const navigate = useNavigate();
 
+  const token = window.localStorage.getItem('token');
+
   useEffect(() => {
-    fetchButchers();
-    // fetchMeats();
+    fetchAllButchers().then(setButcherOptions);
   }, []);
-
-  const fetchButchers = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/butchers');
-      if (response.ok) {
-        const data = await response.json();
-        setButcherOptions(data);
-      } else {
-        console.error('Failed to fetch butchers:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching butchers:', error);
-    }
-  };
-
-  // const fetchMeats = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3001/api/meats');
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setMeatOptions(data);
-  //     } else {
-  //       console.error('Failed to fetch meats:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching meats:', error);
-  //   }
-  // };
 
   const handleButcher = (event) => {
     setButcher(event.target.value);
   };
-
-  // const handleMeat = (event) => {
-  //   setMeat(event.target.value);
-  // };
 
   const handleDate = (event) => {
     setDate(event.target.value);
@@ -102,30 +73,7 @@ function NewExperience() {
       rating: rating,
       review: review,
     };
-
-    console.log("Form data:", formData);
-
-    try {
-      const token = window.localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/new-experience', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Form submitted successfully:', data);
-        navigate('/my-experiences');
-      } else {
-        console.error('Form submission failed:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+    postNewExperience(formData, token).then(navigate('/my-experiences'));
   };
 
   const handleEnterButton = (event) => {
@@ -141,13 +89,14 @@ function NewExperience() {
       <div id='experience-header'>
       <br/>
       <h2>CREATE EXPERIENCE</h2>
+
       </div>
-      <div id="new-exp-body">
+      <div id='new-exp-body'>
         <h3>LOG YOUR LATEST PURCHASE</h3>
         <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
             <select value={butcher} onChange={handleButcher}>
-              <option value="">Butcher Visited</option>
+              <option value=''>Butcher Visited</option>
               {butcherOptions.map((option, index) => (
                 <option key={index} value={option.name}>
                   {option.name}
@@ -178,14 +127,22 @@ function NewExperience() {
           <label>
             <p>Price/lb:</p>
             $
-            <input className='price-input' value={price} onChange={handlePrice} />
+            <input
+              className='price-input'
+              value={price}
+              onChange={handlePrice}
+            />
           </label>
           <br />
           <br />
           <label>
             <p>Review:</p>
             <RatingSystem rating={rating} onRatingChange={updateRating} />
-            <textarea className='notes-input' value={review} onChange={handleReview} />
+            <textarea
+              className='notes-input'
+              value={review}
+              onChange={handleReview}
+            />
           </label>
           <br />
           <button type='submit'>Submit</button>

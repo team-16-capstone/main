@@ -7,6 +7,9 @@ import {
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
+import fetchAllButchers from '../utilities/fetchAllButchers';
+import fetchAllMeats from '../utilities/fetchAllMeats';
+import fetchButcherMeats from '../utilities/fetchButcherMeats';
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -54,7 +57,10 @@ const PositionDetails = ({ position, selectedMeat }) => {
 };
 
 const AllButchersPosition = ({ position, selectedMeat }) => {
-  const lowestPrice = Math.min(...position.meats.map((meat) => meat.price));
+  console.log('position is', position);
+  const lowestPrice = position
+    ? Math.min(...position.meats.map((meat) => meat.price))
+    : null;
 
   return (
     <div key={position.id}>
@@ -79,8 +85,8 @@ const AllButchersPosition = ({ position, selectedMeat }) => {
               );
             })}
         </>
-      )}
-    </div>
+          )}
+        </div>
   );
 };
 
@@ -89,7 +95,6 @@ const defaultPosition = {
 };
 
 const MeatYourMatch = () => {
-  const [activeMarkerId, setActiveMarkerId] = useState(null);
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [positions, setPositions] = useState([]);
@@ -103,7 +108,6 @@ const MeatYourMatch = () => {
       selected: pos.id === markerId,
     }));
     setPositions(updatedPositions);
-    setActiveMarkerId(markerId);
     setSelectedPosition(position);
 
     try {
@@ -117,10 +121,11 @@ const MeatYourMatch = () => {
     }
   };
 
-  const handleDropdownChange = async (event) => {
-    const selectedName = event.target.value;
-
-    if (selectedName === 'All Butchers') {
+  const handleMeatSelectionUpdate = async (selectedName) => {
+    if (
+      selectedName === 'All Butchers' ||
+      selectedPosition?.name.length === 10
+    ) {
       setSelectedPosition(null);
 
       const meatsLength = meats.length;
@@ -179,60 +184,16 @@ const MeatYourMatch = () => {
     }
   };
 
+  const handleDropdownChange = async (event) => {
+    const selectedName = event.target.value;
+    handleMeatSelectionUpdate(selectedName);
+  };
+
   const handleMeatSelection = async (event) => {
     const selectedMeat = event.target.value;
     setSelectedMeat(selectedMeat);
-  };
-
-  const fetchAllButchers = async () => {
-    try {
-      const url = 'http://localhost:3001/api/butchers/';
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await fetch(url, options);
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error('Error fetching butchers:', error);
-    }
-  };
-
-  const fetchAllMeats = async () => {
-    try {
-      const url = 'http://localhost:3001/api/meats/';
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await fetch(url, options);
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error('Error fetching meats:', error);
-    }
-  };
-
-  const fetchButcherMeats = async (butcherId) => {
-    try {
-      const url = `http://localhost:3001/api/butchers/${butcherId}/meats`;
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await fetch(url, options);
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error('Error fetching butcher meats:', error);
-    }
+    console.log('selectedmeatttt', selectedPosition.name);
+    handleMeatSelectionUpdate(selectedPosition.name);
   };
 
   useEffect(() => {

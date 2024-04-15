@@ -1,30 +1,14 @@
-import NavBar from "./NavBar";
-import { useState, useParams, useNavigate, useEffect } from "react";
-import { Link } from "react-router-dom";
+import NavBar from './NavBar';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import fetchAllButchers from '../utilities/fetchAllButchers';
 
-  const Butchers = ()=> {
-    const [butchersData, setButchersData] = useState([]);
+const Butchers = () => {
+  const [butchersData, setButchersData] = useState([]);
 
-    useEffect(() => {
-      const fetchAllButchers = async () => {
-        try {
-          const url = "http://localhost:3001/api/butchers/";
-          const options = {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          };
-          const response = await fetch (url, options);
-          const responseData = await response.json();
-          setButchersData(responseData);
-        } catch (error) {
-          console.error("Error fetching butchers:", error)
-        }
-      };
-      fetchAllButchers();
-    }, []);
- 
+  useEffect(() => {
+    fetchAllButchers().then(setButchersData);
+  }, []);
 
   return (
     <>
