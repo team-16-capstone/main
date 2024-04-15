@@ -13,6 +13,9 @@ import flanksteak from '../assets/flanksteak.png';
 import chickenbreast from '../assets/chickenbreast.png';
 import lambchop from '../assets/lambchop.png';
 import groundbeef from '../assets/groundbeef.png';
+import fetchAllButchers from '../utilities/fetchAllButchers';
+import fetchUniqueExperience from '../utilities/fetchUniqueExperience';
+import patchUserExperience from '../utilities/patchUserExperience';
 
 const EditExperience = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,40 +34,10 @@ const EditExperience = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUniqueExperience(id);
-    fetchButcherOptions();
+    fetchUniqueExperience(id).then(setExperience);
+    fetchAllButchers().then(setButcherOptions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const fetchButcherOptions = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/butchers');
-      if (response.ok) {
-        const data = await response.json();
-        setButcherOptions(data);
-      } else {
-        console.error('Failed to fetch butcher options:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching butcher options:', error);
-    }
-  };
-
-  const fetchUniqueExperience = async (id) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/experiences/${id}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setExperience(data);
-      } else {
-        console.error('Failed to fetch experiences:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching experiences:', error);
-    }
-  };
 
   const handleButcher = (event) => {
     const value = event.target.value;
@@ -96,47 +69,15 @@ const EditExperience = () => {
     }));
   };
 
-  const handleUpdateData = async (experienceId, token) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/experiences/${experienceId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            butcher: experience.butcher,
-            date: experience.date,
-            meats: experience.meats,
-            price: experience.price,
-            rating: experience.rating,
-            review: experience.review,
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error('Failed to update data');
-      }
-      setIsLoading(false);
-      navigate('/my-experiences');
-    } catch (error) {
-      console.error('Error updating data:', error);
-      setIsLoading(false);
-    }
-  };
-
   return (
     <>
       <NavBar />
       <div>
-          <div id='experience-header'>
-            <br />
-            <h2>EDIT EXPERIENCE</h2>
-          </div>
-          <form id='edit-exp-body'>
+        <div id='experience-header'>
+          <br />
+          <h2>EDIT EXPERIENCE</h2>
+        </div>
+        <form id='edit-exp-body'>
           <label>
             <select value={experience.butcher} onChange={handleButcher}>
               <option value=''>Butcher Visited</option>
@@ -170,11 +111,7 @@ const EditExperience = () => {
               onChange={handleMeat}
               checked={experience.meats.includes('ribeye steak')}
             />{' '}
-            <img
-              className='icon'
-              alt='ribeye steak'
-              src={ribeyesteak}
-            />
+            <img className='icon' alt='ribeye steak' src={ribeyesteak} />
             <input
               className='checkbox'
               type='checkbox'
@@ -182,11 +119,7 @@ const EditExperience = () => {
               onChange={handleMeat}
               checked={experience.meats.includes('filet mignon')}
             />{' '}
-            <img
-              className='icon'
-              alt='filet mignon'
-              src={filetmignon}
-            />
+            <img className='icon' alt='filet mignon' src={filetmignon} />
             <input
               className='checkbox'
               type='checkbox'
@@ -199,90 +132,62 @@ const EditExperience = () => {
               alt='new york strip steak'
               src={nystripsteak}
             />
-            <input 
-              className='checkbox'
-              type="checkbox" 
-              value="pork loin chop" 
-              onChange={handleMeat}
-              checked={experience.meats.includes('pork loin chop')}
-            />{' '} 
-            <img 
-              className='icon' 
-              alt='pork loin chop' 
-              src={porkloinchop}
-            />
-            <input 
-              className='checkbox'
-              type="checkbox" 
-              value="pork shoulder" 
-              onChange={handleMeat}
-              checked={experience.meats.includes('pork shoulder')}
-            />{' '} 
-            <img 
-              className='icon' 
-              alt='pork shoulder' 
-              src={porkshoulder}
-            />
-            <input 
-              className='checkbox'
-              type="checkbox" 
-              value="beef brisket" 
-              onChange={handleMeat} 
-              checked={experience.meats.includes('beef brisket')}
-            />{' '}
-            <img 
-              className='icon' 
-              alt='beef brisket' 
-              src={beefbrisket}
-            />
-            <input 
-              className='checkbox'
-              type="checkbox" 
-              value="flank steak" 
-              onChange={handleMeat} 
-              checked={experience.meats.includes('flank steak')}
-            />{' '}
-            <img 
-              className='icon' 
-              alt='flank steak' 
-              src={flanksteak}
-            />
             <input
               className='checkbox'
-              type="checkbox" 
-              value="chicken breast" 
+              type='checkbox'
+              value='pork loin chop'
+              onChange={handleMeat}
+              checked={experience.meats.includes('pork loin chop')}
+            />{' '}
+            <img className='icon' alt='pork loin chop' src={porkloinchop} />
+            <input
+              className='checkbox'
+              type='checkbox'
+              value='pork shoulder'
+              onChange={handleMeat}
+              checked={experience.meats.includes('pork shoulder')}
+            />{' '}
+            <img className='icon' alt='pork shoulder' src={porkshoulder} />
+            <input
+              className='checkbox'
+              type='checkbox'
+              value='beef brisket'
+              onChange={handleMeat}
+              checked={experience.meats.includes('beef brisket')}
+            />{' '}
+            <img className='icon' alt='beef brisket' src={beefbrisket} />
+            <input
+              className='checkbox'
+              type='checkbox'
+              value='flank steak'
+              onChange={handleMeat}
+              checked={experience.meats.includes('flank steak')}
+            />{' '}
+            <img className='icon' alt='flank steak' src={flanksteak} />
+            <input
+              className='checkbox'
+              type='checkbox'
+              value='chicken breast'
               onChange={handleMeat}
               checked={experience.meats.includes('chicken breast')}
             />{' '}
-            <img 
-              className='icon' 
-              alt='chicken breast' 
-              src={chickenbreast}
-            />
+            <img className='icon' alt='chicken breast' src={chickenbreast} />
             <input
               className='checkbox'
-              type="checkbox" 
-              value="lamb chop" 
+              type='checkbox'
+              value='lamb chop'
               onChange={handleMeat}
               checked={experience.meats.includes('lamb chop')}
             />{' '}
-            <img 
-              className='icon' 
-              alt='lamb chop' 
-              src={lambchop}
-            />
-            <input 
+            <img className='icon' alt='lamb chop' src={lambchop} />
+            <input
               className='checkbox'
-              type="checkbox" 
-              value="ground beef" 
-              onChange={handleMeat} 
+              type='checkbox'
+              value='ground beef'
+              onChange={handleMeat}
               checked={experience.meats.includes('ground beef')}
             />{' '}
-            <img 
-              className='icon' 
-              alt='ground beef' 
-              src={groundbeef}
-            />
+            <img className='icon' alt='ground beef' src={groundbeef} />
           </label>
           <br />
           <label>
@@ -319,7 +224,18 @@ const EditExperience = () => {
           <br />
           <br />
           <button
-            onClick={() => handleUpdateData(id, token)}
+            onClick={() => {
+              setIsLoading(true);
+              patchUserExperience(id, token, experience)
+                .then(() => {
+                  setIsLoading(false);
+                  navigate('/my-experiences');
+                })
+                .catch((error) => {
+                  setIsLoading(false);
+                  console.error('Error updating user experience:', error);
+                });
+            }}
             disabled={isLoading}
           >
             {' '}
