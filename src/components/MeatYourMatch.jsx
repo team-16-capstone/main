@@ -13,7 +13,11 @@ import fetchButcherMeats from '../utilities/fetchButcherMeats';
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const PositionDetails = ({ position, selectedMeat }) => {
+const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
+  const lowestPrice = allButchersData
+    ? Math.min(...allButchersData.meats.map((meat) => meat.price))
+    : null;
+
   return (
     <div key={position.id}>
       <br />
@@ -38,60 +42,69 @@ const PositionDetails = ({ position, selectedMeat }) => {
       <br />
       {position.meats && position.meats.length > 0 && (
         <>
-          <h3 id='match-butch-name'>Available Meats:</h3>
+          <h3 id='match-butch-name'>Meat information:</h3>
           {position.meats.map((meat) => {
             if (meat.meat.name === selectedMeat) {
               return (
                 <div key={meat.meatId}>
                   <p>Name: {meat.meat.name}</p>
                   <p>Description: {meat.meat.description}</p>
-                  <p id='match-meat-price'>Price: ${meat.price}</p>
+                  <p id='match-meat-price'>
+                    Price: ${meat.price}
+                    {lowestPrice.toFixed(2) ===
+                    parseFloat(meat.price).toFixed(2) ? (
+                      <span> (LOWEST PRICE)</span>
+                    ) : null}
+                  </p>
                 </div>
               );
             }
           })}
+          <br />
+          <button onClick={() => setIsOpen(!isOpen)}>
+            Compare prices at other locations:
+          </button>
+          {isOpen && (
+            <>
+              <div key={allButchersData.id}>
+                {allButchersData.meats && allButchersData.meats.length > 0 && (
+                  <>
+                    {allButchersData.meats
+                      .filter((meat) => meat.meat.name.id === selectedMeat.id)
+                      .map((meat, index) => {
+                        const isLowestPrice =
+                          parseFloat(meat.price).toFixed(2) ===
+                          parseFloat(lowestPrice).toFixed(2);
+                        if (allButchersData.name[index] !== position.name) {
+                          return (
+                            <div key={index}>
+                              <p id='match-butch-name'>
+                                {allButchersData.name[index]}
+                              </p>{' '}
+                              <p id='match-meat-price'>
+                                Price: ${meat.price}
+                                {isLowestPrice && <span> (LOWEST PRICE)</span>}
+                              </p>
+                            </div>
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
+                  </>
+                )}
+              </div>
+            </>
+          )}
+          ;
         </>
       )}
     </div>
   );
 };
 
-const AllButchersPosition = ({ position, selectedMeat }) => {
-  console.log('position is', position);
-  const lowestPrice = position
-    ? Math.min(...position.meats.map((meat) => meat.price))
-    : null;
-
-  return (
-    <div key={position.id}>
-      <h3>{selectedMeat} price comparison:</h3>
-      {position.meats && position.meats.length > 0 && (
-        <>
-          {position.meats
-            .filter((meat) => meat.meat.name === selectedMeat)
-            .map((meat, index) => {
-              const isLowestPrice =
-                parseFloat(meat.price).toFixed(2) ===
-                parseFloat(lowestPrice).toFixed(2);
-
-              return (
-                <div key={index}>
-                  <p id='match-butch-name'>{position.name[index]}</p>{' '}
-                  <p id='match-meat-price'>
-                    Price: ${meat.price}
-                    {isLowestPrice && <span> (LOWEST PRICE)</span>}
-                  </p>
-                </div>
-              );
-            })}
-        </>
-          )}
-        </div>
-  );
-};
-
 const defaultPosition = {
-  name: 'Please click on one of the icons to display more information.',
+  name: 'Please select a meat and a butcher to display pricing information.',
 };
 
 const MeatYourMatch = () => {
@@ -100,7 +113,9 @@ const MeatYourMatch = () => {
   const [positions, setPositions] = useState([]);
   const [meats, setMeats] = useState([]);
   const [selectedMeat, setSelectedMeat] = useState('');
-  const [allButchers, setAllButchers] = useState(false);
+  const [allButchersData, setAllButchersData] = useState({});
+  const [isMeatAndButcherSelected, setIsMeatAndButcherSelected] =
+    useState(false);
 
   const handleMarkerClick = async (markerId, position) => {
     const updatedPositions = positions.map((pos) => ({
@@ -122,53 +137,46 @@ const MeatYourMatch = () => {
   };
 
   const handleMeatSelectionUpdate = async (selectedName) => {
-    if (
-      selectedName === 'All Butchers' ||
-      selectedPosition?.name.length === 10
-    ) {
-      setSelectedPosition(null);
+    setSelectedPosition(null);
 
-      const meatsLength = meats.length;
-      let comparisonMeatIndex = 0;
+    const meatsLength = meats.length;
+    let comparisonMeatIndex = 0;
 
-      for (let i = 0; i < meatsLength; i++) {
-        if (selectedMeat === meats[i].name) comparisonMeatIndex = i;
+    for (let i = 0; i < meatsLength; i++) {
+      if (selectedMeat === meats[i].name) comparisonMeatIndex = i;
+    }
+
+    try {
+      const butchers = await fetchAllButchers();
+      let butcherNames = [];
+
+      for (let i = 0; i < butchers.length; i++) {
+        butcherNames.push(butchers[i].name);
       }
-
-      try {
-        const butchers = await fetchAllButchers();
-        let butcherNames = [];
-
-        for (let i = 0; i < butchers.length; i++) {
-          butcherNames.push(butchers[i].name);
-        }
-        let butchersLength = butchers.length;
-        let allMeatData = [];
-        for (let i = 1; i <= butchersLength; i++) {
-          const allButcherMeats = await fetchButcherMeats(i);
-          const meatData = allButcherMeats[comparisonMeatIndex];
-          allMeatData.push(meatData);
-        }
-        const combinedData = {
-          name: butcherNames,
-          meats: allMeatData,
-        };
-        setSelectedPosition(combinedData);
-        setAllButchers(true);
-      } catch (error) {
-        console.error('Error fetching all butcher meats:', error);
+      let butchersLength = butchers.length;
+      let allMeatData = [];
+      for (let i = 1; i <= butchersLength; i++) {
+        const allButcherMeats = await fetchButcherMeats(i);
+        const meatData = allButcherMeats[comparisonMeatIndex];
+        allMeatData.push(meatData);
       }
-    } else {
-      setAllButchers(false);
+      const combinedData = {
+        name: butcherNames,
+        meats: allMeatData,
+      };
+      setAllButchersData(combinedData);
+    } catch (error) {
+      console.error('Error fetching all butcher meats:', error);
+    }
+
+    {
       const selectedPos = positions.find((pos) => pos.name === selectedName);
-
       if (selectedPos) {
         const updatedPositions = positions.map((pos) => ({
           ...pos,
           selected: pos === selectedPos,
         }));
         setPositions(updatedPositions);
-
         setSelectedPosition(selectedPos);
 
         try {
@@ -182,6 +190,7 @@ const MeatYourMatch = () => {
         }
       }
     }
+    setIsMeatAndButcherSelected(true);
   };
 
   const handleDropdownChange = async (event) => {
@@ -192,8 +201,18 @@ const MeatYourMatch = () => {
   const handleMeatSelection = async (event) => {
     const selectedMeat = event.target.value;
     setSelectedMeat(selectedMeat);
-    console.log('selectedmeatttt', selectedPosition.name);
     handleMeatSelectionUpdate(selectedPosition.name);
+  };
+
+  const resetMeatAndButcherSelection = () => {
+    setSelectedPosition(null);
+    setSelectedMeat('');
+    setIsMeatAndButcherSelected(false);
+    const updatedPositions = positions.map((pos) => ({
+      ...pos,
+      selected: false,
+    }));
+    setPositions(updatedPositions);
   };
 
   useEffect(() => {
@@ -234,13 +253,17 @@ const MeatYourMatch = () => {
     <>
       <NavBar />
       <div id='meat-header'>
-      <h2>MEAT YOUR MATCH</h2>
+        <h2>MEAT YOUR MATCH</h2>
       </div>
       <div id='match-body'>
         <div>
           <label>
             Select a meat:
-            <select value={selectedMeat} onChange={handleMeatSelection}>
+            <select
+              value={selectedMeat}
+              onChange={handleMeatSelection}
+              disabled={selectedPosition}
+            >
               <option value='' disabled>
                 Select a meat
               </option>
@@ -256,11 +279,11 @@ const MeatYourMatch = () => {
             <select
               value={selectedPosition ? selectedPosition.name : ''}
               onChange={handleDropdownChange}
+              disabled={!selectedMeat || isMeatAndButcherSelected}
             >
               <option value='' disabled>
                 Select a butcher
               </option>
-              <option value='All Butchers'>All Butchers</option>
               {positions.map((position) => (
                 <option key={position.id} value={position.name}>
                   {position.name}
@@ -268,7 +291,13 @@ const MeatYourMatch = () => {
               ))}
             </select>
           </label>
+          {isMeatAndButcherSelected ? (
+            <button onClick={resetMeatAndButcherSelection}>
+              Refresh meat selection
+            </button>
+          ) : null}
         </div>
+
         <br />
         <APIProvider apiKey={secretKey}>
           <div style={{ display: 'flex' }}>
@@ -293,8 +322,9 @@ const MeatYourMatch = () => {
                     key={position.id}
                     position={{ lat: position.lat, lng: position.lng }}
                     onClick={() => {
-                      setAllButchers(false);
-                      handleMarkerClick(position.id, position);
+                      isMeatAndButcherSelected
+                        ? handleMarkerClick(position.id, position)
+                        : null;
                     }}
                     ref={markerRef}
                   >
@@ -306,16 +336,13 @@ const MeatYourMatch = () => {
                 ))}
               </Map>
             </div>
-            {allButchers ? (
-              <AllButchersPosition
-                position={selectedPosition}
-                selectedMeat={selectedMeat}
-              />
-            ) : selectedPosition && selectedPosition !== defaultPosition ? (
+
+            {selectedPosition && selectedPosition !== defaultPosition ? (
               <div style={{ flex: '1 1 auto' }}>
                 <PositionDetails
                   position={selectedPosition}
                   selectedMeat={selectedMeat}
+                  allButchersData={allButchersData}
                 />
               </div>
             ) : (
