@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
   return (
     <>
     <NavBar/>
-    <div id='app-header'>
+    <div id='butcher-header'>
     <h2>PARTICIPATING BUTCHERS</h2>
     </div>
     <div id='butcher-container'>

@@ -14,7 +14,7 @@ const PositionDetails = ({ position, selectedMeat }) => {
   return (
     <div key={position.id}>
       <br />
-      <h3>{position.name}</h3>
+      <h3 id='match-butch-name'>{position.name}</h3>
       <br />
       {position.street &&
         position.city &&
@@ -31,19 +31,18 @@ const PositionDetails = ({ position, selectedMeat }) => {
               position.zipcode}
           </p>
         )}
-      <br />
       {position.phonenumber && <p>Phone number: {position.phonenumber}</p>}
       <br />
       {position.meats && position.meats.length > 0 && (
         <>
-          <h3>Available Meats:</h3>
+          <h3 id='match-butch-name'>Available Meats:</h3>
           {position.meats.map((meat) => {
             if (meat.meat.name === selectedMeat) {
               return (
                 <div key={meat.meatId}>
                   <p>Name: {meat.meat.name}</p>
                   <p>Description: {meat.meat.description}</p>
-                  <p>Price: ${meat.price}</p>
+                  <p id='match-meat-price'>Price: ${meat.price}</p>
                 </div>
               );
             }
@@ -60,7 +59,6 @@ const AllButchersPosition = ({ position, selectedMeat }) => {
   return (
     <div key={position.id}>
       <h3>{selectedMeat} price comparison:</h3>
-      <br />
       {position.meats && position.meats.length > 0 && (
         <>
           {position.meats
@@ -72,8 +70,8 @@ const AllButchersPosition = ({ position, selectedMeat }) => {
 
               return (
                 <div key={index}>
-                  <p>Butcher: {position.name[index]}</p>{' '}
-                  <p>
+                  <p id='match-butch-name'>{position.name[index]}</p>{' '}
+                  <p id='match-meat-price'>
                     Price: ${meat.price}
                     {isLowestPrice && <span> (LOWEST PRICE)</span>}
                   </p>
@@ -274,7 +272,7 @@ const MeatYourMatch = () => {
   return (
     <>
       <NavBar />
-      <div id='app-header'>
+      <div id='meat-header'>
       <h2>MEAT YOUR MATCH</h2>
       </div>
       <div id='match-body'>

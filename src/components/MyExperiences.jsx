@@ -55,7 +55,7 @@ const MyExperiences = ({ auth }) => {
   return (
     <>
       <NavBar />
-      <div id='app-header'>
+      <div id='experience-header'>
       <br/>
       <h2>MY EXPERIENCES</h2>
       </div>

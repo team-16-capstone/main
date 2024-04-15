@@ -48,7 +48,7 @@ const Community = ({ auth }) => {
   return (
     <>
       <NavBar />
-      <div id='app-header'>
+      <div id='experience-header'>
       <h2>
         COMMUNITY
       </h2>

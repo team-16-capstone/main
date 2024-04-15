@@ -79,7 +79,7 @@ const Account = ({ auth }) => {
       <h2>MY ACCOUNT</h2>
       </div>
       <div id='user-welcome'>
-      {currentUser ? <h3 id='welcome-message'>Welcome {currentUser.name}!</h3> : null}
+      {currentUser ? <h3 id='welcome-message'>Logged in as {currentUser.name}</h3> : null}
       </div>
       <div id='account-body'>
         <h3 className='account-cards'>
