@@ -14,6 +14,8 @@ import fetchButcherMeats from '../utilities/fetchButcherMeats';
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
   const lowestPrice = allButchersData
     ? Math.min(...allButchersData.meats.map((meat) => meat.price))
     : null;
@@ -61,10 +63,10 @@ const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
             }
           })}
           <br />
-          <button onClick={() => setIsOpen(!isOpen)}>
+          <button onClick={() => setIsDetailsOpen(!isDetailsOpen)}>
             Compare prices at other locations:
           </button>
-          {isOpen && (
+          {isDetailsOpen && (
             <>
               <div key={allButchersData.id}>
                 {allButchersData.meats && allButchersData.meats.length > 0 && (
