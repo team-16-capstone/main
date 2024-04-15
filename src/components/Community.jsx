@@ -15,7 +15,7 @@ const Community = () => {
   return (
     <>
       <NavBar />
-      <div id='experience-header'>
+      <div id='community-header'>
       <h2>
         COMMUNITY
       </h2>
