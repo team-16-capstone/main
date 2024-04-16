@@ -69,6 +69,32 @@ const EditExperience = () => {
     }));
   };
 
+  const meats = [
+    { name: 'ribeye steak', src: ribeyesteak },
+    { name: 'filet mignon', src: filetmignon },
+    { name: 'new york strip steak', src: nystripsteak },
+    { name: 'pork loin chop', src: porkloinchop },
+    { name: 'pork shoulder', src: porkshoulder },
+    { name: 'beef brisket', src: beefbrisket },
+    { name: 'flank steak', src: flanksteak },
+    { name: 'chicken breast', src: chickenbreast },
+    { name: 'lamb chop', src: lambchop },
+    { name: 'ground beef', src: groundbeef },
+  ];
+
+  const meatCheckboxes = meats.map((meat) => (
+    <React.Fragment key={meat.name}>
+      <input
+        className='checkbox'
+        type='checkbox'
+        value={meat.name}
+        onChange={handleMeat}
+        checked={experience.meats.includes(meat.name)}
+      />{' '}
+      <img className='icon' alt={meat.name} src={meat.src} />
+    </React.Fragment>
+  ));
+
   return (
     <>
       <NavBar />
@@ -103,105 +129,7 @@ const EditExperience = () => {
           </label>
           <br />
           <br />
-          <label>
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='ribeye steak'
-              onChange={handleMeat}
-              checked={experience.meats.includes('ribeye steak')}
-            />{' '}
-            <img className='icon' alt='ribeye steak' src={ribeyesteak} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='filet mignon'
-              onChange={handleMeat}
-              checked={experience.meats.includes('filet mignon')}
-            />{' '}
-            <img className='icon' alt='filet mignon' src={filetmignon} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='new york strip steak'
-              onChange={handleMeat}
-              checked={experience.meats.includes('new york strip steak')}
-            />{' '}
-            <img
-              className='icon'
-              alt='new york strip steak'
-              src={nystripsteak}
-            />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='pork loin chop'
-              onChange={handleMeat}
-              checked={experience.meats.includes('pork loin chop')}
-            />{' '}
-            <img className='icon' alt='pork loin chop' src={porkloinchop} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='pork shoulder'
-              onChange={handleMeat}
-              checked={experience.meats.includes('pork shoulder')}
-            />{' '}
-            <img className='icon' alt='pork shoulder' src={porkshoulder} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='beef brisket'
-              onChange={handleMeat}
-              checked={experience.meats.includes('beef brisket')}
-            />{' '}
-            <img className='icon' alt='beef brisket' src={beefbrisket} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='flank steak'
-              onChange={handleMeat}
-              checked={experience.meats.includes('flank steak')}
-            />{' '}
-            <img className='icon' alt='flank steak' src={flanksteak} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='chicken breast'
-              onChange={handleMeat}
-              checked={experience.meats.includes('chicken breast')}
-            />{' '}
-            <img className='icon' alt='chicken breast' src={chickenbreast} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='lamb chop'
-              onChange={handleMeat}
-              checked={experience.meats.includes('lamb chop')}
-            />{' '}
-            <img className='icon' alt='lamb chop' src={lambchop} />
-            <input
-              className='checkbox'
-              type='checkbox'
-              value='ground beef'
-              onChange={handleMeat}
-              checked={experience.meats.includes('ground beef')}
-            />{' '}
-            <img className='icon' alt='ground beef' src={groundbeef} />
-          </label>
-          <br />
-          <label>
-            <p>Price/lb:</p>
-            <input
-              className='price-input'
-              type='text'
-              name='price'
-              value={experience.price}
-              onChange={(e) =>
-                setExperience({ ...experience, price: e.target.value })
-              }
-            />
-          </label>
+          <label>{meatCheckboxes}</label>
           <br />
           <br />
           <label>
@@ -210,7 +138,6 @@ const EditExperience = () => {
               rating={experience.rating}
               onRatingChange={updateRating}
             />
-
             <textarea
               className='notes-input'
               type='text'
