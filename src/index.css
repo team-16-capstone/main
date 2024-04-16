@@ -49,3 +49,101 @@ button:focus-visible {
     background-color: rgb(167, 49, 49);
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  button {
+    background-color: rgb(167, 49, 49);
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .hamburger-menu + .sidebar{
+    display: none;
+  }
+
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1180px) {
+  #logo-topper {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #nav-contents {
+    display: none;
+  }
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: max-content;
+  position: absolute;
+  top: 35px;
+  left: 420px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+  content: "";
+  width: 35px;
+  height: 5px;
+  background-color:rgb(167, 49, 49);
+}
+
+.hamburger-menu input {
+  appearance: none;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  pointer-events: none;
+}
+
+.sidebar {
+  transition: translate 200ms ease-in-out;
+  translate: -150%;
+  margin-top: 45px;
+  margin-left: 40px;
+  background-color:rgb(167, 49, 49);
+  max-width: 200px;
+  height: 300px;
+  justify-content: left;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 10;
+}
+
+.sidebar-links {
+  color:rgb(255, 255, 255);
+  text-align: left;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sidebar-links:hover {
+  color: rgb(214, 208, 208, .60);
+}
+
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 15px;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+  translate: 0;
+}
+
+

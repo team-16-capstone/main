@@ -1,4 +1,5 @@
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fetchExperiences from '../utilities/fetchExperiences';
@@ -42,6 +43,8 @@ const Community = () => {
           </button>
         </div>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import fetchAllButchers from '../utilities/fetchAllButchers';
@@ -30,6 +31,8 @@ const Butchers = () => {
         </div>
       ))}
     </div>
+    <br/>
+      <Footer />
     </>
   );
 };

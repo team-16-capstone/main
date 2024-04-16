@@ -1,4 +1,5 @@
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -58,6 +59,8 @@ const MyExperiences = () => {
           </button>
         </div>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

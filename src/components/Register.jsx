@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logored from '../assets/logored.png';
+import Footer from './Footer';
 
 const Register = ({ register }) => {
   // const [firstName, setFirstName] = useState('');
@@ -83,6 +84,8 @@ const Register = ({ register }) => {
           Already a Member? Login
         </Link>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };
