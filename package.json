@@ -12,7 +12,7 @@
     "seed": "node prisma/seed",
     "generate:secretkey": "node generateSecretKey.js",
     "all": "npm run start:dev & npm run dev",
-    "start": "node App.jsx"
+    "start": "node ./src/App.jsx"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
