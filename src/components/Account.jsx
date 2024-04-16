@@ -1,4 +1,5 @@
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import exppic from '../assets/exppic.jpg';
@@ -78,6 +79,8 @@ const Account = () => {
           </button>
         </h3>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logored from '../assets/logored.png';
+import Footer from './Footer';
 
 const Login = ({ login }) => {
   const [email, setEmail] = useState('');
@@ -51,6 +52,8 @@ const Login = ({ login }) => {
           Pay for your Membership
         </Link>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

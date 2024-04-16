@@ -6,7 +6,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /* background: linear-gradient(rgb(255, 255, 255), rgba(167, 49, 49)); */
-  background-image: url('src/assets/1290-1080-bg.png');
+  /* background-image: url('src/assets/1290-1080-bg.png'); */
+  background: white;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100%;
@@ -45,7 +46,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 45px auto auto auto;
+  margin: 0px auto auto auto;
   padding: 0px;
   border-radius: 8px 8px 0px 0px ;
 }
@@ -59,7 +60,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 100px auto auto auto;
+  margin: 0px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -73,7 +74,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: -50px auto auto auto;
+  margin: 0px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -87,23 +88,23 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: -110px auto auto auto;
+  margin: 0px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
 
 #single-header {
   background-color: rgba(167, 49, 49);
-  width: 100%;
+  width: 70%;
   font-size: 40px;
   color: rgb(255, 255, 255);
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 30px 0px 0px 0px;
+  margin: 0px auto auto auto;
   padding: 0px;
-  border-radius: 0px;
+  border-radius: 8px;
 }
 
 #meat-header {
@@ -115,7 +116,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 25px auto auto auto;
+  margin: 0px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -175,6 +176,7 @@ button:hover {
   font-size: 20px;
   font-weight: 500;
   text-decoration: none;
+  margin: 0px 30px;
 }
 
 .link:hover {
@@ -228,18 +230,22 @@ button:hover {
   margin: 10px;
 }
 
+#nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  margin: 0px auto;
+  height: 90px;
+  list-style: none;
+}
+
 #nav-container {
   background-color: rgba(255, 255, 255);
   display: flex;
-  flex-flow: row wrap;
-  list-style: none;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
+  width: 70%;
   height: 90px;
-  position: fixed;
-  top: 0px;
-  margin: 0px;
+  margin: 0px auto;
   padding: 0px;
   border-radius: 0px;
 }
@@ -250,13 +256,41 @@ button:hover {
   list-style: none;
   justify-content: space-evenly;
   align-items: center;
-  width: 70%;
   height: 90px;
-  position: fixed;
-  top: 0px;
+  margin: 0px 10px 0px 90px ;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px;
+}
+
+#nav-logo-container {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content:left;
+  align-items: center;
+  height: 90px;
+  margin: 0px 10px;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px;
+}
+
+#footer-container {
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 13px;
+  width: 100%;
+  height: 120px;
   margin: 0px;
   padding: 0px;
   border-radius: 0px;
+}
+
+#break-line {
+  background-color: black;
 }
 
 #butcher-container {
@@ -473,7 +507,7 @@ button:hover {
 }
 
 #new-exp-body {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgb(255, 255, 255);
   text-align: center;
   width: 70%;
   margin: 10px auto;
@@ -566,9 +600,13 @@ button:hover {
 }
 
 #root {
+  background-color: rgb(255, 255, 255);
   width: 100%;
+  height: auto;
   margin: 0;
   padding: 0px;
+  position: absolute;
+  top:0px;
   text-align: center;
 }
 

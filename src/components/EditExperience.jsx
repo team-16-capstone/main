@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatingSystem from './RatingSystem';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useParams, useNavigate } from 'react-router-dom';
 import logowhite from '../assets/logowhite.png';
 import ribeyesteak from '../assets/ribeyesteak.png';
@@ -77,7 +78,7 @@ const EditExperience = () => {
           <br />
           <h2>EDIT EXPERIENCE</h2>
         </div>
-        <form id='edit-exp-body'>
+        <form id='community-body'>
           <label>
             <select value={experience.butcher} onChange={handleButcher}>
               <option value=''>Butcher Visited</option>
@@ -243,6 +244,8 @@ const EditExperience = () => {
           </button>
         </form>
       </div>
+      <br/>
+      <Footer/>
     </>
   );
 };

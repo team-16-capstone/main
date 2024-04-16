@@ -1,4 +1,5 @@
 import NavBar from './NavBar';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import {
   APIProvider,
@@ -166,7 +167,7 @@ const MeatYourMatch = () => {
       <div id='meat-header'>
         <h2>MEAT YOUR MATCH</h2>
       </div>
-      <div id='match-body'>
+      <div id='community-body'>
         <div>
           <label>
             Select a meat:
@@ -264,6 +265,8 @@ const MeatYourMatch = () => {
           </div>
         </APIProvider>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

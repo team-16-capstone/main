@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import fetchExperiences from '../utilities/fetchExperiences';
 import fetchSingleButcher from '../utilities/fetchSingleButcher';
 
@@ -40,7 +41,7 @@ const SingleButcher = () => {
       <div id='single-butcher-container'>
         <div id='single-header'>
           <h2>{singleButcherData.name}</h2>
-          <p> Average Rating: {calculateAverageRating()} out of 5 stars</p> {/* move this line anywhere to put the rating - VS */}
+          <h2>{calculateAverageRating()}/5 stars</h2>
         </div>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
@@ -84,6 +85,8 @@ const SingleButcher = () => {
           </div>
         </div>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

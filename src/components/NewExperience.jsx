@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import RatingSystem from './RatingSystem';
 import ribeyesteak from '../assets/ribeyesteak.png';
 import filetmignon from '../assets/filetmignon.png';
@@ -91,7 +92,7 @@ function NewExperience() {
       <h2>CREATE EXPERIENCE</h2>
 
       </div>
-      <div id='new-exp-body'>
+      <div id='community-body'>
         <h3>LOG YOUR LATEST PURCHASE</h3>
         <form onSubmit={handleSubmit} onKeyDown={handleEnterButton}>
           <label>
@@ -148,6 +149,8 @@ function NewExperience() {
           <button type='submit'>Submit</button>
         </form>
       </div>
+      <br/>
+      <Footer/>
     </>
   );
 }
