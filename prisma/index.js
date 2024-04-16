@@ -32,7 +32,6 @@ app.use(morgan('dev'));
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  console.log('req.headers is', req.headers);
 
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized: Missing token' });
@@ -346,9 +345,8 @@ app.post('/api/new-experience', authenticateToken, async (req, res) => {
       data: {
         butcher,
         date,
-        price,
-        meats: { set: meats },
         price: price,
+        meats: { set: meats },
         review: review,
         rating: rating,
       },
@@ -418,7 +416,6 @@ app.patch('/api/users/stripe/:email', async (req, res, next) => {
 
     return res.status(200).json(responseData);
   } catch (error) {
-    console.log('hi');
     next(error);
   }
 });
@@ -574,7 +571,6 @@ app.delete(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      console.log(req.params);
       const deleteExperience = await prisma.experience.delete({
         where: {
           id: parseInt(id),
@@ -593,7 +589,6 @@ const findUserByToken = async (token, next) => {
   try {
     const payload = await jwt.verify(token, secretKey);
     id = payload.id;
-    console.log(payload);
   } catch (error) {
     next(error);
   }
@@ -679,7 +674,7 @@ app.post('/api/verifytoken', (req, res) => {
   });
 });
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
