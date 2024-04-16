@@ -1,6 +1,8 @@
 const fetchUniqueExperience = async (id) => {
   try {
-    const response = await fetch(`http://localhost:3001/api/experiences/${id}`);
+    const response = await fetch(
+      `https://pocket-butcher-backend.onrender.com/api/experiences/${id}`
+    );
     if (response.ok) {
       const data = await response.json();
       return data;

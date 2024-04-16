@@ -1,6 +1,6 @@
 const fetchAllButchers = async () => {
   try {
-    const url = 'http://localhost:3001/api/butchers/';
+    const url = 'https://pocket-butcher-backend.onrender.com/api/butchers/';
     const options = {
       method: 'GET',
       headers: {

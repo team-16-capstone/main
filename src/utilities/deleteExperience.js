@@ -1,7 +1,7 @@
 const deleteExperience = async (id, token) => {
   try {
     const response = await fetch(
-      `http://localhost:3001/api/experiences/${id}`,
+      `https://pocket-butcher-backend.onrender.com/api/experiences/${id}`,
       {
         method: 'DELETE',
         body: JSON.stringify(),
