@@ -39,19 +39,22 @@ export default function PaymentForm({ email }) {
       try {
         const { id } = paymentMethod;
 
-        const response = await fetch('http://localhost:3001/api/payment', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ amount: 1000, id }),
-        });
+        const response = await fetch(
+          'https://pocket-butcher-backend.onrender.com/api/payment',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount: 1000, id }),
+          }
+        );
         const responseData = await response.json();
         // If the payment is successful, another API call will be made to patch the user with the associated email,
         // So that stripeUser is set to true, therefore being able to log in
         if (responseData.success) {
           const updateResponse = await fetch(
-            `http://localhost:3001/api/users/stripe/${email}`,
+            `https://pocket-butcher-backend.onrender.com/api/users/stripe/${email}`,
             {
               method: 'PATCH',
               headers: {

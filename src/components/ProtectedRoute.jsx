@@ -5,13 +5,16 @@ const checkIfAuthenticated = async () => {
   const token = localStorage.getItem('token');
   if (token) {
     try {
-      const response = await fetch('http://localhost:3001/api/verifyToken', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        'https://pocket-butcher-backend.onrender.com/api/verifyToken',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.ok) {
         return true;
       } else {
