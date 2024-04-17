@@ -19,13 +19,16 @@ function App() {
   const location = useLocation();
 
   const login = async (credentials) => {
-    let response = await fetch('http://localhost:3001/api/login', {
-      method: 'POST',
-      body: JSON.stringify(credentials),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    let response = await fetch(
+      'https://pocket-butcher-backend.onrender.com/api/login',
+      {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     let json = await response.json();
     if (response.ok) {
       const token = json.token;
@@ -37,13 +40,16 @@ function App() {
   };
 
   const register = async (credentials) => {
-    let response = await fetch('http://localhost:3001/api/users', {
-      method: 'POST',
-      body: JSON.stringify(credentials),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    let response = await fetch(
+      'https://pocket-butcher-backend.onrender.com/api/users',
+      {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     let json = await response.json();
     if (response.ok) {
       console.log('Registration succesful:', json);
@@ -97,7 +103,10 @@ function App() {
               ></Route>
               <Route path='/new-experience' element={<NewExperience />}></Route>
               <Route path='/my-experiences' element={<MyExperiences />}></Route>
-              <Route path='/edit-experience/:id' element={<EditExperience />}></Route>
+              <Route
+                path='/edit-experience/:id'
+                element={<EditExperience />}
+              ></Route>
               <Route path='/butchers' element={<Butchers />}></Route>
               <Route path='/butchers/:id' element={<SingleButcher />}></Route>
               <Route path='/community' element={<Community />}></Route>
