@@ -1,7 +1,7 @@
 const patchUserExperience = async (experienceId, token, experience) => {
   try {
     const response = await fetch(
-      `https://pocket-butcher-backend.onrender.com/${experienceId}`,
+      `https://pocket-butcher-backend.onrender.com/api/${experienceId}`,
       {
         method: 'PATCH',
         headers: {
