@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
     cors: true,
     proxy: {
-      '/api': `https://localhost:${serverPort}`,
+      '/api': `https://pocket-butcher-backend.onrender.com`,
     },
     https: true,
   },
