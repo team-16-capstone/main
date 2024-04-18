@@ -16,12 +16,11 @@ import groundbeef from '../assets/groundbeef.png';
 import fetchAllButchers from '../utilities/fetchAllButchers';
 import postNewExperience from '../utilities/postNewExperience';
 
-
 function NewExperience() {
   const [butcherOptions, setButcherOptions] = useState([]);
   const [butcher, setButcher] = useState('');
   const [date, setDate] = useState('');
-  const [meats, setMeats] = useState([]);
+  const [meats, setMeats] = useState('');
   const [price, setPrice] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
@@ -42,12 +41,7 @@ function NewExperience() {
   };
 
   const handleMeat = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setMeats([...meats, value]);
-    } else {
-      setMeats(meats.filter((meat) => meat !== value));
-    }
+    setMeats(event.target.value);
   };
 
   const handleReview = (event) => {
@@ -74,6 +68,7 @@ function NewExperience() {
       rating: rating,
       review: review,
     };
+    console.log(formData);
     postNewExperience(formData, token).then(navigate('/my-experiences'));
   };
 
@@ -88,9 +83,8 @@ function NewExperience() {
     <>
       <NavBar />
       <div id='experience-header'>
-      <br/>
-      <h2>CREATE EXPERIENCE</h2>
-
+        <br />
+        <h2>CREATE EXPERIENCE</h2>
       </div>
       <div id='community-body'>
         <h3>LOG YOUR LATEST PURCHASE</h3>
@@ -114,16 +108,90 @@ function NewExperience() {
           <br />
           <br />
           <label>
-            <input className='checkbox' type="checkbox" value="ribeye steak" onChange={handleMeat} />  <img className='icon' alt='ribeye steak' src={ribeyesteak} />
-            <input className='checkbox' type="checkbox" value="filet mignon" onChange={handleMeat} /> <img className='icon' alt='filet mignon' src={filetmignon} />
-            <input className='checkbox' type="checkbox" value="new york strip steak" onChange={handleMeat} /> <img className='icon' alt='new york strip steak' src={nystripsteak} />
-            <input className='checkbox' type="checkbox" value="pork lion chop" onChange={handleMeat} /> <img className='icon' alt='pork lion chop' src={porkloinchop} />
-            <input className='checkbox' type="checkbox" value="pork shoulder" onChange={handleMeat} /> <img className='icon' alt='pork shoulder' src={porkshoulder} />
-            <input className='checkbox' type="checkbox" value="beef brisket" onChange={handleMeat} /> <img className='icon' alt='beef brisket' src={beefbrisket} />
-            <input className='checkbox' type="checkbox" value="flank steak" onChange={handleMeat} /> <img className='icon' alt='flank steak' src={flanksteak} />
-            <input className='checkbox' type="checkbox" value="chicken breast" onChange={handleMeat} /> <img className='icon' alt='chicken breast' src={chickenbreast} />
-            <input className='checkbox' type="checkbox" value="lamb chop" onChange={handleMeat} /> <img className='icon' alt='lamb chop' src={lambchop} />
-            <input className='checkbox' type="checkbox" value="ground beef" onChange={handleMeat} /> <img className='icon' alt='ground beef' src={groundbeef} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='ribeye steak'
+              checked={meats === 'ribeye steak'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='ribeye steak' src={ribeyesteak} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='filet mignon'
+              checked={meats === 'filet mignon'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='filet mignon' src={filetmignon} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='new york strip steak'
+              checked={meats === 'new york strip steak'}
+              onChange={handleMeat}
+            />{' '}
+            <img
+              className='icon'
+              alt='new york strip steak'
+              src={nystripsteak}
+            />
+            <input
+              className='checkbox'
+              type='radio'
+              value='pork loin chop'
+              checked={meats === 'pork loin chop'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='pork loin chop' src={porkloinchop} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='pork shoulder'
+              checked={meats === 'pork shoulder'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='pork shoulder' src={porkshoulder} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='beef brisket'
+              checked={meats === 'beef brisket'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='beef brisket' src={beefbrisket} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='flank steak'
+              checked={meats === 'flank steak'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='flank steak' src={flanksteak} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='chicken breast'
+              checked={meats === 'chicken breast'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='chicken breast' src={chickenbreast} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='lamb chop'
+              checked={meats === 'lamb chop'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='lamb chop' src={lambchop} />
+            <input
+              className='checkbox'
+              type='radio'
+              value='ground beef'
+              checked={meats === 'ground beef'}
+              onChange={handleMeat}
+            />{' '}
+            <img className='icon' alt='ground beef' src={groundbeef} />
           </label>
           <label>
             <p>Price/lb:</p>
@@ -149,8 +217,8 @@ function NewExperience() {
           <button type='submit'>Submit</button>
         </form>
       </div>
-      <br/>
-      <Footer/>
+      <br />
+      <Footer />
     </>
   );
 }
