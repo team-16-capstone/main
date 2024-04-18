@@ -346,7 +346,7 @@ app.post('/api/new-experience', authenticateToken, async (req, res) => {
         butcher,
         date,
         price: price,
-        meats: meats,
+        meats: { set: meats },
         review: review,
         rating: rating,
       },
