@@ -46,7 +46,7 @@ model User {
 model Experience {
   id      Int      @id @default(autoincrement())
   butcher String
-  meats   String
+  meats   String[]
   price   String
   review  String
   date    String
