@@ -75,7 +75,7 @@ const SingleButcher = () => {
                   experience.butcher === singleButcherData.name && (
                     <div className='experience-card' key={experience.id}>
                       <h4>{experience.butcher}</h4>
-                      <p>Purchased: {experience.meats}</p>
+                      <p>Purchased: {experience.meats.join(', ')}</p>
                       <p>Date: {experience.date}</p>
                       <p className='price'>Price/lb: ${experience.price}</p>
                       <p>Rating: {experience.rating}/5 ★ </p>
