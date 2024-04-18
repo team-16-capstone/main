@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import fetchExperiences from '../utilities/fetchExperiences';
 import deleteExperience from '../utilities/deleteExperience';
-import meatsbw from '../assets/meatsbw.jpg'
+import meatsbw from '../assets/meatsbw.jpg';
 
 const MyExperiences = () => {
   const [experiences, setExperiences] = useState([]);
@@ -22,16 +22,15 @@ const MyExperiences = () => {
     <>
       <NavBar />
       <div id='experience-header'>
-      <br/>
-      <h2>MY EXPERIENCES</h2>
-
+        <br />
+        <h2>MY EXPERIENCES</h2>
       </div>
       <div id='community-body'>
         <div id='community-container'>
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
               <h4>{experience.butcher}</h4>
-              <p>Purchased: {experience.meats.join(', ')}</p>
+              <p>Purchased: {experience.meats}</p>
               <p>Date: {experience.date}</p>
               <p className='price'>Price/lb: ${experience.price}</p>
               <p>Rating: {experience.rating} out of 5 stars </p>
@@ -59,7 +58,7 @@ const MyExperiences = () => {
           </button>
         </div>
       </div>
-      <br/>
+      <br />
       <Footer />
     </>
   );

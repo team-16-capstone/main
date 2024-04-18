@@ -22,14 +22,18 @@ const SingleButcher = () => {
 
   const calculateAverageRating = () => {
     if (experiences.length === 0) return 0;
-    const butcherExperiences = experiences.filter(experience => experience.butcher === singleButcherData.name);
+    const butcherExperiences = experiences.filter(
+      (experience) => experience.butcher === singleButcherData.name
+    );
     if (butcherExperiences.length === 0) return 0;
-    const totalRating = butcherExperiences.reduce((acc, experience) => acc + experience.rating, 0);
+    const totalRating = butcherExperiences.reduce(
+      (acc, experience) => acc + experience.rating,
+      0
+    );
     const averageRating = totalRating / butcherExperiences.length;
     const roundedAverageRating = Math.round(averageRating * 100) / 100;
     return roundedAverageRating;
   };
-
 
   if (!singleButcherData) {
     return <div>Loading...</div>;
@@ -72,7 +76,7 @@ const SingleButcher = () => {
                   experience.butcher === singleButcherData.name && (
                     <div className='experience-card' key={experience.id}>
                       <h4>{experience.butcher}</h4>
-                      <p>Purchased: {experience.meats.join(', ')}</p>
+                      <p>Purchased: {experience.meats}</p>
                       <p>Date: {experience.date}</p>
                       <p className='price'>Price/lb: ${experience.price}</p>
                       <p>Rating: {experience.rating} out of 5 stars </p>
@@ -85,7 +89,7 @@ const SingleButcher = () => {
           </div>
         </div>
       </div>
-      <br/>
+      <br />
       <Footer />
     </>
   );
