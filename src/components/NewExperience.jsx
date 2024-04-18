@@ -47,6 +47,7 @@ function NewExperience() {
     } else {
       setMeats(meats.filter((meat) => meat !== value));
     }
+  };
 
   const handleReview = (event) => {
     setReview(event.target.value);
