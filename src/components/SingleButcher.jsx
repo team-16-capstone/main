@@ -41,7 +41,6 @@ const SingleButcher = () => {
       <div id='single-butcher-container'>
         <div id='single-header'>
           <h2>{singleButcherData.name}</h2>
-          <h2>{calculateAverageRating()}/5 stars</h2>
         </div>
         <div id='single-butcher-body' key={singleButcherData.id}>
           <div id='left-butcher-div'>
@@ -49,7 +48,7 @@ const SingleButcher = () => {
               <img className='butcher-img' src={singleButcherData.image_url} />
               <img className='butcher-img' src={singleButcherData.map_url} />
               <br />
-              <br />
+              <h2 id='butcher-rating'>{calculateAverageRating()}/5 ★</h2>
             </div>
             <h3>{singleButcherData.street}</h3>
             <h3>
@@ -75,7 +74,7 @@ const SingleButcher = () => {
                       <p>Purchased: {experience.meats.join(', ')}</p>
                       <p>Date: {experience.date}</p>
                       <p className='price'>Price/lb: ${experience.price}</p>
-                      <p>Rating: {experience.rating} out of 5 stars </p>
+                      <p>Rating: {experience.rating}/5 ★ </p>
                       <p className='review-box'>{experience.review}</p>
                     </div>
                   )
