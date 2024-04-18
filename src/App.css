@@ -121,6 +121,36 @@ h2 {
   border-radius: 8px;
 }
 
+#match-contents-div {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+  padding: 0px;
+}
+
+#match-left-div {
+  min-width: 300px;
+  max-height: 600px;
+}
+
+#match-right-container {
+  max-width: 450px;
+}
+
+#match-right-div {
+  display: block;
+  flex-flow: column wrap;
+  overflow-y: scroll;
+  list-style: none;
+  justify-content: space-evenly;
+  max-width: 450px;
+  max-height: 600px;
+  margin: 15px 0px 0px 10px;
+}
+
 #butcher-name {
   background-color: transparent;
   font-size: 37px;
@@ -208,7 +238,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: auto;
+  margin: 80px auto;
   padding: 100px;
   border-radius: 8px;
 }
@@ -219,7 +249,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: auto;
+  margin: 80px auto;
   padding: 100px;
   border-radius: 8px;
 }
@@ -321,14 +351,18 @@ button:hover {
 
 #single-butcher-body {
   display: flex;
-  width: 75%;
+  width: 70%;
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
   text-align: center;
-  margin: 10px auto;
+  margin: auto;
   padding: 0px;
   border-radius: 8px;
+}
+
+#butcher-rating {
+  color: black;
 }
 
 #left-butcher-div {
@@ -386,7 +420,7 @@ button:hover {
   margin: 5px 10px 5px 0px;
   padding: 35px 40px 130px 40px;
   border-radius: 8px;
-  width: 361px;
+  width: 357px;
   height: 490px;
 }
 
@@ -397,7 +431,7 @@ button:hover {
   margin: 5px 0px 5px 0px;
   padding: 35px 40px 130px 40px;
   border-radius: 8px;
-  width: 361px;
+  width: 357px;
   height: 490px;
 }
 
@@ -499,11 +533,12 @@ button:hover {
 }
 
 #match-butch-name {
-  font-size: 20px;
+  font-size: 23px;
 }
 
 #match-meat-price {
   color:rgb(167, 49, 49);
+  font-size: 18px;
 }
 
 #new-exp-body {
@@ -576,7 +611,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: auto;
+  margin: 80px auto;
   padding: 100px;
   border-radius: 8px;
 }

@@ -77,7 +77,7 @@ const main = async () => {
             zipcode: '10018',
             phonenumber: '+1(212)279-3298',
             image_url:
-              'https://lh3.googleusercontent.com/p/AF1QipPnj3XYxvcMJ2OvGnpJ4RBQRL_7jK5ezNy71AVX=s680-w680-h510',
+              'https://pbs.twimg.com/media/CQe3XUKUsAEKPmA.jpg',
             map_url:
               'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
             lat: '40.75644631753445',
@@ -91,7 +91,7 @@ const main = async () => {
             zipcode: '10036',
             phonenumber: '+1(212)563-2555',
             image_url:
-              'https://d2sg5tibg946xl.cloudfront.net/eyJidWNrZXQiOiJtZXJjYXRvLWltYWdlcyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJmaWxsIiwid2lkdGgiOjM5MCwiaGVpZ2h0IjozOTB9fSwia2V5Ijoic3RvcmUtaW1hZ2VzL0w2M25wODdEQk1LUEFaRlRjOTlKbXhYeWRENGFPcXNSMjJXM29HVDIuanBnIn0=',
+              'https://fastly.4sqi.net/img/general/600x600/45690617_9A_C-P28Kd9Hv7GmWh9PjZkHTdOQ1NWs1aNP-TjpV7M.jpg',
             map_url:
               'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
             lat: '40.75839054564528',
@@ -175,7 +175,7 @@ const main = async () => {
             zipcode: '10003',
             phonenumber: '+1(212)228-5590',
             image_url:
-              'https://carpecity.com/wp-content/uploads/2022/07/J-Baczynsky-Meat-Market-Exterior-East-Village.jpg',
+              'https://fastly.4sqi.net/img/general/600x600/10675662_LbxECV_pnTJhQQi3oenaedJ3LqMrmyW0-2CCvAvMD0A.jpg',
             map_url:
               'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
             lat: '40.72921570855029',
@@ -189,7 +189,7 @@ const main = async () => {
             zipcode: '10012',
             phonenumber: '+1(212)475-8134',
             image_url:
-              'https://www.thecitycook.com/merchants/pino-prime-meats/_res/id=Picture',
+              'https://static01.nyt.com/images/2015/04/05/nyregion/20150405JOINT-slide-KT7M/20150405JOINT-slide-KT7M-superJumbo.jpg',
             map_url:
               'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
             lat: '40.72737439097817',

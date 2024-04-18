@@ -12,6 +12,7 @@ import fetchAllButchers from '../utilities/fetchAllButchers';
 import fetchAllMeats from '../utilities/fetchAllMeats';
 import fetchButcherMeats from '../utilities/fetchButcherMeats';
 import PositionDetails from './PositionDetails';
+import cleaverpin from '../assets/cleaverpin.png';
 
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -205,20 +206,19 @@ const MeatYourMatch = () => {
           </label>
           {isMeatAndButcherSelected ? (
             <button onClick={resetMeatAndButcherSelection}>
-              Refresh meat selection
+              REFRESH
             </button>
           ) : null}
         </div>
-
-        <br />
         <APIProvider apiKey={secretKey}>
-          <div style={{ display: 'flex' }}>
-            <div
+          <div id='match-contents-div' style={{ display: 'flex' }}>
+            <div id='match-left-div'
               style={{
-                height: '60vh',
-                width: '50%',
+                height: '600px',
+                width: 'auto',
                 flex: '1 1 auto',
                 position: 'relative',
+                margin: '20px 10px 0px 30px'
               }}
             >
               <Map
@@ -241,8 +241,9 @@ const MeatYourMatch = () => {
                     ref={markerRef}
                   >
                     <Pin
-                      background={position.selected ? 'blue' : 'grey'}
-                      borderColor={'red'}
+                      // img src={cleaverpin}
+                      background={position.selected ? 'white' : 'grey'}
+                      borderColor={'black'}
                     ></Pin>
                   </AdvancedMarker>
                 ))}

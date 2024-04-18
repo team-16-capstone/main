@@ -8,35 +8,39 @@ const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
     : null;
 
   return (
-    <div key={position.id}>
+    <div id='match-right-container'>
+    <div id='match-right-div' key={position.id}>
       <br />
       <h3 id='match-butch-name'>{position.name}</h3>
-      <br />
       {position.street &&
         position.city &&
         position.state &&
         position.zipcode && (
+          <>
           <p>
-            Address:{' '}
-            {position.street +
-              ', ' +
-              position.city +
-              ', ' +
-              position.state +
-              ', ' +
-              position.zipcode}
+            {' '}
+            {position.street}
           </p>
+          <p>
+          {' '}
+          {position.city +
+            ', ' +
+            position.state +
+            ', ' +
+            position.zipcode}
+        </p>
+        </>
         )}
       {position.phonenumber && <p>Phone number: {position.phonenumber}</p>}
       <br />
       {position.meats && position.meats.length > 0 && (
         <>
-          <h3 id='match-butch-name'>Meat information:</h3>
+          <h3 id='match-butch-name'>Meat Selection:</h3>
           {position.meats.map((meat) => {
             if (meat.meat.name === selectedMeat) {
               return (
                 <div key={meat.meatId}>
-                  <p>Name: {meat.meat.name}</p>
+                  <p>{meat.meat.name}</p>
                   <p>Description: {meat.meat.description}</p>
                   <p id='match-meat-price'>
                     Price: ${meat.price}
@@ -51,7 +55,7 @@ const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
           })}
           <br />
           <button onClick={() => setIsDetailsOpen(!isDetailsOpen)}>
-            Compare prices at other locations:
+            COMPARE PRICES
           </button>
           {isDetailsOpen && (
             <>
@@ -85,9 +89,9 @@ const PositionDetails = ({ position, selectedMeat, allButchersData }) => {
               </div>
             </>
           )}
-          ;
         </>
       )}
+    </div>
     </div>
   );
 };

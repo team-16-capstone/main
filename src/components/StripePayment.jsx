@@ -67,9 +67,9 @@ export default function StripePayment() {
         </>
       ) : (
         <>
-          <h3>Membership</h3>
-          <h3>$100</h3>
-          <img src={membercard} alt='member card' />
+          <h3>Lifetime Membership</h3>
+          <h3>$60</h3>
+          {/* <img src={membercard} alt='member card' /> */}
           {/* email is passed as a prop to Stripe Container */}
           <StripeContainer email={email} />
         </>

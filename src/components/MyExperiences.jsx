@@ -33,7 +33,7 @@ const MyExperiences = () => {
               <p>Purchased: {experience.meats}</p>
               <p>Date: {experience.date}</p>
               <p className='price'>Price/lb: ${experience.price}</p>
-              <p>Rating: {experience.rating} out of 5 stars </p>
+              <p>Rating: {experience.rating}/5 ★ </p>
               <p className='review-box'>{experience.review}</p>
               <Link to={`/edit-experience/${experience.id}`}>
                 <button onClick={() => setExperienceId(experience.id)}>
