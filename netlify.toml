@@ -1,0 +1,44 @@
+[[redirects]]
+  from = "/register"
+  to = "/register"
+  status = 200
+
+[[redirects]]
+  from = "/stripepayment"
+  to = "/stripepayment"
+  status = 200
+
+[[redirects]]
+  from = "/meat-your-match"
+  to = "/meat-your-match"
+  status = 200
+
+[[redirects]]
+  from = "/new-experience"
+  to = "/new-experience"
+  status = 200
+
+[[redirects]]
+  from = "/my-experiences"
+  to = "/my-experiences"
+  status = 200
+
+[[redirects]]
+  from = "/edit-experience/:id"
+  to = "/edit-experience/:id"
+  status = 200
+
+[[redirects]]
+  from = "/butchers"
+  to = "/butchers"
+  status = 200
+
+[[redirects]]
+  from = "/butchers/:id"
+  to = "/butchers/:id"
+  status = 200
+
+[[redirects]]
+  from = "/community"
+  to = "/community"
+  status = 200
