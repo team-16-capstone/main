@@ -130,6 +130,15 @@ h2 {
   border-radius: 8px;
 }
 
+#dropdown-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  margin: 0px 15px 0px 5px;
+}
+
 #match-contents-div {
   display: flex;
   flex-flow: row wrap;
@@ -140,6 +149,16 @@ h2 {
   padding: 0px;
 }
 
+#welcome-message {
+  font-size: 30px;
+  margin: 10px 40px 0px 40px;
+}
+
+#welcome-body {
+  font-size: 18px;
+  margin: 0px 160px;
+}
+
 #match-left-div {
   min-width: 300px;
   max-height: 500px;
@@ -147,7 +166,7 @@ h2 {
 }
 
 #match-right-container {
-  max-width:550px;
+  max-width:850px;
 }
 
 #match-right-div {
@@ -156,9 +175,10 @@ h2 {
   overflow-y: scroll;
   list-style: none;
   justify-content: space-evenly;
-  max-width: 550px;
+  max-width: 850px;
   max-height: 520px;
-  margin: 20px 0px 0px 10px;
+  line-height: 20px;
+  margin: 0px 0px 0px 10px;
 }
 
 #butcher-name {
@@ -188,8 +208,8 @@ p {
 }
 
 .butcher-img {
-  width: 413px;
-  height: 413px;
+  width: 430px;
+  height: 430px;
 }
 
 option {
@@ -404,15 +424,16 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   margin: 10px 5px 0px 0px;
   max-height: 650px;
-  max-width: 850px;
+  width: 865px;
 }
 
 .single-address {
   font-size: 30px;
   margin: 0px;
+  line-height: 40px;
 }
 
 #right-butcher-div {
@@ -441,7 +462,7 @@ button:hover {
   margin: auto;
 }
 
-#welcome-message {
+#login-message {
   width: 98%;
   padding: 0px;
 }
@@ -615,14 +636,12 @@ button:hover {
 #community-body {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  /* background-repeat: repeat-x; */
-  /* background-attachment: fixed; */
-  /* background-size: 100%; */
   text-align: center;
+  justify-content: center;
   width: 70%;
   min-height: 550px;
   margin: 10px auto -15px auto;
-  padding: 30px 0px 30px 0px;
+  padding: 15px 0px 30px 0px;
   border-radius: 8px;
 }
 

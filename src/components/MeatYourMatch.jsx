@@ -17,7 +17,7 @@ import cleaverpin from '../assets/cleaverpin.png';
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const defaultPosition = {
-  name: 'Welcome to Meat Your Match®! ' + 'This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!' + ' Please select a meat and a butcher to display pricing information.'
+  name: ' Please select a meat and a butcher to display pricing information.'
 };
 
 const MeatYourMatch = () => {
@@ -174,7 +174,7 @@ const MeatYourMatch = () => {
         <div>
           <label>
             Select a meat:
-            <select
+            <select className='dropdown'
               value={selectedMeat}
               onChange={handleMeatSelection}
               disabled={selectedPosition}
@@ -191,7 +191,7 @@ const MeatYourMatch = () => {
           </label>
           <label>
             Select a butcher:
-            <select
+            <select className='dropdown'
               value={selectedPosition ? selectedPosition.name : ''}
               onChange={handleDropdownChange}
               disabled={!selectedMeat || isMeatAndButcherSelected}
@@ -212,6 +212,8 @@ const MeatYourMatch = () => {
             </button>
           ) : null}
         </div>
+          <p id='welcome-message'>Welcome to Meat Your Match®!</p>
+          <p id='welcome-body'>This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!</p>
         <APIProvider apiKey={secretKey}>
           <div id='match-contents-div' style={{ display: 'flex' }}>
             <div id='match-left-div'

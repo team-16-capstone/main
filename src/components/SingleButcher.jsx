@@ -64,7 +64,6 @@ const SingleButcher = () => {
               {singleButcherData.zipcode}
             </h3>
             <h3>Contact: {singleButcherData.phonenumber}</h3>
-            <br />
             <button onClick={() => navigate('/butchers')}>
               RETURN TO BUTCHERS
             </button>
