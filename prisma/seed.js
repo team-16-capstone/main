@@ -197,7 +197,9 @@ const main = async () => {
         newButchers
       );
 
-      const butcherIds = newButchers.map((butcher) => butcher.id);
+      const createdButchers = await prisma.butcher.findMany();
+
+      const butcherIds = createdButchers.map((butcher) => butcher.id);
 
       const generateRandomMeats = () => {
         const meats = [];
