@@ -11,7 +11,7 @@ function Footer() {
           <p>New York, NY 10001</p>
           <p>
             Email:{' '}
-            <a href='mailto:contactpocketbutcher@gmail.com'>
+            <a href='mailto:contactpocketbutcher@gmail.com' target='_blank'>
               contactpocketbutcher@gmail.com
             </a>
           </p>
@@ -24,27 +24,39 @@ function Footer() {
             Lovingly crafted by:
             <br />
             Juan Pablo González Marín <span />
-            <a href='https://www.linkedin.com/in/juan-pablo-gonzalez-marin-b1720620b/'>
+            <a
+              href='https://www.linkedin.com/in/juan-pablo-gonzalez-marin-b1720620b/'
+              target='_blank'
+            >
               LinkedIn
             </a>{' '}
             <span />
-            <a href='https://github.com/jpgm1848'>GitHub</a>
+            <a href='https://github.com/jpgm1848' target='_blank'>
+              GitHub
+            </a>
           </p>
           <p>
             Julie Hildabrand <span />
-            <a href='https://www.linkedin.com/in/julie-hildabrand-29857a184/'>
+            <a
+              href='https://www.linkedin.com/in/julie-hildabrand-29857a184/'
+              target='_blank'
+            >
               LinkedIn
             </a>{' '}
             <span />
-            <a href='https://github.com/juliehildabrand'>GitHub</a>
+            <a href='https://github.com/juliehildabrand' target='_blank'>
+              GitHub
+            </a>
           </p>
           <p>
             Vanessa Szajnberg <span />
-            <a href='https://www.linkedin.com/in/vszajnberg/'>
+            <a href='https://www.linkedin.com/in/vszajnberg/' target='_blank'>
               LinkedIn
             </a>{' '}
             <span />
-            <a href='https://github.com/iamfernweh'>GitHub</a>
+            <a href='https://github.com/iamfernweh' target='_blank'>
+              GitHub
+            </a>
           </p>
         </address>
         <p>
