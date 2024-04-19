@@ -3,6 +3,13 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const main = async () => {
+  try {
+    await prisma.butcher.deleteMany({});
+    await prisma.meat.deleteMany({});
+    await prisma.meatButcher.deleteMany({});
+  } catch (error) {
+    console.error('Error: ', error);
+  }
   const generateRandomMeats = () => {
     const meats = [];
     const basePrices = [
@@ -76,8 +83,7 @@ const main = async () => {
             state: 'NY',
             zipcode: '10018',
             phonenumber: '+1(212)279-3298',
-            image_url:
-              'https://pbs.twimg.com/media/CQe3XUKUsAEKPmA.jpg',
+            image_url: 'https://pbs.twimg.com/media/CQe3XUKUsAEKPmA.jpg',
             map_url:
               'https://hips.hearstapps.com/hmg-prod/images/ribeye-steak-horizontal-1675097147.jpg?crop=0.671xw:1.00xh;0.0798xw,0&resize=1200:*',
             lat: '40.75644631753445',
