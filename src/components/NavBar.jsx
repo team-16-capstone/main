@@ -14,14 +14,14 @@ function NavBar() {
         <Link className='link' to='/account'>
           MY ACCOUNT
         </Link>
+        <Link className='link' to='/meat-your-match'>
+          MEAT YOUR MATCH
+        </Link>
         <Link className='link' to='/butchers'>
           BUTCHERS
         </Link>
         <Link className='link' to='/my-experiences'>
-          MY EXPERIENCES
-        </Link>
-        <Link className='link' to='/community'>
-          COMMUNITY
+          USER EXPERIENCES
         </Link>
         <Link className='link' to='/' onClick={handleLogout}>
           LOGOUT
@@ -39,8 +39,8 @@ function NavBar() {
           <nav id='sidebar-nav'>
             <Link className='sidebar-links' to='/account'>MY ACCOUNT</Link>
             <Link className='sidebar-links' to='/butchers'>BUTCHERS</Link>
-            <Link className='sidebar-links' to='/my-experiences'>MY EXPERIENCES</Link>
-            <Link className='sidebar-links' to='/community'>COMMUNITY</Link>
+            <Link className='sidebar-links' to='/MEAT-YOUR-MATCH'>MEAT YOUR MATCH</Link>
+            <Link className='sidebar-links' to='/my-experiences'>USER EXPERIENCES</Link>
             <Link className='sidebar-links' to='/' onClick={handleLogout}>LOGOUT</Link>
           </nav>
         </aside>

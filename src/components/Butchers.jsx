@@ -14,6 +14,8 @@ const Butchers = () => {
   return (
     <>
     <NavBar/>
+    <div className='site-bg'>
+    <br/>
     <div id='butcher-header'>
     <h2>PARTICIPATING BUTCHERS</h2>
     </div>
@@ -32,6 +34,7 @@ const Butchers = () => {
       ))}
     </div>
     <br/>
+    </div>
       <Footer />
     </>
   );

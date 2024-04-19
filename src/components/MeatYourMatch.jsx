@@ -165,6 +165,8 @@ const MeatYourMatch = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+      <br/>
       <div id='meat-header'>
         <h2>MEAT YOUR MATCH</h2>
       </div>
@@ -214,8 +216,8 @@ const MeatYourMatch = () => {
           <div id='match-contents-div' style={{ display: 'flex' }}>
             <div id='match-left-div'
               style={{
-                height: '600px',
-                width: 'auto',
+                height: '520px',
+                width: '400px',
                 flex: '1 1 auto',
                 position: 'relative',
                 margin: '20px 10px 0px 30px'
@@ -251,7 +253,7 @@ const MeatYourMatch = () => {
             </div>
 
             {selectedPosition && selectedPosition !== defaultPosition ? (
-              <div style={{ flex: '1 1 auto' }}>
+              <div id='match-extra-space' style={{ flex: '1 1 auto' }}>
                 <PositionDetails
                   position={selectedPosition}
                   selectedMeat={selectedMeat}
@@ -267,6 +269,7 @@ const MeatYourMatch = () => {
         </APIProvider>
       </div>
       <br/>
+      </div>
       <Footer />
     </>
   );

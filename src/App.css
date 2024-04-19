@@ -16,7 +16,7 @@ body {
 #logo-login {
   max-width: 600px;
   min-width: 150px;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 10px 260px;
 }
 
 #logo-topper {
@@ -29,6 +29,10 @@ body {
   margin: 8px 10px 8px 10px;
 }
 
+a {
+  color:rgb(167, 49, 49);
+}
+
 h2 {
   font-size: 40px;
   color: rgb(255, 255, 255);
@@ -36,6 +40,11 @@ h2 {
   padding: 0px;
   border-radius: 0px 0px 8px 8px;
 }
+
+.site-bg {
+  background-image: url(assets/1290-1080-bg.png);
+}
+
 
 #account-header {
   background-color: rgba(167, 49, 49);
@@ -46,7 +55,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px auto auto auto;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px 8px 0px 0px ;
 }
@@ -60,7 +69,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px auto auto auto;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -74,7 +83,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px auto auto auto;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -116,7 +125,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px auto auto auto;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -147,8 +156,8 @@ h2 {
   list-style: none;
   justify-content: space-evenly;
   max-width: 450px;
-  max-height: 600px;
-  margin: 15px 0px 0px 10px;
+  max-height: 520px;
+  margin: 20px 0px 0px 10px;
 }
 
 #butcher-name {
@@ -206,7 +215,7 @@ button:hover {
   font-size: 20px;
   font-weight: 500;
   text-decoration: none;
-  margin: 0px 30px;
+  margin: 0px 20px;
 }
 
 .link:hover {
@@ -239,7 +248,7 @@ button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 80px auto;
-  padding: 100px;
+  padding: 100px 230px 100px 100px;
   border-radius: 8px;
 }
 
@@ -250,7 +259,7 @@ button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 80px auto;
-  padding: 100px;
+  padding: 100px 230px 100px 100px;
   border-radius: 8px;
 }
 
@@ -287,7 +296,7 @@ button:hover {
   justify-content: space-evenly;
   align-items: center;
   height: 90px;
-  margin: 0px 10px 0px 90px ;
+  margin: 0px 0px 0px 150px ;
   padding: 0px 0px 0px 0px;
   border-radius: 0px;
 }
@@ -329,7 +338,7 @@ button:hover {
   list-style: none;
   justify-content: center;
   width: 70%;
-  margin: auto;
+  margin: auto auto -15px auto;
   padding: 0px;
 }
 
@@ -344,7 +353,7 @@ button:hover {
   /* background-color:rgb(214, 208, 208, 0.80); */
   width: 100%;
   text-align: center;
-  margin: 0px;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
@@ -356,35 +365,44 @@ button:hover {
   list-style: none;
   justify-content: center;
   text-align: center;
-  margin: auto;
+  margin: auto auto -15px auto;
   padding: 0px;
   border-radius: 8px;
 }
 
 #butcher-rating {
   color: black;
+  font-size: 25px;;
 }
 
 #left-butcher-div {
   background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 20px;
-  margin: 10px 5px 10px 0px;
-  max-height: 620px;
+  margin: 10px 5px 0px 0px;
+  max-height: 650px;
   max-width: 850px;
+}
+
+.single-address {
+  font-size: 30px;
+  margin: 0px;
 }
 
 #right-butcher-div {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   margin: 10px 0px 0px 5px;
+  padding: 10px;
   display: flex;
   flex-flow: column wrap;
   overflow-y: scroll;
   list-style: none;
   justify-content: space-evenly;
   max-width: 450px;
-  max-height: 660px; 
+  max-height: 690px; 
 }
 
 #user-welcome {
@@ -417,7 +435,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: 5px 10px 5px 0px;
+  margin: 5px 10px 10px 0px;
   padding: 35px 40px 130px 40px;
   border-radius: 8px;
   width: 357px;
@@ -428,7 +446,7 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 10px 10px 7px;
   padding: 35px 40px 130px 40px;
   border-radius: 8px;
   width: 357px;
@@ -577,7 +595,8 @@ button:hover {
   /* background-size: 100%; */
   text-align: center;
   width: 70%;
-  margin: 10px auto;
+  min-height: 550px;
+  margin: 10px auto -15px auto;
   padding: 30px 0px 30px 0px;
   border-radius: 8px;
 }
@@ -612,7 +631,7 @@ button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 80px auto;
-  padding: 100px;
+  padding: 100px 230px 100px 100px;
   border-radius: 8px;
 }
 

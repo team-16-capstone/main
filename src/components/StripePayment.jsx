@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import StripeContainer from './StripeContainer';
+import logored from '../assets/logored.png'
 import membercard from '../assets/membercard.png';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
@@ -41,7 +42,7 @@ export default function StripePayment() {
     <div className='checkout'>
       <img
         id='logo-login'
-        src='https://mail.google.com/mail/u/0?ui=2&ik=ccaf984398&attid=0.1&permmsgid=msg-a:r7152435504917764301&th=18ecdbf99b6abeb1&view=att&disp=safe&realattid=f_luvdzmy30'
+        src={logored}
       />
       {/* This conditional will render the stripe payment page only when an email has been set, which then updates state to 'connected' */}
       {!connection ? (

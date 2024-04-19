@@ -34,6 +34,8 @@ const Account = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div id='account-header'>
         {/* <img id='logo-account' src={logowhite}/> */}
         <h2>MY ACCOUNT</h2>
@@ -42,16 +44,16 @@ const Account = () => {
       {currentUser ? <h3 id='welcome-message'>Logged in as {currentUser.name}</h3> : null}
       </div>
       <div id='account-body'>
-        <h3 className='account-cards'>
-          <p className='acct-card-headers'>MY EXPERIENCES</p>
+        <h3 className='account-card-right'>
+          <p className='acct-card-headers'>CREATE EXPERIENCE</p>
           <div className='border'>
-            <img id='acct-my-exp' src={myexppic} />
+            <img id='acct-exp-pic' src={createexppic} />
           </div>
           <button
             className='acct-card-button'
-            onClick={() => navigate('/my-experiences')}
+            onClick={() => navigate('/new-experience')}
           >
-            Browse All
+            New
           </button>
         </h3>
         <h3 className='account-cards'>
@@ -66,20 +68,20 @@ const Account = () => {
             Search
           </button>
         </h3>
-        <h3 className='account-card-right'>
-          <p className='acct-card-headers'>CREATE EXPERIENCE</p>
+        <h3 className='account-cards'>
+          <p className='acct-card-headers'>USER EXPERIENCES</p>
           <div className='border'>
-            <img id='acct-exp-pic' src={createexppic} />
+            <img id='acct-my-exp' src={myexppic} />
           </div>
           <button
             className='acct-card-button'
-            onClick={() => navigate('/new-experience')}
+            onClick={() => navigate('/my-experiences')}
           >
-            New
+            Browse All
           </button>
         </h3>
       </div>
-      <br/>
+      </div>
       <Footer />
     </>
   );

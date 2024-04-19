@@ -99,6 +99,8 @@ const EditExperience = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div>
         <div id='experience-header'>
           <br />
@@ -172,6 +174,7 @@ const EditExperience = () => {
         </form>
       </div>
       <br/>
+      </div>
       <Footer/>
     </>
   );
