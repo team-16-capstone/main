@@ -79,7 +79,7 @@ const main = async () => {
             image_url:
               'https://pbs.twimg.com/media/CQe3XUKUsAEKPmA.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://hips.hearstapps.com/hmg-prod/images/ribeye-steak-horizontal-1675097147.jpg?crop=0.671xw:1.00xh;0.0798xw,0&resize=1200:*',
             lat: '40.75644631753445',
             lng: '-73.99435489999999',
           },
@@ -93,7 +93,7 @@ const main = async () => {
             image_url:
               'https://fastly.4sqi.net/img/general/600x600/45690617_9A_C-P28Kd9Hv7GmWh9PjZkHTdOQ1NWs1aNP-TjpV7M.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://houseofnasheats.com/wp-content/uploads/2024/01/Filet-Mignon-Recipe-Square-1.jpg',
             lat: '40.75839054564528',
             lng: '-73.9929978266508',
           },
@@ -107,7 +107,7 @@ const main = async () => {
             image_url:
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSE4ZmAZj4JA7Nl2rxzT_oHcbFnMxv6WzRxt6hSscuqQ&s',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://static01.nyt.com/images/2016/06/23/dining/23COOKING-SOY-GRILLED-STEAK1/23COOKING-SOY-GRILLED-STEAK1-square640.jpg',
             lat: '40.760987408985514',
             lng: '-73.9917928613626',
           },
@@ -121,7 +121,7 @@ const main = async () => {
             image_url:
               'https://myannoyingopinions.files.wordpress.com/2019/10/chelsea-market-dicksons-farmstand-meats.jpg?w=800',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://bakingamoment.com/wp-content/uploads/2023/07/IMG_2248-lamb-chops.jpg',
             lat: '40.742655645351114',
             lng: '-74.00615191386095',
           },
@@ -135,7 +135,7 @@ const main = async () => {
             image_url:
               'https://images-pw.pixieset.com/elementfield/631743402/chicago__sunnyparkphoto_2-3cf7fd92.png',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://heygrillhey.com/wp-content/uploads/2024/03/HGPT-Square.jpg',
             lat: '40.7670017699855',
             lng: '-73.98980561641342',
           },
@@ -149,7 +149,7 @@ const main = async () => {
             image_url:
               'https://cdn.shopify.com/s/files/1/1035/4561/files/wp_delisection_2048x2048.jpg?v=1527871848',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://s3.amazonaws.com/img.kh-labs.com/ZxW98y6401f88cf35681.85093623',
             lat: '40.752525858741336',
             lng: '-73.97602267522332',
           },
@@ -163,7 +163,7 @@ const main = async () => {
             image_url:
               'https://untappedcities.com/wp-content/uploads/2014/06/simchick-midtown-manhattan-old-school-butcher-shop.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://thewoodenskillet.com/wp-content/uploads/2022/04/pork-shoulder-roast-recipe-1.jpg',
             lat: '40.7566828300824',
             lng: '-73.96372298133309',
           },
@@ -177,7 +177,7 @@ const main = async () => {
             image_url:
               'https://fastly.4sqi.net/img/general/600x600/10675662_LbxECV_pnTJhQQi3oenaedJ3LqMrmyW0-2CCvAvMD0A.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://www.farmfoodsmarket.com/cdn/shop/products/11769745109_beef_flank_steak.003_SQUARE_89.jpg?v=1644441401&width=480',
             lat: '40.72921570855029',
             lng: '-73.98752290036671',
           },
@@ -191,7 +191,7 @@ const main = async () => {
             image_url:
               'https://static01.nyt.com/images/2015/04/05/nyregion/20150405JOINT-slide-KT7M/20150405JOINT-slide-KT7M-superJumbo.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://keviniscooking.com/wp-content/uploads/2022/10/How-to-Roast-a-Chicken-square.jpg',
             lat: '40.72737439097817',
             lng: '-74.00160171570738',
           },
@@ -205,7 +205,7 @@ const main = async () => {
             image_url:
               'https://www.shoparc.com/wp-content/uploads/2020/12/131013_SHoP_EssexMrkt_Ewing-9761_jpg.jpg',
             map_url:
-              'https://www.google.com/maps/d/thumbnail?mid=1erNnjDpSRwrkGfqb7rzit1KFSpU&hl=en',
+              'https://pinchofyum.com/wp-content/uploads/Smash-burgers-Square.jpg',
             lat: '40.718318836507564',
             lng: '-73.98810677337802',
           },

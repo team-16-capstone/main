@@ -42,6 +42,8 @@ const SingleButcher = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div id='single-butcher-container'>
         <div id='single-header'>
           <h2>{singleButcherData.name}</h2>
@@ -52,10 +54,10 @@ const SingleButcher = () => {
               <img className='butcher-img' src={singleButcherData.image_url} />
               <img className='butcher-img' src={singleButcherData.map_url} />
               <br />
-              <h2 id='butcher-rating'>{calculateAverageRating()}/5 ★</h2>
+              <br/>
             </div>
-            <h3>{singleButcherData.street}</h3>
-            <h3>
+            <h3 className='single-address'>{singleButcherData.street}</h3>
+            <h3 className='single-address'>
               {singleButcherData.city}, {singleButcherData.state}{' '}
               {singleButcherData.zipcode}
             </h3>
@@ -70,6 +72,7 @@ const SingleButcher = () => {
           </div>
           <div id='right-butcher-div'>
             <div>
+            <h2 id='butcher-rating'>BUTCHER RATING: {calculateAverageRating()}/5 ★</h2>
               {experiences.map(
                 (experience) =>
                   experience.butcher === singleButcherData.name && (
@@ -89,6 +92,7 @@ const SingleButcher = () => {
         </div>
       </div>
       <br />
+      </div>
       <Footer />
     </>
   );

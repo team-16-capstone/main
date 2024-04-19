@@ -86,6 +86,8 @@ function NewExperience() {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div id='experience-header'>
         <br />
         <h2>CREATE EXPERIENCE</h2>
@@ -212,6 +214,7 @@ function NewExperience() {
         </form>
       </div>
       <br />
+      </div>
       <Footer />
     </>
   );

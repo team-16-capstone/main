@@ -21,9 +21,11 @@ const MyExperiences = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div id='experience-header'>
         <br />
-        <h2>MY EXPERIENCES</h2>
+        <h2>USER EXPERIENCES</h2>
       </div>
       <div id='community-body'>
         <div id='community-container'>
@@ -58,7 +60,8 @@ const MyExperiences = () => {
           </button>
         </div>
       </div>
-      <br />
+      <br/>
+      </div>
       <Footer />
     </>
   );
