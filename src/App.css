@@ -142,11 +142,12 @@ h2 {
 
 #match-left-div {
   min-width: 300px;
-  max-height: 600px;
+  max-height: 500px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 #match-right-container {
-  max-width: 450px;
+  max-width:550px;
 }
 
 #match-right-div {
@@ -155,7 +156,7 @@ h2 {
   overflow-y: scroll;
   list-style: none;
   justify-content: space-evenly;
-  max-width: 450px;
+  max-width: 550px;
   max-height: 520px;
   margin: 20px 0px 0px 10px;
 }
@@ -370,9 +371,33 @@ button:hover {
   border-radius: 8px;
 }
 
+#rating-container {
+  display: flex;
+  justify-content: center;
+}
+
 #butcher-rating {
   color: black;
-  font-size: 25px;;
+  font-size: 25px;
+  line-height: 60px;
+}
+
+#star {
+  color: rgb(236, 201, 0);
+  font-size: 40px;
+  align-items: center;
+  line-height: 55px;
+  margin: 0px 0px 0px 5px;
+}
+
+#exp-rating-container {
+  display: flex;
+  justify-content: center;
+}
+
+#exp-star {
+  color: rgb(236, 201, 0);
+  margin: 0px 0px 0px 3px;
 }
 
 #left-butcher-div {
