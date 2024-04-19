@@ -198,24 +198,26 @@ const main = async () => {
       );
 
       const createdButchers = await prisma.butcher.findMany();
+      const createdMeats = await prisma.meat.findMany();
 
       const butcherIds = createdButchers.map((butcher) => butcher.id);
+      const meatIds = createdMeats.map((meat) => meat.id);
 
       const generateRandomMeats = () => {
         const meats = [];
         const basePrices = [
           10.99, 28.99, 12.49, 11.39, 4.99, 7.0, 8.5, 9.5, 8.99, 5.99,
         ];
-        const numberOfMeats = basePrices.length;
 
         for (let butcherId of butcherIds) {
-          for (let j = 0; j < numberOfMeats; j++) {
-            const basePrice = basePrices[j];
+          for (let i = 0; i < meatIds.length; i++) {
+            const meatId = meatIds[i];
+            const basePrice = basePrices[i];
             const randomPrice = Math.random() * 2 + basePrice;
             const randomDigit = Math.floor(Math.random() * 9) + 1;
             const formattedPrice = `${randomPrice.toFixed(2)}${randomDigit}`;
             const meat = {
-              meatId: j + 1,
+              meatId: meatId,
               butcherId: butcherId,
               price: parseFloat(formattedPrice),
             };
@@ -225,6 +227,7 @@ const main = async () => {
 
         return meats;
       };
+
       const randomMeats = generateRandomMeats();
       console.log(randomMeats);
 
