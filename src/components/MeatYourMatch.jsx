@@ -69,7 +69,7 @@ const MeatYourMatch = () => {
       let butchersLength = butchers.length;
       let allMeatData = [];
       for (let i = 1; i <= butchersLength; i++) {
-        const allButcherMeats = await fetchButcherMeats(i);
+        const allButcherMeats = await fetchButcherMeats(meats[i - 1].id);
         const meatData = allButcherMeats[comparisonMeatIndex];
         allMeatData.push(meatData);
       }
@@ -137,6 +137,7 @@ const MeatYourMatch = () => {
           lat: parseFloat(position.lat),
           lng: parseFloat(position.lng),
           selected: false,
+          id: position.id,
         }));
         setPositions(transformedData);
       } catch (error) {
@@ -153,6 +154,7 @@ const MeatYourMatch = () => {
         const data = await fetchAllMeats();
         const transformedData = data.map((meat) => ({
           name: meat.name,
+          id: meat.id,
         }));
         setMeats(transformedData);
       } catch (error) {
