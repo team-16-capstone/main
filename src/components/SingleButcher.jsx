@@ -16,6 +16,8 @@ const SingleButcher = () => {
     fetchSingleButcher(id).then(setSingleButcherData);
   }, [id]);
 
+  console.log(singleButcherData);
+
   useEffect(() => {
     fetchExperiences().then(setExperiences);
   }, []);
@@ -72,7 +74,9 @@ const SingleButcher = () => {
           </div>
           <div id='right-butcher-div'>
             <div>
-            <h2 id='butcher-rating'>BUTCHER RATING: {calculateAverageRating()}/5 ★</h2>
+            <div id='rating-container'>
+            <h2 id='butcher-rating'>BUTCHER RATING: {calculateAverageRating()}/5</h2><h2 id='star'>★</h2>
+            </div>
               {experiences.map(
                 (experience) =>
                   experience.butcher === singleButcherData.name && (
