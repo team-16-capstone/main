@@ -10,33 +10,6 @@ const main = async () => {
   } catch (error) {
     console.error('Error: ', error);
   }
-  const generateRandomMeats = () => {
-    const meats = [];
-    const basePrices = [
-      10.99, 28.99, 12.49, 11.39, 4.99, 7.0, 8.5, 9.5, 8.99, 5.99,
-    ];
-    const numberOfMeats = basePrices.length;
-    const butcherCount = 10;
-
-    for (let i = 1; i <= butcherCount; i++) {
-      for (let j = 0; j < numberOfMeats; j++) {
-        const basePrice = basePrices[j];
-        const randomPrice = Math.random() * 2 + basePrice;
-        const randomDigit = Math.floor(Math.random() * 9) + 1;
-        const formattedPrice = `${randomPrice.toFixed(2)}${randomDigit}`;
-        const meat = {
-          meatId: j + 1,
-          butcherId: i,
-          price: parseFloat(formattedPrice),
-        };
-        meats.push(meat);
-      }
-    }
-
-    return meats;
-  };
-  const randomMeats = generateRandomMeats();
-  console.log(randomMeats);
 
   {
     try {
@@ -223,6 +196,35 @@ const main = async () => {
         newMeats,
         newButchers
       );
+
+      const butcherIds = newButchers.map((butcher) => butcher.id);
+
+      const generateRandomMeats = () => {
+        const meats = [];
+        const basePrices = [
+          10.99, 28.99, 12.49, 11.39, 4.99, 7.0, 8.5, 9.5, 8.99, 5.99,
+        ];
+        const numberOfMeats = basePrices.length;
+
+        for (let butcherId of butcherIds) {
+          for (let j = 0; j < numberOfMeats; j++) {
+            const basePrice = basePrices[j];
+            const randomPrice = Math.random() * 2 + basePrice;
+            const randomDigit = Math.floor(Math.random() * 9) + 1;
+            const formattedPrice = `${randomPrice.toFixed(2)}${randomDigit}`;
+            const meat = {
+              meatId: j + 1,
+              butcherId: butcherId,
+              price: parseFloat(formattedPrice),
+            };
+            meats.push(meat);
+          }
+        }
+
+        return meats;
+      };
+      const randomMeats = generateRandomMeats();
+      console.log(randomMeats);
 
       const newMeatButchers = await prisma.meatButcher.createMany({
         data: randomMeats,
