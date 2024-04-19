@@ -17,7 +17,7 @@ import cleaverpin from '../assets/cleaverpin.png';
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const defaultPosition = {
-  name: 'Welcome to Meat Your Match®! ' + 'This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!' + ' Please select a meat and a butcher to display pricing information.'
+  name: ' Please select a meat and a butcher to display pricing information.'
 };
 
 const MeatYourMatch = () => {
@@ -168,110 +168,111 @@ const MeatYourMatch = () => {
     <>
       <NavBar />
       <div className='site-bg'>
-        <br />
-        <div id='meat-header'>
-          <h2>MEAT YOUR MATCH</h2>
+      <br/>
+      <div id='meat-header'>
+        <h2>MEAT YOUR MATCH</h2>
+      </div>
+      <div id='community-body'>
+        <div>
+          <label>
+            Select a meat:
+            <select className='dropdown'
+              value={selectedMeat}
+              onChange={handleMeatSelection}
+              disabled={selectedPosition}
+            >
+              <option value='' disabled>
+                Select a meat
+              </option>
+              {meats.map((meat, index) => (
+                <option key={index} value={meat.name}>
+                  {meat.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Select a butcher:
+            <select className='dropdown'
+              value={selectedPosition ? selectedPosition.name : ''}
+              onChange={handleDropdownChange}
+              disabled={!selectedMeat || isMeatAndButcherSelected}
+            >
+              <option value='' disabled>
+                Select a butcher
+              </option>
+              {positions.map((position) => (
+                <option key={position.id} value={position.name}>
+                  {position.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {isMeatAndButcherSelected ? (
+            <button onClick={resetMeatAndButcherSelection}>
+              REFRESH
+            </button>
+          ) : null}
         </div>
-
-        <div id='community-body'>
-          <div>
-            <label>
-              Select a meat:
-              <select
-                value={selectedMeat}
-                onChange={handleMeatSelection}
-                disabled={selectedPosition}
-
+          <p id='welcome-message'>Welcome to Meat Your Match®!</p>
+          <p id='welcome-body'>This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!</p>
+        <APIProvider apiKey={secretKey}>
+          <div id='match-contents-div' style={{ display: 'flex' }}>
+            <div id='match-left-div'
+              style={{
+                height: '520px',
+                width: '400px',
+                flex: '1 1 auto',
+                position: 'relative',
+                margin: '20px 10px 0px 30px',
+              }}
+            >
+              <Map
+                zoom={13.3}
+                center={{ lat: 40.745, lng: -73.984 }}
+                mapId={'70d74e311a440c10'}
+                zoomControl={true}
+                gestureHandling={'greedy'}
+                draggable={false}
               >
-                <option value='' disabled>
-                  Select a meat
-                </option>
-                {meats.map((meat, index) => (
-                  <option key={index} value={meat.name}>
-                    {meat.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Select a butcher:
-              <select
-                value={selectedPosition ? selectedPosition.name : ''}
-                onChange={handleDropdownChange}
-                disabled={!selectedMeat || isMeatAndButcherSelected}
-              >
-                <option value='' disabled>
-                  Select a butcher
-                </option>
                 {positions.map((position) => (
-                  <option key={position.id} value={position.name}>
-                    {position.name}
-                  </option>
+                  <AdvancedMarker
+                    key={position.id}
+                    position={{ lat: position.lat, lng: position.lng }}
+                    onClick={() => {
+                      isMeatAndButcherSelected
+                        ? handleMarkerClick(position.id, position)
+                        : null;
+                    }}
+                    ref={markerRef}
+                  >
+                    <Pin
+                      // img src={cleaverpin}
+                      background={position.selected ? 'white' : 'grey'}
+                      borderColor={'black'}
+                    ></Pin>
+                  </AdvancedMarker>
                 ))}
-              </select>
-            </label>
-            {isMeatAndButcherSelected ? (
-              <button onClick={resetMeatAndButcherSelection}>REFRESH</button>
-            ) : null}
-          </div>
-          <APIProvider apiKey={secretKey}>
-            <div id='match-contents-div' style={{ display: 'flex' }}>
-              <div
-                id='match-left-div'
-                style={{
-                  height: '520px',
-                  width: '400px',
-                  flex: '1 1 auto',
-                  position: 'relative',
-                  margin: '20px 10px 0px 30px',
-                }}
-              >
-                <Map
-                  zoom={13.3}
-                  center={{ lat: 40.745, lng: -73.984 }}
-                  mapId={'70d74e311a440c10'}
-                  zoomControl={true}
-                  gestureHandling={'greedy'}
-                  draggable={false}
-                >
-                  {positions.map((position) => (
-                    <AdvancedMarker
-                      key={position.id}
-                      position={{ lat: position.lat, lng: position.lng }}
-                      onClick={() => {
-                        isMeatAndButcherSelected
-                          ? handleMarkerClick(position.id, position)
-                          : null;
-                      }}
-                      ref={markerRef}
-                    >
-                      <Pin
-                        // img src={cleaverpin}
-                        background={position.selected ? 'white' : 'grey'}
-                        borderColor={'black'}
-                      ></Pin>
-                    </AdvancedMarker>
-                  ))}
-                </Map>
-              </div>
-
-              {selectedPosition && selectedPosition !== defaultPosition ? (
-                <div id='match-extra-space' style={{ flex: '1 1 auto' }}>
-                  <PositionDetails
-                    position={selectedPosition}
-                    selectedMeat={selectedMeat}
-                    allButchersData={allButchersData}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <PositionDetails position={defaultPosition} />
-                </div>
-              )}
+              </Map>
             </div>
-          </APIProvider>
-        </div>
-        <br />
+
+            {selectedPosition && selectedPosition !== defaultPosition ? (
+              <div id='match-extra-space' style={{ flex: '1 1 auto' }}>
+                <PositionDetails
+                  position={selectedPosition}
+                  selectedMeat={selectedMeat}
+                  allButchersData={allButchersData}
+                />
+              </div>
+            ) : (
+              <div>
+                <PositionDetails position={defaultPosition} />
+              </div>
+            )}
+          </div>
+        </APIProvider>
+      </div>
+      <br/>
       </div>
       <Footer />
     </>
