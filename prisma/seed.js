@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   try {
+    await prisma.meatButcher.deleteMany({});
     await prisma.butcher.deleteMany({});
     await prisma.meat.deleteMany({});
-    await prisma.meatButcher.deleteMany({});
   } catch (error) {
     console.error('Error: ', error);
   }
