@@ -40,11 +40,11 @@ function Footer() {
           </p>
           <p>
             Vanessa Szajnberg <span />
-            <a href='https://www.linkedin.com/in/juan-pablo-gonzalez-marin-b1720620b/'>
+            <a href='https://www.linkedin.com/in/vszajnberg/'>
               LinkedIn
             </a>{' '}
             <span />
-            <a href='https://github.com/jpgm1848'>GitHub</a>
+            <a href='https://github.com/iamfernweh'>GitHub</a>
           </p>
         </address>
         <p>
