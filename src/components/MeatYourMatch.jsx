@@ -17,7 +17,7 @@ import cleaverpin from '../assets/cleaverpin.png';
 const secretKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const defaultPosition = {
-  name: 'Please select a meat and a butcher to display pricing information.',
+  name: 'Welcome to Meat Your Match®! ' + 'This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!' + ' Please select a meat and a butcher to display pricing information.'
 };
 
 const MeatYourMatch = () => {
@@ -220,7 +220,7 @@ const MeatYourMatch = () => {
                 width: '400px',
                 flex: '1 1 auto',
                 position: 'relative',
-                margin: '20px 10px 0px 30px'
+                margin: '20px 10px 0px 30px',
               }}
             >
               <Map
