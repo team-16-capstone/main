@@ -69,7 +69,7 @@ const MeatYourMatch = () => {
       let butchersLength = butchers.length;
       let allMeatData = [];
       for (let i = 1; i <= butchersLength; i++) {
-        const allButcherMeats = await fetchButcherMeats(i);
+        const allButcherMeats = await fetchButcherMeats(meats[i - 1].id);
         const meatData = allButcherMeats[comparisonMeatIndex];
         allMeatData.push(meatData);
       }
@@ -137,6 +137,7 @@ const MeatYourMatch = () => {
           lat: parseFloat(position.lat),
           lng: parseFloat(position.lng),
           selected: false,
+          id: position.id,
         }));
         setPositions(transformedData);
       } catch (error) {
@@ -153,6 +154,7 @@ const MeatYourMatch = () => {
         const data = await fetchAllMeats();
         const transformedData = data.map((meat) => ({
           name: meat.name,
+          id: meat.id,
         }));
         setMeats(transformedData);
       } catch (error) {
@@ -166,109 +168,110 @@ const MeatYourMatch = () => {
     <>
       <NavBar />
       <div className='site-bg'>
-      <br/>
-      <div id='meat-header'>
-        <h2>MEAT YOUR MATCH</h2>
-      </div>
-      <div id='community-body'>
-        <div>
-          <label>
-            Select a meat:
-            <select
-              value={selectedMeat}
-              onChange={handleMeatSelection}
-              disabled={selectedPosition}
-            >
-              <option value='' disabled>
-                Select a meat
-              </option>
-              {meats.map((meat, index) => (
-                <option key={index} value={meat.name}>
-                  {meat.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Select a butcher:
-            <select
-              value={selectedPosition ? selectedPosition.name : ''}
-              onChange={handleDropdownChange}
-              disabled={!selectedMeat || isMeatAndButcherSelected}
-            >
-              <option value='' disabled>
-                Select a butcher
-              </option>
-              {positions.map((position) => (
-                <option key={position.id} value={position.name}>
-                  {position.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          {isMeatAndButcherSelected ? (
-            <button onClick={resetMeatAndButcherSelection}>
-              REFRESH
-            </button>
-          ) : null}
+        <br />
+        <div id='meat-header'>
+          <h2>MEAT YOUR MATCH</h2>
         </div>
-        <APIProvider apiKey={secretKey}>
-          <div id='match-contents-div' style={{ display: 'flex' }}>
-            <div id='match-left-div'
-              style={{
-                height: '520px',
-                width: '400px',
-                flex: '1 1 auto',
-                position: 'relative',
-                margin: '20px 10px 0px 30px',
-              }}
-            >
-              <Map
-                zoom={13.3}
-                center={{ lat: 40.745, lng: -73.984 }}
-                mapId={'70d74e311a440c10'}
-                zoomControl={true}
-                gestureHandling={'greedy'}
-                draggable={false}
-              >
-                {positions.map((position) => (
-                  <AdvancedMarker
-                    key={position.id}
-                    position={{ lat: position.lat, lng: position.lng }}
-                    onClick={() => {
-                      isMeatAndButcherSelected
-                        ? handleMarkerClick(position.id, position)
-                        : null;
-                    }}
-                    ref={markerRef}
-                  >
-                    <Pin
-                      // img src={cleaverpin}
-                      background={position.selected ? 'white' : 'grey'}
-                      borderColor={'black'}
-                    ></Pin>
-                  </AdvancedMarker>
-                ))}
-              </Map>
-            </div>
 
-            {selectedPosition && selectedPosition !== defaultPosition ? (
-              <div id='match-extra-space' style={{ flex: '1 1 auto' }}>
-                <PositionDetails
-                  position={selectedPosition}
-                  selectedMeat={selectedMeat}
-                  allButchersData={allButchersData}
-                />
-              </div>
-            ) : (
-              <div>
-                <PositionDetails position={defaultPosition} />
-              </div>
-            )}
+        <div id='community-body'>
+          <div>
+            <label>
+              Select a meat:
+              <select
+                value={selectedMeat}
+                onChange={handleMeatSelection}
+                disabled={selectedPosition}
+
+              >
+                <option value='' disabled>
+                  Select a meat
+                </option>
+                {meats.map((meat, index) => (
+                  <option key={index} value={meat.name}>
+                    {meat.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Select a butcher:
+              <select
+                value={selectedPosition ? selectedPosition.name : ''}
+                onChange={handleDropdownChange}
+                disabled={!selectedMeat || isMeatAndButcherSelected}
+              >
+                <option value='' disabled>
+                  Select a butcher
+                </option>
+                {positions.map((position) => (
+                  <option key={position.id} value={position.name}>
+                    {position.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {isMeatAndButcherSelected ? (
+              <button onClick={resetMeatAndButcherSelection}>REFRESH</button>
+            ) : null}
           </div>
-        </APIProvider>
-      </div>
-      <br/>
+          <APIProvider apiKey={secretKey}>
+            <div id='match-contents-div' style={{ display: 'flex' }}>
+              <div
+                id='match-left-div'
+                style={{
+                  height: '520px',
+                  width: '400px',
+                  flex: '1 1 auto',
+                  position: 'relative',
+                  margin: '20px 10px 0px 30px',
+                }}
+              >
+                <Map
+                  zoom={13.3}
+                  center={{ lat: 40.745, lng: -73.984 }}
+                  mapId={'70d74e311a440c10'}
+                  zoomControl={true}
+                  gestureHandling={'greedy'}
+                  draggable={false}
+                >
+                  {positions.map((position) => (
+                    <AdvancedMarker
+                      key={position.id}
+                      position={{ lat: position.lat, lng: position.lng }}
+                      onClick={() => {
+                        isMeatAndButcherSelected
+                          ? handleMarkerClick(position.id, position)
+                          : null;
+                      }}
+                      ref={markerRef}
+                    >
+                      <Pin
+                        // img src={cleaverpin}
+                        background={position.selected ? 'white' : 'grey'}
+                        borderColor={'black'}
+                      ></Pin>
+                    </AdvancedMarker>
+                  ))}
+                </Map>
+              </div>
+
+              {selectedPosition && selectedPosition !== defaultPosition ? (
+                <div id='match-extra-space' style={{ flex: '1 1 auto' }}>
+                  <PositionDetails
+                    position={selectedPosition}
+                    selectedMeat={selectedMeat}
+                    allButchersData={allButchersData}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <PositionDetails position={defaultPosition} />
+                </div>
+              )}
+            </div>
+          </APIProvider>
+        </div>
+        <br />
       </div>
       <Footer />
     </>
