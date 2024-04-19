@@ -84,7 +84,9 @@ const SingleButcher = () => {
                       <p>Purchased: {experience.meats.join(', ')}</p>
                       <p>Date: {experience.date}</p>
                       <p className='price'>Price/lb: ${experience.price}</p>
-                      <p>Rating: {experience.rating}/5 ★ </p>
+                      <div id='exp-rating-container'>
+                      <p>Rating: {experience.rating}/5 </p><p id='exp-star'>★</p>
+                      </div>
                       <p className='review-box'>{experience.review}</p>
                     </div>
                   )

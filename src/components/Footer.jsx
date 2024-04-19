@@ -60,7 +60,7 @@ function Footer() {
           </p>
         </address>
         <p>
-          Created in<span>2024</span>
+          Created in <span>2024</span>
         </p>
       </div>
     </>
