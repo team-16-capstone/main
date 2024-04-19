@@ -106,7 +106,7 @@ const sendConfirmationEmail = (email) => {
     from: 'contactpocketbutcher@gmail.com',
     to: email,
     subject: 'Welcome to Pocket Butcher! Your Confirmation Email Inside',
-    text: 'Congratulations! Your registration with Pocket Butcher was successful, and we are thrilled to have you on board.\n\nBefore you dive in, please take a moment to finalize your registration by completing your payment with Stripe.\n\nIf you encounter any issues or have any questions along the way, do not hesitate to reach out to our support team. We are here to help!\n\nWe are excited to embark on this culinary journey with you!\n\n\nThe Pocket Butcher Team',
+    text: 'Congratulations! Your registration with Pocket Butcher was successful, and we are thrilled to have you on board.\n\nBefore you dive in, please take a moment to finalize your registration by completing your payment on our website.\n\nIf you encounter any issues or have any questions along the way, do not hesitate to reach out to our support team. We are here to help!\n\nWe are excited to embark on this culinary journey with you!\n\n\nThe Pocket Butcher Team',
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
