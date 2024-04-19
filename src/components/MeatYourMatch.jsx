@@ -214,7 +214,7 @@ const MeatYourMatch = () => {
             </button>
           ) : null}
         </div>
-          <p id='welcome-message'>Welcome to Meat Your Match®!</p>
+          <p id='welcome-message'>Welcome to Meat Your Match!</p>
           <p id='welcome-body'>This feature is designed to provide you with the best price comparisons across all participating butchers ensuring you make the right decision in your every day meat purchases!</p>
         <APIProvider apiKey={secretKey}>
           <div id='match-contents-div' style={{ display: 'flex' }}>

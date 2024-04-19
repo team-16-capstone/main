@@ -156,6 +156,7 @@ h2 {
 
 #welcome-body {
   font-size: 18px;
+  font-weight: 600;
   margin: 0px 160px;
 }
 
@@ -406,7 +407,7 @@ button:hover {
   color: rgb(236, 201, 0);
   font-size: 40px;
   align-items: center;
-  line-height: 55px;
+  line-height: 52px;
   margin: 0px 0px 0px 5px;
 }
 
@@ -598,6 +599,7 @@ button:hover {
 
 #match-butch-name {
   font-size: 23px;
+  margin: 10px 0px 5px 0px;
 }
 
 #match-meat-price {
