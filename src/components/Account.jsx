@@ -69,7 +69,7 @@ const Account = () => {
           </button>
         </h3>
         <h3 className='account-cards'>
-          <p className='acct-card-headers'>USER EXPERIENCES</p>
+          <p className='acct-card-headers'>MY EXPERIENCES</p>
           <div className='border'>
             <img id='acct-my-exp' src={myexppic} />
           </div>
