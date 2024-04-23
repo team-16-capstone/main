@@ -16,13 +16,12 @@ const Community = () => {
   return (
     <>
       <NavBar />
+      <div className='site-bg'>
+        <br/>
       <div id='community-header'>
         <h2>COMMUNITY</h2>
       </div>
       <div id='community-body'>
-        {/* <h3>
-          RECENT USER EXPERIENCES
-        </h3> */}
         <div id='community-container'>
           {experiences.map((experience) => (
             <div className='experience-card' key={experience.id}>
@@ -42,6 +41,7 @@ const Community = () => {
         </div>
       </div>
       <br />
+      </div>
       <Footer />
     </>
   );

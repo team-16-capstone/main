@@ -97,7 +97,7 @@ h2 {
   flex-flow: row wrap;
   list-style: none;
   justify-content: center;
-  margin: 0px auto auto auto;
+  margin: -15px auto auto auto;
   padding: 0px;
   border-radius: 8px;
 }
